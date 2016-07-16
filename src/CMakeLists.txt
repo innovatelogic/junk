@@ -4,6 +4,10 @@ project(junk)
 
 set(SOURCE 
 	main.cpp
+	custom_list.h
+	custom_stack.h
+	find_list_nth_from_end.h
+	list_head_tail.h
 	)
 
 add_executable(${PROJECT_NAME} ${SOURCE})
