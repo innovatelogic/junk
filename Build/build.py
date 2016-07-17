@@ -38,13 +38,9 @@ def main():
 	
 	cmake.Config.cmake_exe = os.path.join(cmake_dir, 'cmake.exe')
 	
-	#print(cur_file_dir)
-	#print(programming_dir)
-	#print(root_dir)
-
 	specs = dict()
 	
-	specs['tools_dep'] = {
+	specs['junk_dep'] = {
 		'gen_id': 'vc140',
 		'amd64': False,
 		'xpSupport': True,
@@ -56,7 +52,7 @@ def main():
 		'install': True
 	}
 	
-	specs['tools'] = {
+	specs['junk'] = {
 		'gen_id': 'vc140',
 		'amd64': False,
 		'xpSupport': True,
@@ -68,8 +64,8 @@ def main():
 		'install': True
 	}
 	
-	tools_deps = cmake.Config('tools_dep', **specs['tools_dep'])
-	tools = cmake.Config('tools', **specs['tools'])
+	junk_deps = cmake.Config('junk_dep', **specs['junk_dep'])
+	junk = cmake.Config('junk', **specs['junk'])
 	
 	#res_deploy = res_dep.ResDeploy(source_dir, out_bin)
 	
@@ -78,11 +74,11 @@ def main():
 			raise Exception("Not goal argument")
 		elif args.goal == 'tools_build':
 			print("begin")
-			tools_deps.generate()
-			tools_deps.build('Debug')
-			tools_deps.build('Release')
-			tools.generate()
-			tools.build('Debug')
+			junk_deps.generate()
+			junk_deps.build('Debug')
+			junk_deps.build('Release')
+			junk.generate()
+			junk.build('Debug')
 			#tools.build('Release')
 		
 		#res_deploy.deploy()
