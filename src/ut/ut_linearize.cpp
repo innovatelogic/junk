@@ -19,7 +19,7 @@ namespace junk
         ~list_node_ex()
         {}
 
-        list_node_ex next() { return m_next; }
+        list_node_ex* next() { return m_next; }
         T& data() { return m_data; }
 
         void set_next(list_node_ex *next) { m_next = next; }
@@ -82,6 +82,23 @@ namespace junk
         N *head = r00;
         N *tail = r04;
 
-        flatten_list(head, &tail);
+        flatten_list<list_node_ex<int>>(head, &tail);
+
+        int n = 0;
+        N *curr = head;
+        while (curr)
+        {
+            EXPECT_EQ(curr->data(), n);
+            curr = curr->next();
+            n++;
+        }
+
+        curr = head;
+        while (curr->next())
+        {
+            N *tmp = curr->next();
+            delete curr;
+            curr = tmp;
+        }
     }
 }
