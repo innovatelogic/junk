@@ -5,7 +5,7 @@ void main()
 {
     std::cout << "Junk start" << std::endl;
 
-    TestListNthFromEnd();
+    junk::TestListNthFromEnd();
 
     std::cout << "Junk stop" << std::endl;
 }

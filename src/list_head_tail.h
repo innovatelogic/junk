@@ -2,184 +2,174 @@
 
 #include <assert.h>
 
-template<class T>
-class ListNode final
+namespace junk
 {
-public:
-    ListNode(const T &data)
-        : m_next(nullptr)
-        , m_data(data)
-    {}
-
-    ~ListNode()
-    {}
-
-    ListNode* next() { return m_next; }
-    T& data() { return m_data;  }
-
-    void set_next(ListNode *next) { m_next = next; }
-private:
-    ListNode *m_next;
-    T m_data;
-};
-
-//----------------------------------------------------------------------------------------------
-//
-//----------------------------------------------------------------------------------------------
-
-template<class T>
-class ListTail
-{
-public:
-    ListTail()
-        : m_head(nullptr)
-        , m_tail(nullptr)
-    {}
-
-    ListNode<T>* head() { return m_head; }
-    ListNode<T>* tail() { return m_tail; }
-    //----------------------------------------------------------------------------------------------
-    bool insert(const T &data, ListNode<T> *after)
+    template<class T>
+    class list_node
     {
-        bool bResult = false;
+    public:
+        list_node(const T &data)
+            : m_next(nullptr)
+            , m_data(data)
+        {}
 
-        if (!m_head) // empty list case
-        {
-            assert(!after && !m_tail);
-            m_head = m_tail = new ListNode<T>(data); // one element list head equal tail
-            bResult = true;
-        }
-        else
-        {
-            if (m_head == m_tail) // one element list tail equal head
-            {
-                if (!after) // insert to front
-                {
-                    auto *new_node = new ListNode<T>(data);
+        ~list_node()
+        {}
 
-                    new_node->set_next(m_head);
+        list_node* next() { return m_next; }
+        T& data() { return m_data; }
 
-                    m_tail = m_head;
+        void set_next(list_node *next) { m_next = next; }
 
-                    m_head = new_node;
-                }
-                else if (after == m_head)
-                {
-                    auto *new_node = new ListNode<T>(data);
-
-                    m_head->set_next(new_node);
-
-                    m_tail = new_node;
-
-                    bResult = true;
-                }
-            }
-            else // conventional insertion
-            {
-                if (!after) // insertion into front (after == nullparam)
-                {
-                    auto *new_node = new ListNode<T>(data);
-
-                    new_node->set_next(new_node);
-
-                    m_head = new_node;
-
-                    bResult = true;
-                }
-                else if (after == m_tail) // insert after tail
-                {
-                    auto *new_node = new ListNode<T>(data);
-
-                    m_tail->set_next(new_node);
-
-                    m_tail = new_node;
-
-                    bResult = true;
-                }
-                else // mid insertion common case
-                {
-                    auto *new_node = new ListNode<T>(data);
-
-                    new_node->set_next(after->next());
-
-                    after->set_next(new_node);
-
-                    bResult = true;
-                }
-            }
-        }
-
-        return bResult;
-    }
+    private:
+        list_node *m_next;
+        T m_data;
+    };
 
     //----------------------------------------------------------------------------------------------
-    bool erase(ListNode<T> *node)
-    {
-        bool bResult = false;
+    //
+    //----------------------------------------------------------------------------------------------
 
-        if (!m_head || !node)
+    template<class T, class T_NODE = list_node<T>>
+    class list_tail
+    {
+    public:
+        list_tail()
+            : m_head(nullptr)
+            , m_tail(nullptr)
+        {}
+
+        T_NODE* head() { return m_head; }
+        T_NODE* tail() { return m_tail; }
+
+        //----------------------------------------------------------------------------------------------
+        bool insert(const T &data, T_NODE *after)
         {
-            assert(!m_tail);
+            bool bResult = false;
+
+            if (!m_head) // empty list case
+            {
+                assert(!after && !m_tail);
+                m_head = m_tail = new T_NODE(data); // one element list head equal tail
+                bResult = true;
+            }
+            else
+            {
+                if (m_head == m_tail) // one element list tail equal head
+                {
+                    if (!after) // insert to front
+                    {
+                        auto *new_node = new T_NODE(data);
+
+                        new_node->set_next(m_head);
+
+                        m_tail = m_head;
+
+                        m_head = new_node;
+                    }
+                    else if (after == m_head)
+                    {
+                        auto *new_node = new T_NODE(data);
+
+                        m_head->set_next(new_node);
+
+                        m_tail = new_node;
+
+                        bResult = true;
+                    }
+                }
+                else // conventional insertion
+                {
+                    if (!after) // insertion into front (after == nullparam)
+                    {
+                        auto *new_node = new T_NODE(data);
+
+                        new_node->set_next(new_node);
+
+                        m_head = new_node;
+
+                        bResult = true;
+                    }
+                    else if (after == m_tail) // insert after tail
+                    {
+                        auto *new_node = new T_NODE(data);
+
+                        m_tail->set_next(new_node);
+
+                        m_tail = new_node;
+
+                        bResult = true;
+                    }
+                    else // mid insertion common case
+                    {
+                        auto *new_node = new T_NODE(data);
+
+                        new_node->set_next(after->next());
+
+                        after->set_next(new_node);
+
+                        bResult = true;
+                    }
+                }
+            }
+
             return bResult;
         }
 
-        if (node == m_head)
+        //----------------------------------------------------------------------------------------------
+        bool erase(T_NODE *node)
         {
-            auto *new_head = m_head->next();
+            bool bResult = false;
 
-            delete node;
-
-            m_head = new_head;
-
-            if (!new_head) // delete last element
+            if (!m_head || !node)
             {
-                m_head = m_tail = nullptr;
+                assert(!m_tail);
+                return bResult;
             }
-            bResult = true;
-        }
-        else
-        {
-            auto *iter = m_head;
 
-            while (iter)
+            if (node == m_head)
             {
-                if (iter->next() == node)
+                auto *new_head = m_head->next();
+
+                delete node;
+
+                m_head = new_head;
+
+                if (!new_head) // delete last element
                 {
-                    if (node == m_tail) // delete tail element
-                    {
-                        m_tail = iter;
-                    }
-                    iter->set_next(node->next());
-
-                    delete node;
-
-                    bResult = true;
-
-                    break;
+                    m_head = m_tail = nullptr;
                 }
-                iter = iter->next();
+                bResult = true;
             }
+            else
+            {
+                auto *iter = m_head;
+
+                while (iter)
+                {
+                    if (iter->next() == node)
+                    {
+                        if (node == m_tail) // delete tail element
+                        {
+                            m_tail = iter;
+                        }
+                        iter->set_next(node->next());
+
+                        delete node;
+
+                        bResult = true;
+
+                        break;
+                    }
+                    iter = iter->next();
+                }
+            }
+            return bResult;
         }
-    }
 
-protected:
-private:
-    ListNode<T> *m_head;
-    ListNode<T> *m_tail;
-};
-
-//----------------------------------------------------------------------------------------------
-void TestListTail()
-{
-    ListTail<int> list;
-
-    list.insert(2, nullptr); // 2
-    list.insert(1, nullptr); // 1 2
-    list.insert(22, list.tail());// 1 2 22
-    list.insert(33, list.head());// 1 33 2 22
-
-    list.erase(list.head()); // 33 2 22
-    list.erase(list.tail()); // 33 2
-    list.erase(list.head()->next()); // 2
-    list.erase(list.head()); // null null
+    protected:
+    private:
+        T_NODE *m_head;
+        T_NODE *m_tail;
+    };
 }

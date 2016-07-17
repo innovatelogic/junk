@@ -8,6 +8,7 @@ set(SOURCE
 	custom_stack.h
 	find_list_nth_from_end.h
 	list_head_tail.h
+	list_linearize.h
 	)
 
 add_executable(${PROJECT_NAME} ${SOURCE})
@@ -29,6 +30,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googletest/include)
 	add_executable( unittest.${PROJECT_NAME} 
 					ut/ut_test.cpp
+					ut/ut_linearize.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(unittest.${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})
