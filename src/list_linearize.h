@@ -2,6 +2,9 @@
 
 namespace junk
 {
+    /*!
+    * linearize list
+    */
     template<class T_CLASS>
     void flatten_list(T_CLASS *head, T_CLASS **tail)
     {
@@ -28,6 +31,44 @@ namespace junk
             }
 
             iter = iter->next();
+        }
+    }
+
+    template<class T_CLASS>
+    void delinearize_subsequent(T_CLASS *child)
+    {
+        if (!child->prev()){
+            return; // feather list already splitted
+        }
+        child->prev()->set_next(nullptr);
+        child->set_prev(nullptr);
+
+        for (T_CLASS *curr = child; curr; curr = curr->next())
+        {
+            if (T_CLASS *child = curr->child()) {
+                delinearize_subsequent(child);
+            }
+        }
+    }
+
+    /*!
+    * de-linearize list
+    */
+    template<class T_CLASS>
+    void delinearize_list(T_CLASS *head, T_CLASS **tail)
+    {
+        if (head && *tail)
+        {
+            T_CLASS *curr = head;
+            *tail = nullptr;
+
+            for (curr = head; curr; curr = curr->next())
+            {
+                if (T_CLASS *child = curr->child()){
+                    delinearize_subsequent(child);
+                }
+                *tail = curr;
+            }
         }
     }
 }
