@@ -2,6 +2,7 @@
 
 namespace junk
 {
+    //----------------------------------------------------------------------------------------------
     /*!
     * linearize list
     */
@@ -9,7 +10,7 @@ namespace junk
     void flatten_list(T_CLASS *head, T_CLASS **tail)
     {
         T_CLASS *iter = head;
-
+        
         while (iter)
         {
             if (T_CLASS *child = iter->child())
@@ -20,7 +21,6 @@ namespace junk
                 while (child)
                 {
                     T_CLASS *next = child->next();
-
                     if (!next)
                     {
                         (*tail) = child;
@@ -29,11 +29,11 @@ namespace junk
                     child = next;
                 }
             }
-
             iter = iter->next();
         }
     }
 
+    //----------------------------------------------------------------------------------------------
     template<class T_CLASS>
     void delinearize_subsequent(T_CLASS *child)
     {
@@ -51,6 +51,7 @@ namespace junk
         }
     }
 
+    //----------------------------------------------------------------------------------------------
     /*!
     * de-linearize list
     */
@@ -70,5 +71,40 @@ namespace junk
                 *tail = curr;
             }
         }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    // book version. 
+    //----------------------------------------------------------------------------------------------
+    template<class T_CLASS>
+    void exploreAndSeparate(T_CLASS *node)
+    {
+        T_CLASS *currNode = node;
+
+        while (currNode)
+        {
+            if (currNode->child())
+            {
+                if (currNode->child()->prev()) {
+                    currNode->child()->prev()->set_next(nullptr);
+                }
+                currNode->child()->set_prev(nullptr);
+
+                exploreAndSeparate(currNode->child());
+            }
+            currNode = currNode->next();
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    template<class T_CLASS>
+    void unflattenList(T_CLASS *head, T_CLASS **tail)
+    {
+        exploreAndSeparate(head);
+
+        T_CLASS *currNode = nullptr;
+        for (currNode = head; currNode->next(); currNode = currNode->next());
+        
+        *tail = currNode;
     }
 }

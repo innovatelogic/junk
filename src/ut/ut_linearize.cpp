@@ -93,7 +93,8 @@ namespace junk
             n++;
         }
 
-        delinearize_list(head, &tail);
+       // delinearize_list(head, &tail);
+        unflattenList(head, &tail);
 
         curr = head;
         while (curr->next())
