@@ -38,6 +38,7 @@ namespace junk
         T m_data;
     };
 
+    //----------------------------------------------------------------------------------------------
     TEST(list_tail, ListInsertRemoveTest)
     {
         list_tail<int> list;

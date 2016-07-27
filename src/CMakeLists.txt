@@ -9,6 +9,7 @@ set(SOURCE
 	find_list_nth_from_end.h
 	list_head_tail.h
 	list_linearize.h
+	circular_list.h
 	)
 
 add_executable(${PROJECT_NAME} ${SOURCE})
@@ -31,6 +32,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	add_executable( unittest.${PROJECT_NAME} 
 					ut/ut_test.cpp
 					ut/ut_linearize.cpp
+					ut/ut_circular_list.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(unittest.${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})
