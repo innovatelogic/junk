@@ -10,7 +10,9 @@ set(SOURCE
 	list_head_tail.h
 	list_linearize.h
 	circular_list.h
-	)
+        inner_template_class.h
+	inner_template_class.ipp	
+)
 
 add_executable(${PROJECT_NAME} ${SOURCE})
 
