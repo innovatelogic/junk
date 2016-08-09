@@ -12,6 +12,7 @@ set(SOURCE
 	circular_list.h
         inner_template_class.h
 	inner_template_class.ipp	
+	permutations_array.h
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE})

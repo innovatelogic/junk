@@ -3,7 +3,7 @@
 template<class T>
 class Holder
 {
-    template<typename U>
+    template<class U>
     class State
     {
     public:
