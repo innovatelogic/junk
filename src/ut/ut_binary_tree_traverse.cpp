@@ -38,6 +38,7 @@ namespace junk
             delete node;
         }
 
+        //----------------------------------------------------------------------------------------------
         TEST(BinaryTree, NonRecursionTraverse)
         {
             TNode *root = AllocSampleTree();
@@ -76,7 +77,33 @@ namespace junk
             EXPECT_EQ(result[5], 6);
 
             DeallocNode(root);
+        }
 
+        //----------------------------------------------------------------------------------------------
+        TEST(BinarySearchTree, FillBST)
+        {
+            BinarySearchTree<int> *bst = new BinarySearchTree<int>();
+
+            std::vector<int> vals = { 4, 6, 2, 1, 5, 5, 0, 3 };
+            //
+            //               4
+            //           2         6
+            //         1   3    5
+            //       0            5
+
+            for (int i : vals)
+            {
+                bst->Push(i);
+            }
+
+            // traverse
+            std::vector<int> result = bst->GetValuesTraverseDFS();
+            
+            EXPECT_EQ(vals.size(), result.size());
+            std::vector<int> comp = { 4, 2, 1, 0, 3, 6, 5, 5 };
+            EXPECT_EQ(result, comp);
+
+            delete bst;
         }
     }
 }
