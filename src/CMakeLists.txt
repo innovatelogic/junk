@@ -10,9 +10,10 @@ set(SOURCE
 	list_head_tail.h
 	list_linearize.h
 	circular_list.h
-        inner_template_class.h
+    inner_template_class.h
 	inner_template_class.ipp	
 	permutations_array.h
+	binary_tree.h
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE})
@@ -36,6 +37,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_test.cpp
 					ut/ut_linearize.cpp
 					ut/ut_circular_list.cpp
+					ut/ut_binary_tree_traverse.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(unittest.${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})
