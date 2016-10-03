@@ -3,7 +3,6 @@
 
 namespace junk
 {
-
     TEST(PeakFind, 1D_array)
     {
         int ipeak = 0;

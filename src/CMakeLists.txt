@@ -14,6 +14,7 @@ set(SOURCE
 	inner_template_class.ipp	
 	permutations_array.h
 	binary_tree.h
+	peak_finding.h
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE})
@@ -38,6 +39,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_linearize.cpp
 					ut/ut_circular_list.cpp
 					ut/ut_binary_tree_traverse.cpp
+					ut/ut_peak_find.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(unittest.${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})
