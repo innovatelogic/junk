@@ -68,6 +68,7 @@ namespace junk
             //           4   6
             //          2 1
             //             5
+
             EXPECT_EQ(result.size(), 6);
             EXPECT_EQ(result[0], 0);
             EXPECT_EQ(result[1], 4);
