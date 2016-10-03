@@ -16,11 +16,11 @@ namespace junk
         // (x - y)/2 + y => x/2 - y/2 + y => x/2 + y/2
         int j = (left + right) / 2;
 
-        if ((j - 1) >= 0 && arr[j] < arr[j - 1]) {
+        if (j - 1 >= 0 && arr[j] < arr[j - 1]) {
             return PeakFindImpl(arr, left, j - 1);
         }
-        else if ((j + 1) < size && arr[j] < arr[j + 1]) {
-            return PeakFindImpl(arr, j, right);
+        else if (j + 1 < size && arr[j] < arr[j + 1]) {
+            return PeakFindImpl(arr, j + 1, right);
         }
         return arr[j];
     }

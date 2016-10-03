@@ -27,7 +27,11 @@ namespace junk
         EXPECT_EQ(PeakFind(arr, ipeak), true);
         EXPECT_EQ(ipeak, 6);
 
-        arr = { 0, 0, 0, 0, 0, 1, 0, 0, 0 };
+        arr = { 0, 0, 0, 0, 0, 1, 1, 0, 0 };
+        EXPECT_EQ(PeakFind(arr, ipeak), true);
+        EXPECT_EQ(ipeak, 1);
+
+        arr = { 0, 0, 1, 1, 0, 0, 0, 0, 0 };
         EXPECT_EQ(PeakFind(arr, ipeak), true);
         EXPECT_EQ(ipeak, 1);
     }
