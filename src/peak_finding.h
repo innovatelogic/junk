@@ -36,5 +36,50 @@ namespace junk
         return true;
     }
 
+    template<class T>
+    T PeakFind2dImpl(T **arr, size_t rows, int lbound, int rbound)
+    {
+        int mid = lbound + (rbound - lbound) / 2;
 
+        // find a global maximum of column 'mid'
+        size_t i = 0;
+        size_t i_max = 0;
+        T mx = arr[i][mid];
+        for (i = 1; i < rows; i++)
+        {
+            T &val = arr[i][mid];
+            if (val >= mx)
+            {
+                mx = val;
+                i_max = i;
+            }
+        }
+
+        // compare left & right neighbors
+        int lhs = mid - 1;
+        if (lhs >= lbound && arr[i_max][lhs] > arr[i_max][mid])
+        {
+            return PeakFind2dImpl(arr, rows, lbound, mid - 1);
+        }
+
+        int rhs = mid + 1;
+        if (rhs < rbound && arr[i_max][rhs] > arr[i_max][mid]) 
+        {
+            return PeakFind2dImpl(arr, rows, mid + 1, rbound);
+        }
+
+        return arr[i_max][mid];
+    }
+
+    template<class T>
+    bool PeakFind2d(T **arr, size_t rows, size_t cols, T &out)
+    {
+        if (!arr || cols == 0 || rows == 0) {
+            return false;
+        }
+
+        out = PeakFind2dImpl(arr, rows, 0, cols);
+
+        return true;
+    }
 }
