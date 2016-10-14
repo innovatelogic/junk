@@ -15,6 +15,8 @@ set(SOURCE
 	permutations_array.h
 	binary_tree.h
 	peak_finding.h
+	swap_sort.h
+	merge_sort.h
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE})
@@ -40,6 +42,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_circular_list.cpp
 					ut/ut_binary_tree_traverse.cpp
 					ut/ut_peak_find.cpp
+					ut/ut_swap_sort.cpp
+					ut/ut_merge_sort.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(unittest.${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})
