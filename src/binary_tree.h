@@ -2,6 +2,7 @@
 
 #include <assert.h>
 #include <stack>
+#include <queue>
 #include <vector>
 
 namespace junk
@@ -75,7 +76,38 @@ namespace junk
                     }
                 }
 
-                
+                return out;
+            }
+
+            std::vector<T> GetValuesTraverseBFS()
+            {
+                std::vector<T> out;
+
+                std::queue<Node<T>*> stack;
+
+                if (m_pRoot)
+                {
+                    stack.push(m_pRoot);
+
+                    while (!stack.empty())
+                    {
+                        std::vector<Node<T>*> new_stack;
+
+                        Node<T> *top = stack.front();
+                                                
+                        out.push_back(top->value);
+                            
+                        stack.pop();
+
+                        if (top->left) {
+                            stack.push(top->left);
+                        }
+                        if (top->right) {
+                            stack.push(top->right);
+                        }
+                    }
+                }
+
                 return out;
             }
 
