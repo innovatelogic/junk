@@ -19,6 +19,7 @@ set(SOURCE
 	merge_sort.h
 	heap.h
 	find_min_in_shifted_sorted_array.h
+	compare_binary_hex_digit.h
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE})
@@ -48,6 +49,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_merge_sort.cpp
 					ut/ut_heap.cpp
 					ut/ut_find_min_in_shifted_sorted_array.cpp
+					ut/ut_compare_binary_hex_digit.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(unittest.${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})
