@@ -18,6 +18,7 @@ set(SOURCE
 	swap_sort.h
 	merge_sort.h
 	heap.h
+	find_min_in_shifted_sorted_array.h
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE})
@@ -46,6 +47,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_swap_sort.cpp
 					ut/ut_merge_sort.cpp
 					ut/ut_heap.cpp
+					ut/ut_find_min_in_shifted_sorted_array.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(unittest.${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})
