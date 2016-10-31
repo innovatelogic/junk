@@ -1,5 +1,4 @@
 #include <string>
-#include <locale>
 
 namespace junk
 {
@@ -49,8 +48,7 @@ namespace junk
         }
 
         int mask = 0; // means 32 bit
-       // std::locale loc;
-       // std::string low_str = std::tolower(str, loc);
+
         for (size_t i = 0; i < str.size(); ++i)
         {
             char ch = str[i];
