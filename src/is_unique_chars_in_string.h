@@ -1,4 +1,5 @@
 #include <string>
+#include <stdio.h>
 
 namespace junk
 {
@@ -63,6 +64,43 @@ namespace junk
         }
 
         return bResult;
+    }
 
+    void rotate_right(char *str)
+    {
+        if (str)
+        {
+            int len = strlen(str);
+            if (len > 1)
+            {
+                char tmp = str[len - 1];
+
+                for (int i = len - 1; i >= 1; --i)
+                {
+                    str[i] = str[i - 1];
+                }
+                str[0] = tmp;
+            }
+        }
+    }
+
+    void reverse(char *str)
+    {
+        if (str)
+        {
+            int len = strlen(str);
+            if (len > 1)
+            {
+                char *lhs = &str[0];
+                char *rhs = &str[len - 1];
+
+                while (lhs < rhs)
+                {
+                    std::swap(*rhs, *lhs);
+                    lhs++;
+                    rhs--;
+                }
+            }
+        }
     }
 }

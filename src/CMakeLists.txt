@@ -21,6 +21,7 @@ set(SOURCE
 	find_min_in_shifted_sorted_array.h
 	compare_binary_hex_digit.h
 	is_unique_chars_in_string.h
+	strings.h
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE})
@@ -52,6 +53,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_find_min_in_shifted_sorted_array.cpp
 					ut/ut_compare_binary_hex_digit.cpp
 					ut/ut_is_unique_chars_in_string.cpp
+					ut/ut_strings.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(unittest.${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})
