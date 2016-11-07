@@ -32,5 +32,48 @@ namespace junk
             EXPECT_TRUE(is_permutation(str1, str2));
             EXPECT_FALSE(is_permutation(str2, str3));
         }
+
+        TEST(String, replace_in_str)
+        {
+            {
+                char *str = "This is test string";
+
+                int len = strlen(str);
+                char *str2 = new char[len + 1]; // +1 null terminator
+                strncpy_s(str2, len + 1, str, len);
+
+                replace_str(&str2, ' ', "%TEST%");
+                EXPECT_TRUE(!strcmp(str2, "This%TEST%is%TEST%test%TEST%string"));
+
+                delete [] str2;
+            }
+            
+            {
+                char *str = "a b c d e f";
+
+                int len = strlen(str);
+                char *str2 = new char[len + 1]; // +1 null terminator
+                strncpy_s(str2, len + 1, str, len);
+
+                replace_str(&str2, ' ', "A");
+                EXPECT_TRUE(!strcmp(str2, "aAbAcAdAeAf"));
+
+                delete str2;
+            }
+
+            {
+                char *str = "abcdef";
+
+                int len = strlen(str);
+                char *str2 = new char[len + 1]; // +1 null terminator
+                strncpy_s(str2, len + 1, str, len);
+
+                replace_str(&str2, ' ', "%TEST%");
+                EXPECT_TRUE(!strcmp(str2, "abcdef"));
+
+                delete str2;
+            }
+
+        }
     }
 }
