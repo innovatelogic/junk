@@ -1,6 +1,7 @@
 #include <string>
 #include <stdio.h>
 #include <map>
+#include <vector>
 
 namespace junk
 {
@@ -119,7 +120,6 @@ namespace junk
                         if ((*str)[i] != ch)
                         {
                             (*str)[i + n_swap_back] = (*str)[i];
-
                             //DEBUG_STR[i + n_swap_back] = DEBUG_STR[i];
                         }
                         else
@@ -127,7 +127,6 @@ namespace junk
                             for (int j = len_with - 1; j >=0; j--)
                             {
                                 (*str)[i + n_swap_back - j] = with[len_with - 1 - j];
-
                                 //DEBUG_STR[i + n_swap_back - j] = with[len_with - 1 - j];
                             }
 
@@ -136,6 +135,71 @@ namespace junk
                     }
                 }
             }
+        }
+
+        //----------------------------------------------------------------------------------------------
+        struct SymbolCount
+        {
+            char ch;
+            size_t n;
+        };
+
+        size_t countCompression(const std::vector<SymbolCount> &nodes)
+        {
+            size_t result = nodes.size();
+
+            for (size_t i = 0; i < nodes.size(); ++i)
+            {
+                int n = nodes[i].n;
+                int count = 0;
+                while (n)
+                {
+                    n /= 10;
+                    count++;
+                }
+
+                result += count;
+            }
+
+            return result;
+        }
+
+        std::string compress(const std::string &str)
+        {
+            std::string result;
+
+            std::vector<SymbolCount> nodes;
+
+            for (size_t i = 0; i < str.size(); ++i)
+            {
+                if (!nodes.empty() && str[i] == nodes[nodes.size() - 1].ch)
+                {
+                    nodes[nodes.size() - 1].n++;
+                }
+                else
+                {
+                    SymbolCount node;
+                    node.ch = str[i];
+                    node.n = 1;
+                    nodes.push_back(node);
+                }
+            }
+
+            const size_t new_size = countCompression(nodes);
+
+            bool bFormString = new_size < str.size();
+            if (bFormString)
+            {
+                result.reserve(new_size);
+
+                for (size_t n = 0; n < nodes.size(); ++n)
+                {
+                    result += nodes[n].ch + std::to_string(nodes[n].n);
+                }
+            }
+
+            // form result string
+            return bFormString ? result : str;
         }
     }
 }

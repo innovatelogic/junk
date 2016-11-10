@@ -73,7 +73,15 @@ namespace junk
 
                 delete str2;
             }
+        }
 
+        TEST(String, compress_string)
+        {
+            std::string str0("aabcccccaaa");
+            EXPECT_EQ(compress(str0), std::string("a2b1c5a3"));
+
+            std::string str1("abcde");
+            EXPECT_EQ(compress(str1), std::string("abcde"));
         }
     }
 }
