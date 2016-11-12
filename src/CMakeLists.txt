@@ -22,6 +22,7 @@ set(SOURCE
 	compare_binary_hex_digit.h
 	is_unique_chars_in_string.h
 	strings.h
+	matrix_rotation.h
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE})
@@ -54,6 +55,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_compare_binary_hex_digit.cpp
 					ut/ut_is_unique_chars_in_string.cpp
 					ut/ut_strings.cpp
+					ut/ut_matrix_rotation.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(unittest.${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})
