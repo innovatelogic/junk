@@ -83,5 +83,28 @@ namespace junk
             std::string str1("abcde");
             EXPECT_EQ(compress(str1), std::string("abcde"));
         }
+
+        TEST(String, ReverseWords)
+        {
+            char str1[] = "This is test string";
+            reverse_words(str1);
+            EXPECT_EQ(std::string("string test is This"), std::string(str1));
+
+            char str2[] = "This";
+            reverse_words(str2);
+            EXPECT_EQ(std::string("This"), std::string(str2));
+
+            char str3[] = "  This  ";
+            reverse_words(str3);
+            EXPECT_EQ(std::string("  This  "), std::string(str3));
+
+            char str4[] = "a";
+            reverse_words(str4);
+            EXPECT_EQ(std::string("a"), std::string(str4));
+
+            char str5[] = "";
+            reverse_words(str5);
+            EXPECT_EQ(std::string(""), std::string(str5));
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace junk
 {
     namespace string
     {
+        //----------------------------------------------------------------------------------------------
         void rotate_right(char *str)
         {
             if (str)
@@ -25,6 +26,7 @@ namespace junk
             }
         }
 
+        //----------------------------------------------------------------------------------------------
         void reverse(char *str)
         {
             if (str)
@@ -45,6 +47,7 @@ namespace junk
             }
         }
 
+        //----------------------------------------------------------------------------------------------
         bool is_permutation(const std::string &str1, const std::string &str2)
         {
             bool bResult = true;
@@ -78,6 +81,7 @@ namespace junk
             return bResult;
         }
 
+        //----------------------------------------------------------------------------------------------
         void replace_str(char **str, char ch, char *with)
         {
             //std::string DEBUG_STR(*str);
@@ -164,6 +168,7 @@ namespace junk
             return result;
         }
 
+        //----------------------------------------------------------------------------------------------
         std::string compress(const std::string &str)
         {
             std::string result;
@@ -201,5 +206,51 @@ namespace junk
             // form result string
             return bFormString ? result : str;
         }
+
+        //----------------------------------------------------------------------------------------------
+        void reverse_str(char *str, int start, int end)
+        {
+            if (str && (start >= 0 && start < end) && end <= (int)strlen(str))
+            {
+                while (end > start)
+                {
+                    std::swap(str[start], str[end]);
+
+                    start++;
+                    end--;
+                }
+            }
+        }
+
+        void reverse_words(char *str)
+        {
+            if (str)
+            {
+                const int len = strlen(str);
+
+                reverse_str(str, 0, len - 1);
+
+                int index = 0;
+                while (index < len)
+                {
+                    if (str[index] != ' ')
+                    {
+                        for (int wcount = 0; ; wcount++)
+                        {
+                            if (index + wcount == len || str[index + wcount] == ' ')
+                            {
+                                reverse_str(str, index, index + (wcount - 1));
+                                index += wcount;
+                                break;
+                            }
+                        }
+                    }
+
+                    ++index;
+                }
+            }
+            
+        }
+
     }
 }
