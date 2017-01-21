@@ -1,9 +1,9 @@
+#pragma once
 
+#include "defexport.h"
 #include <vector>
 #include <functional>
 #include <assert.h>
-
-#include "defexport.h"
 
 namespace junk
 {

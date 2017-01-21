@@ -6,7 +6,7 @@
 namespace junk
 {
     template<class T>
-    bool IsCircularList(const ListElement<T> *head)
+    JUNK_EXPORT bool IsCircularList(const ListElement<T> *head)
     {
         bool bResult = false;
 

@@ -18,9 +18,14 @@ set(SOURCE
     inner_template_class.h
 	inner_template_class.ipp	
 	permutations_array.h
+<<<<<<< HEAD
 	smart_ptr.h
 	junk.h
 	file.cpp
+=======
+	binary_tree.h
+	peak_finding.h
+	swap_sort.h
 	merge_sort.h
 	heap.h
 	find_min_in_shifted_sorted_array.h
@@ -28,6 +33,7 @@ set(SOURCE
 	is_unique_chars_in_string.h
 	strings.h
 	matrix_rotation.h
+>>>>>>> fa29fda8d43c18b898c2ce6789b171bb6182d9ec
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -55,6 +61,9 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_test.cpp
 					ut/ut_linearize.cpp
 					ut/ut_circular_list.cpp
+<<<<<<< HEAD
+					ut/ut_smart_ptr.cpp
+=======
 					ut/ut_binary_tree_traverse.cpp
 					ut/ut_peak_find.cpp
 					ut/ut_swap_sort.cpp
@@ -65,6 +74,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_is_unique_chars_in_string.cpp
 					ut/ut_strings.cpp
 					ut/ut_matrix_rotation.cpp
+>>>>>>> fa29fda8d43c18b898c2ce6789b171bb6182d9ec
 					ut/main.cpp )
 	
 	target_link_libraries(unittest.${PROJECT_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
