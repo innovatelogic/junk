@@ -1,10 +1,13 @@
+
 #pragma once
 
+#include "defexport.h"
+
 template<class T>
-class Holder
+class JUNK_EXPORT Holder
 {
     template<class U>
-    class State
+    class JUNK_EXPORT State
     {
     public:
         State(Holder<T> *owner);

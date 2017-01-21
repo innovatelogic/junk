@@ -1,10 +1,13 @@
 #pragma once
 
+#include "defexport.h"
+
+
 //----------------------------------------------------------------------------------------------
 //
 //----------------------------------------------------------------------------------------------
 template<class CLASS_T>
-class ListElement
+class JUNK_EXPORT ListElement
 {
 public:
 	ListElement(const CLASS_T &data)
@@ -27,7 +30,7 @@ private:
 //
 //----------------------------------------------------------------------------------------------
 template<class CLASS_T>
-class List
+class JUNK_EXPORT List
 {
 	List(const List&) = delete;
 	List& operator=(const List&) = delete;
@@ -162,7 +165,7 @@ private:
 //----------------------------------------------------------------------------------------------
 //
 //----------------------------------------------------------------------------------------------
-void TestList()
+/*void TestList_()
 {
     List<int> lst;
 
@@ -193,4 +196,4 @@ void TestList()
     lst.Erase(lst.head());
 
     // empty head == null
-}
+}*/

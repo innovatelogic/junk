@@ -1,5 +1,5 @@
-#include "../list_head_tail.h"
-#include "../list_linearize.h"
+
+#include "../junk.h"
 #include <iostream>
 #include <gtest/gtest.h>
 
@@ -106,3 +106,4 @@ namespace junk
         }
     }
 }
+

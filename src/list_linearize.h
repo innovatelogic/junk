@@ -1,5 +1,7 @@
 #pragma once
 
+#include "defexport.h"
+
 namespace junk
 {
     //----------------------------------------------------------------------------------------------
@@ -7,7 +9,7 @@ namespace junk
     * linearize list
     */
     template<class T_CLASS>
-    void flatten_list(T_CLASS *head, T_CLASS **tail)
+    JUNK_EXPORT void flatten_list(T_CLASS *head, T_CLASS **tail)
     {
         T_CLASS *iter = head;
         
@@ -35,7 +37,7 @@ namespace junk
 
     //----------------------------------------------------------------------------------------------
     template<class T_CLASS>
-    void delinearize_subsequent(T_CLASS *child)
+    JUNK_EXPORT void delinearize_subsequent(T_CLASS *child)
     {
         if (!child->prev()){
             return; // feather list already splitted
@@ -56,7 +58,7 @@ namespace junk
     * de-linearize list
     */
     template<class T_CLASS>
-    void delinearize_list(T_CLASS *head, T_CLASS **tail)
+    JUNK_EXPORT void delinearize_list(T_CLASS *head, T_CLASS **tail)
     {
         if (head && *tail)
         {
@@ -77,7 +79,7 @@ namespace junk
     // book version. 
     //----------------------------------------------------------------------------------------------
     template<class T_CLASS>
-    void exploreAndSeparate(T_CLASS *node)
+    JUNK_EXPORT void exploreAndSeparate(T_CLASS *node)
     {
         T_CLASS *currNode = node;
 
@@ -98,7 +100,7 @@ namespace junk
 
     //----------------------------------------------------------------------------------------------
     template<class T_CLASS>
-    void unflattenList(T_CLASS *head, T_CLASS **tail)
+    JUNK_EXPORT void unflattenList(T_CLASS *head, T_CLASS **tail)
     {
         exploreAndSeparate(head);
 

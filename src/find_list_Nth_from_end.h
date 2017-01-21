@@ -1,12 +1,13 @@
+
 #pragma once
 
-
+#include "defexport.h"
 #include "custom_list.h"
 
 namespace junk
 {
     template<class CLASS_T>
-    ListElement<CLASS_T>* FindListNthFromEnd(List<CLASS_T> *list, int n)
+    JUNK_EXPORT ListElement<CLASS_T>* FindListNthFromEnd(List<CLASS_T> *list, int n)
     {
         ListElement<CLASS_T> *found = nullptr;
 
@@ -38,7 +39,7 @@ namespace junk
         return found;
     }
 
-    void TestListNthFromEnd()
+ /*   JUNK_EXPORT void TestListNthFromEnd()
     {
         List<int*> lst;
 
@@ -52,5 +53,5 @@ namespace junk
         //ListElement<int*> *element2 = FindListNthFromEnd(&lst, 2);
         ListElement<int*> *element3 = FindListNthFromEnd(&lst, 3);
         ListElement<int*> *element4 = FindListNthFromEnd(&lst, 4);
-    }
+    }*/
 }

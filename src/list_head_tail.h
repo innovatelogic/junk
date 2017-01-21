@@ -1,11 +1,13 @@
+
 #pragma once
 
+#include "defexport.h"
 #include <assert.h>
 
 namespace junk
 {
     template<class T>
-    class list_node
+    class JUNK_EXPORT list_node
     {
     public:
         list_node(const T &data)
@@ -31,7 +33,7 @@ namespace junk
     //----------------------------------------------------------------------------------------------
 
     template<class T, class T_NODE = list_node<T>>
-    class list_tail
+    class JUNK_EXPORT list_tail
     {
     public:
         list_tail()

@@ -47,7 +47,7 @@ if (MSVC)
   #enable full optimization instead of the cmake default /O2
   string( REGEX REPLACE "/O2" "/Ox" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}" )
 
- # Enable intrinsic functions, favor speed and string pooling function level linking.
+  # Enable intrinsic functions, favor speed and string pooling function level linking.
   set( CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Oi /Ot /GF /Gy" )
 
   # Eliminate unreferenced functions and data and enable COMDAT folding

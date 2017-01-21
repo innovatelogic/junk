@@ -1,12 +1,15 @@
+
 #include <vector>
 #include <functional>
 #include <assert.h>
+
+#include "defexport.h"
 
 namespace junk
 {
     //----------------------------------------------------------------------------------------------
     template<typename T>
-    void permutate_impl(const std::vector<T> &in,
+    JUNK_EXPORT void permutate_impl(const std::vector<T> &in,
                         std::vector<T> &out,
                         std::vector<bool> &used,
                         const std::function<void(const std::vector<T>&)> &func)
@@ -35,7 +38,7 @@ namespace junk
 
     //----------------------------------------------------------------------------------------------
     template<class T>
-    void permutate(const std::vector<T> &in,
+    JUNK_EXPORT void permutate(const std::vector<T> &in,
         const std::function<void(const std::vector<T> &res)> &func)
     {
         std::vector<bool> used; // vector of bool revise

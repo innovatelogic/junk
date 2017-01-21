@@ -1,7 +1,9 @@
 #pragma once
 
+#include "defexport.h"
+
 template<class T>
-class StackElement
+class JUNK_EXPORT StackElement
 {
 public:
     StackElement(const T &data)
@@ -21,12 +23,11 @@ private:
     T m_data;
 };
 
-
 //----------------------------------------------------------------------------------------------
 //
 //----------------------------------------------------------------------------------------------
 template<class T>
-class Stack
+class JUNK_EXPORT Stack
 {
 public:
     Stack()
