@@ -1,4 +1,4 @@
-#include "../is_unique_chars_in_string.h"
+#include "../junk.h"
 #include "gtest/gtest.h"
 
 namespace junk

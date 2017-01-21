@@ -1,4 +1,4 @@
-#include "../find_min_in_shifted_sorted_array.h"
+#include "../junk.h"
 #include <gtest/gtest.h>
 #include <algorithm>
 

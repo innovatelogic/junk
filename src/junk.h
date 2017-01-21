@@ -15,5 +15,8 @@
 #include "peak_finding.h"
 #include "strings.h"
 #include "swap_sort.h"
+#include "find_min_in_shifted_sorted_array.h"
+#include "compare_binary_hex_digit.h"
+#include "is_unique_chars_in_string.h"
 
 

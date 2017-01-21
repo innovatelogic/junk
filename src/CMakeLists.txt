@@ -25,8 +25,11 @@ set(SOURCE
 	heap.h
 	find_min_in_shifted_sorted_array.h
 	compare_binary_hex_digit.h
+	compare_binary_hex_digit.cpp
 	is_unique_chars_in_string.h
+	is_unique_chars_in_string.cpp
 	strings.h
+	strings.cpp
 	matrix_rotation.h
 )
 

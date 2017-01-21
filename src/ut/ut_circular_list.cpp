@@ -1,4 +1,3 @@
-#pragma once
 
 #include "../junk.h"
 #include <gtest/gtest.h>

@@ -1,4 +1,4 @@
-#include "../compare_binary_hex_digit.h"
+#include "../junk.h"
 #include "gtest/gtest.h"
 
 namespace junk
