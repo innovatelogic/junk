@@ -1,13 +1,15 @@
 #pragma once
 
-/*namespace junk
+#include "defexport.h"
+
+namespace junk
 {
     //----------------------------------------------------------------------------------------------
     //
     //----------------------------------------------------------------------------------------------
 
-     template <class T>
-    struct SmartPtrCtrlBlock
+    template <class T>
+    struct JUNK_EXPORT SmartPtrCtrlBlock
     {
         T *ptr;
         int counter;
@@ -21,13 +23,22 @@
         int dec() { return --counter; }
     };
 
-    template <class T>
-    class SmartPtr
+    //----------------------------------------------------------------------------------------------
+    //
+    //----------------------------------------------------------------------------------------------
+
+    template <class T, class T_CTRL = SmartPtrCtrlBlock<T> >
+    class JUNK_EXPORT SmartPtr
     {
     public:
         SmartPtr(T *ptr)
         {
-            m_ctrl = new SmartPtrCtrlBlock<T>(ptr);
+            m_ctrl = new T_CTRL(ptr);
+        }
+
+        SmartPtr(T_CTRL *ctrl)
+        {
+            m_ctrl = ctrl;
         }
 
         SmartPtr(const SmartPtr &source)
@@ -41,34 +52,38 @@
 
         ~SmartPtr()
         {
-            if (m_ctrl->dec() == 0)
-            {
-                delete m_ctrl;
-            }
+            remove();
         }
 
         SmartPtr& operator=(const SmartPtr &other)
         {
             if (this != &other)
             {
-                if (this->dec() == 0) {
-                    delete m_ctrl;
-                }
+                remove();
 
                 m_ctrl = other.m_ctrl;
                 m_ctrl->inc();
             }
-            return this;
+            return *this;
         }
 
         T* operator*()
         {
             return m_ctrl ? m_ctrl->ptr : nullptr;
         }
+
+        void remove()
+        {
+            m_ctrl->dec();
+            if (m_ctrl->count() == 0)
+            {
+                delete m_ctrl;
+                m_ctrl = nullptr;
+            }
+        }
       
     protected:
     private:
-        SmartPtrCtrlBlock<T> *m_ctrl;
+        T_CTRL *m_ctrl;
     }; 
 }
-*/

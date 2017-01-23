@@ -1,45 +1,48 @@
-#if 0
+
 #include <iostream>
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
-#include "../smart_ptr.h"
+#include "../junk.h"
 #include <memory.h>
 
 using ::testing::AtLeast;
 using ::testing::Return;
 
-
 namespace junk
 {
-    struct IStab
+    template<class T>
+    struct MockCtrl
     {
-        IStab()
-        {}
+        MockCtrl(T *p)
+            : ptr(p)
+            , counter(1) {}
 
-        virtual ~IStab()
-        {}
+        //MOCK_METHOD0(count, int());
+        //MOCK_METHOD0(dec, int());
+        //MOCK_METHOD0(inc, int());
 
-        //MOCK_METHOD0(ss, void());
+        T *ptr;
+        int counter;
     };
 
-    class Stab : public IStab
-    {
-    public:
-       // MOCK_METHOD0(ss, void());
-    };
 
-    TEST(SmartPtr, InitRelease)
+    TEST(SmartPtr, AssigmentOperatorTest)
     {
-        //IStab *pp = new Stab();
+        int *p0 = new int(0);
+        int *p1 = new int(1);
 
-        //EXPECT_CALL(*reinterpret_cast<editors::MockCommandBuffer*>(editor.GetCommandBuffer()), Undo()).Times(AtLeast(1));
+        //MockCtrl<int> *ctrl = new MockCtrl<int>(pp);
+
+        //EXPECT_CALL(*ctrl, dec()).Times(AtLeast(1));
 
         //EXPECT_CALL(*pp, ss()).Times(AtLeast(1));
 
-        //SmartPtr<IStab> pointer(pp);
+        SmartPtr<int> ptr0(p0);
+        SmartPtr<int> ptr1(p1);
+
+        ptr0 = ptr1;
+
+        EXPECT_EQ(**ptr0, 1);
+        EXPECT_EQ(**ptr1, 1);
     }
 }
-
-
-
-#endif

@@ -18,5 +18,6 @@
 #include "find_min_in_shifted_sorted_array.h"
 #include "compare_binary_hex_digit.h"
 #include "is_unique_chars_in_string.h"
+#include "smart_ptr.h"
 
 
