@@ -19,5 +19,6 @@
 #include "compare_binary_hex_digit.h"
 #include "is_unique_chars_in_string.h"
 #include "smart_ptr.h"
+#include "kevin_beakon_steps.h"
 
 
