@@ -4,6 +4,7 @@
 #include <string.h>
 #include <vector>
 #include <map>
+#include <list>
 #include <algorithm>
 
 namespace junk
@@ -22,12 +23,14 @@ namespace junk
             Graph()
                 : m_linkmap(new TMap())
                 , m_visited(new std::vector<T>())
+                , m_crumbles(new std::map<T, T>())
             {}
 
             ~Graph()
             {
                 delete m_linkmap;
                 delete m_visited;
+                delete m_crumbles;
             }
 
             bool AddNode(T node, const std::vector<T> links)
@@ -51,6 +54,7 @@ namespace junk
                 count = 0;
 
                 m_visited->clear();
+                m_crumbles->clear();
 
                 if (iter_a != m_linkmap->end() && 
                     iter_b != m_linkmap->end())
@@ -58,6 +62,25 @@ namespace junk
                     res = FindImpl(iter_a, iter_b, count);
                 }
                 return res;
+            }
+
+            void Trace(T b, std::list<T> &out)
+            {
+                out.clear();
+
+                T &iter_val = b;
+
+                std::map<T, T>::iterator iter_find = m_crumbles->find(iter_val);
+
+                while (iter_find != m_crumbles->end())
+                {
+                    out.insert(out.begin(), iter_find->first);
+
+                    if (iter_find->first == iter_find->second) {
+                        break;
+                    }
+                    iter_find = m_crumbles->find(iter_find->second);
+                }
             }
 
         protected:
@@ -68,11 +91,13 @@ namespace junk
 
                 rim.push_back(a);
 
+                m_crumbles->insert(std::map<T, T>::value_type(a->first, a->first));
+
                 while (!rim.empty())
                 {
                     for each (auto &r in rim)
                     {
-                        if (r->first == b->first) {
+                        if (r->first == b->first){
                             return true;
                         }
 
@@ -86,7 +111,9 @@ namespace junk
                             }
 
                             TMapIter iter_next = m_linkmap->find(next);
-                            if (iter_next != m_linkmap->end()){
+                            if (iter_next != m_linkmap->end())
+                            {
+                                m_crumbles->insert(std::map<T, T>::value_type(iter_next->first, r->first));
                                 new_rim.push_back(iter_next);
                             }
                         }
@@ -94,14 +121,16 @@ namespace junk
                     count++;
                     rim = new_rim;
                 }
-
                 return false;
             }
+
+        
            
         private:
             TMap *m_linkmap;
 
-            std::vector<T> *m_visited; 
+            std::vector<T> *m_visited;
+            std::map<T, T> *m_crumbles;
         };
     }
 }
