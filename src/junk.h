@@ -20,5 +20,6 @@
 #include "is_unique_chars_in_string.h"
 #include "smart_ptr.h"
 #include "kevin_beakon_steps.h"
+#include "find_max_path_in_tree.h"
 
 

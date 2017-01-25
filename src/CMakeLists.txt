@@ -36,6 +36,7 @@ set(SOURCE
 	strings.cpp
 	matrix_rotation.h
 	kevin_beakon_steps.h
+	find_max_path_in_tree.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -77,6 +78,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_matrix_rotation.cpp
 					ut/ut_smart_ptr.cpp
 					ut/ut_kevin_beakon_steps.cpp
+					ut/ut_find_max_path_in_tree.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
