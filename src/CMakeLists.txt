@@ -9,6 +9,7 @@ add_definitions(-DLIB_COMPILE)
 include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googletest/include)
 include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googlemock/include)
 
+include_directories(${CMAKE_SOURCE_DIR}/src)
 
 set(SOURCE 
 	oembase.h
@@ -37,6 +38,7 @@ set(SOURCE
 	matrix_rotation.h
 	kevin_beakon_steps.h
 	find_max_path_in_tree.h
+	list_find_duplicates.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -79,6 +81,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_smart_ptr.cpp
 					ut/ut_kevin_beakon_steps.cpp
 					ut/ut_find_max_path_in_tree.cpp
+					ut/ut_list_find_duplicates.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
