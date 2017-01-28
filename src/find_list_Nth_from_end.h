@@ -3,9 +3,45 @@
 
 #include "defexport.h"
 #include "custom_list.h"
+#include "lists.h"
+
 
 namespace junk
 {
+    namespace list_find_nth_from_end
+    {
+        template<class T_VAL, class T = lists::ListNode<T_VAL> >
+        class JUNK_EXPORT ListExt : public lists::List<T_VAL, T>
+        {
+        public:
+            lists::ListNode<T_VAL>* FindNthFromEnd(size_t n)
+            {
+                T *iter_forward = head();
+                T *iter_backward = nullptr;
+
+                if (iter_forward)
+                {
+                    for (size_t i = 0; i <= n; i++)
+                    {
+                        iter_forward = iter_forward->next;
+
+                        if (!iter_forward) {
+                            return i == n ? head() : nullptr;
+                        }
+                    }
+
+                    iter_backward = head();
+                    while (iter_forward)
+                    {
+                        iter_backward = iter_backward->next;
+                        iter_forward = iter_forward->next;
+                    }
+                }
+                return iter_backward;
+            }
+        };
+    }
+
     template<class CLASS_T>
     JUNK_EXPORT ListElement<CLASS_T>* FindListNthFromEnd(List<CLASS_T> *list, int n)
     {
