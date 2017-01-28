@@ -39,6 +39,7 @@ set(SOURCE
 	kevin_beakon_steps.h
 	find_max_path_in_tree.h
 	list_find_duplicates.h
+	list_delete_nth_element.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})

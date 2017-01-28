@@ -5,7 +5,6 @@
 #include "custom_list.h"
 #include "lists.h"
 
-
 namespace junk
 {
     namespace list_find_nth_from_end

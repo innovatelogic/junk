@@ -31,6 +31,12 @@ namespace junk
 
     namespace list_find_nth_from_end
     {
+        TEST(Lists, ListFindNthFromEnd_EmptyList)
+        {
+            ListExt<char> list;
+            EXPECT_EQ(list.FindNthFromEnd(0), nullptr);
+        }
+
         TEST(Lists, ListFindNthFromEnd)
         {
             ListExt<char> list;
