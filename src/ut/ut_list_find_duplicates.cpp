@@ -65,4 +65,50 @@ namespace junk
             EXPECT_EQ(node6, nullptr);
         }
     }
+
+    namespace list_rearrange_by_kth_element
+    {
+        TEST(Lists, ListRearrangeByElem)
+        {
+            ListExt<int> list;
+
+            list.PushBack(7);
+            list.PushBack(2);
+            list.PushBack(1);
+            list.PushBack(4);
+            list.PushBack(3);
+            list.PushBack(6);
+            list.PushBack(5);
+
+            auto *median = list.head()->next->next->next;
+            EXPECT_EQ(median->value, 4);
+            list.RearrangeByElement(median);
+
+            std::vector<int> vcheck_min = { 1, 2, 3 };
+            auto *it = list.head();
+            while (it != median)
+            {
+                std::vector<int>::iterator find = std::find(vcheck_min.begin(), vcheck_min.end(), it->value);
+
+                EXPECT_TRUE(find != vcheck_min.end());
+
+                vcheck_min.erase(find);
+
+                it = it->next;
+            }
+
+            std::vector<int> vcheck_max = { 4, 5, 6, 7 };
+            it = median;
+            while (it)
+            {
+                std::vector<int>::iterator find = std::find(vcheck_max.begin(), vcheck_max.end(), it->value);
+
+                EXPECT_TRUE(find != vcheck_max.end());
+
+                vcheck_max.erase(find);
+
+                it = it->next;
+            }
+        }
+    }
 }

@@ -91,9 +91,29 @@ namespace junk
                 m_head = nullptr;
             }
 
+
+            void Insert(T *after, T_VAL val)
+            {
+                if (m_head)
+                {
+                    T *new_node = new T(val);
+
+                    if (after == nullptr) // to begin
+                    {
+                        new_node->next = m_head;
+                        m_head = new_node;
+                    }
+                    else
+                    {
+                        new_node->next = after->next;
+                        after->next = new_node;
+                    }
+                }
+            }
+
             ListNode<T_VAL>* head() const { return m_head; }
 
-        private:
+        protected:
             T *m_head;
         };
     }

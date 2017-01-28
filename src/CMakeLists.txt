@@ -40,6 +40,7 @@ set(SOURCE
 	find_max_path_in_tree.h
 	list_find_duplicates.h
 	list_delete_nth_element.h
+	list_rearrange_by_kth_element.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
