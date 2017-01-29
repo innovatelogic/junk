@@ -23,5 +23,6 @@
 #include "find_max_path_in_tree.h"
 #include "list_find_duplicates.h"
 #include "list_rearrange_by_kth_element.h"
+#include "list_to_int.h"
 
 
