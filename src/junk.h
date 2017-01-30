@@ -25,5 +25,6 @@
 #include "list_rearrange_by_kth_element.h"
 #include "list_to_int.h"
 #include "list_is_palindrome.h"
+#include "list_circular_find_start_loop.h"
 
 
