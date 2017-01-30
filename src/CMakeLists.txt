@@ -41,6 +41,7 @@ set(SOURCE
 	list_find_duplicates.h
 	list_delete_nth_element.h
 	list_rearrange_by_kth_element.h
+	list_is_palindrome.h
 	list_to_int.h
 )
 
@@ -86,6 +87,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_find_max_path_in_tree.cpp
 					ut/ut_list_find_duplicates.cpp
 					ut/ut_list_to_int.cpp
+					ut/ut_list_is_palindrome.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
