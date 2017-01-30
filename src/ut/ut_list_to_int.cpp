@@ -22,6 +22,9 @@ namespace junk
             
             EXPECT_EQ(a, 617);
             EXPECT_EQ(b, 295);
+
+            int res = list + list2;
+            EXPECT_EQ(res, 912);
         }
 
         TEST(Lists, IntToInt)
@@ -41,6 +44,75 @@ namespace junk
 
             EXPECT_EQ(a, 716);
             EXPECT_EQ(b, 592);
+        }
+
+        TEST(Lists, OperatorPlusRevOrder)
+        {
+            ListExt list, list2;
+
+            list.PushBack(7);
+            list.PushBack(1);
+            list.PushBack(6);
+
+            list2.PushBack(5);
+            list2.PushBack(9);
+            list2.PushBack(2);
+
+            int res = list.operator+(list2);
+            EXPECT_EQ(res, 912);
+        }
+
+        TEST(Lists, OperatorPlusRevOrderDiffSize)
+        {
+            ListExt list, list2;
+
+            list.PushBack(7);
+            list.PushBack(1);
+            list.PushBack(6);
+            list.PushBack(1);
+
+            list2.PushBack(5);
+            list2.PushBack(9);
+            list2.PushBack(2);
+
+            int res = list.operator+(list2);
+            EXPECT_EQ(res, 1912);
+        }
+
+
+
+        TEST(Lists, OperatorPlusForwardOrder)
+        {
+            ListExt list, list2;
+
+            list.PushBack(6);
+            list.PushBack(1);
+            list.PushBack(7);
+
+            list2.PushBack(2);
+            list2.PushBack(9);
+            list2.PushBack(5);
+
+            int res = list.operator^(list2);
+            EXPECT_EQ(res, 912);
+        }
+
+        TEST(Lists, OperatorPlusForwardOrderDiffSize)
+        {
+            ListExt list, list2;
+
+            list.PushBack(6);
+            list.PushBack(1);
+            list.PushBack(7);
+            list.PushBack(9);
+            list.PushBack(5);
+
+            list2.PushBack(2);
+            list2.PushBack(9);
+            list2.PushBack(5);
+
+            int res = list.operator^(list2);
+            EXPECT_EQ(res, 62090);
         }
     }
 }
