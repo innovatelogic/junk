@@ -2,6 +2,8 @@
 #include <iostream>
 #include <gtest/gtest.h>
 #include <set>
+#include <memory>
+#include <functional>
 
 //----------------------------------------------------------------------------------------------
 TEST(TestMath, DummyAddTwoDigit)
@@ -93,5 +95,111 @@ namespace cpptest
         int k = x.size();
         std::set<int, C> y(x.begin(), x.end());
         k = y.size();
+    }
+
+
+    namespace class_size
+    {
+        class A
+        {
+        public:
+            A() : m_size(sizeof(A)) { }
+
+        public:
+            virtual void f() const { std::cout << 1; }
+            virtual ~A() { }
+
+        public:
+            static bool compare(const A *a, const A *b)
+            {
+                assert(a != nullptr);
+                assert(b != nullptr);
+                return a->m_size < b->m_size;
+            }
+
+        protected:
+            size_t m_size;
+        };
+
+        class B
+            : public A
+        {
+        public:
+            B() : m_b(nullptr) { m_size = sizeof(B); }
+
+        public:
+            virtual void f() const { std::cout << 2; }
+
+        private:
+            char *m_b;
+        };
+
+        class C
+            : public A
+        {
+        public:
+            C() { m_size = sizeof(C); }
+
+        public:
+            virtual void f() const { std::cout << 3; }
+
+        private:
+            static int *m_c;
+        };
+
+        int *C::m_c = nullptr;
+
+        TEST(CppTest, ClassSize)
+        {
+            std::vector<A*> v({ new C, new B, new A });
+            std::stable_sort(v.begin(), v.end(), A::compare);
+            std::for_each(v.begin(), v.end(), std::mem_fn(&A::f));
+            std::cout << std::endl;
+            std::for_each(v.begin(), v.end(), std::default_delete<A>());
+
+        }
+    }
+    
+
+    namespace init_order
+    {
+        class A
+        {
+        public:
+            A(int n = 0) 
+                : m_i(n) 
+            { 
+                std::cout << m_i; 
+            }
+
+        protected:
+            int m_i;
+        };
+
+        class B
+            : public A
+        {
+        public:
+            B(int n) 
+                : m_j(n), 
+                m_a(--m_j),
+                m_b() 
+            {
+                std::cout << m_j;
+            }
+
+        private:
+            int m_j;
+            A m_a;
+            A m_b;
+            static A m_c;
+        };
+
+        A B::m_c(3);
+
+        TEST(CppTest, InitOrder)
+        {
+            B b(2);
+        }
     }
 }
