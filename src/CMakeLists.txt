@@ -45,6 +45,8 @@ set(SOURCE
 	list_to_int.h
 	list_circular_find_start_loop.h
 	permutate.h
+	stack.h
+	stack_min_track.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -92,6 +94,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_list_is_palindrome.cpp
 					ut/ut_list_circular_find_start_loop.cpp
 					ut/ut_permutate_str.cpp
+					ut/ut_stack.cpp
+					ut/ut_stack_min_track.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

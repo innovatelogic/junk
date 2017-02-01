@@ -27,5 +27,6 @@
 #include "list_is_palindrome.h"
 #include "list_circular_find_start_loop.h"
 #include "permutate.h"
-
+#include "stack.h"
+#include "stack_min_track.h"
 
