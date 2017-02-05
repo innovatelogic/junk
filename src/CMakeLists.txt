@@ -47,6 +47,7 @@ set(SOURCE
 	permutate.h
 	stack.h
 	stack_min_track.h
+	set_of_stacks.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -96,6 +97,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_permutate_str.cpp
 					ut/ut_stack.cpp
 					ut/ut_stack_min_track.cpp
+					ut/ut_set_of_stacks.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

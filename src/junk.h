@@ -29,4 +29,5 @@
 #include "permutate.h"
 #include "stack.h"
 #include "stack_min_track.h"
+#include "set_of_stacks.h"
 
