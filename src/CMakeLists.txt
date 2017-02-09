@@ -50,6 +50,7 @@ set(SOURCE
 	set_of_stacks.h
 	hanoi_tower.h
 	hanoi_tower.cpp
+	two_stack_queue.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -73,7 +74,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	set( PROJECT_NAME ${PROJECT_NAME} )
 	set( PROJECT_TEST_NAME unittest_${PROJECT_NAME} )
 	string( TOUPPER ${PROJECT_NAME} PROJECT_NAME_U )
-
 
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
@@ -101,6 +101,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_stack_min_track.cpp
 					ut/ut_set_of_stacks.cpp
 					ut/ut_hanoi_tower.cpp
+					ut/ut_two_stack_queue.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
