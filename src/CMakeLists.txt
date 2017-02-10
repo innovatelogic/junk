@@ -52,6 +52,7 @@ set(SOURCE
 	hanoi_tower.cpp
 	two_stack_queue.h
 	stack_sort.h
+	animal_shelter.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -104,6 +105,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_hanoi_tower.cpp
 					ut/ut_two_stack_queue.cpp
 					ut/ut_stack_sort.cpp
+					ut/ut_animal_shelter.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
