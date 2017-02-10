@@ -32,3 +32,4 @@
 #include "set_of_stacks.h"
 #include "hanoi_tower.h"
 #include "two_stack_queue.h"
+#include "stack_sort.h"
