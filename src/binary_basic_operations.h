@@ -10,5 +10,9 @@ namespace junk
         JUNK_EXPORT bool GetBit32(int32_t value, unsigned int n);
 
         JUNK_EXPORT int32_t SetBit32(int32_t value, unsigned int n);
+
+        JUNK_EXPORT int32_t ClearBit32(int32_t value, unsigned int n);
+
+        JUNK_EXPORT int32_t ClearUpToBit32(int32_t value, unsigned int n);
     }
 }
