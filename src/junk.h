@@ -34,3 +34,4 @@
 #include "two_stack_queue.h"
 #include "stack_sort.h"
 #include "animal_shelter.h"
+#include "binary_basic_operations.h"
