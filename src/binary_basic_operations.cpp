@@ -28,10 +28,16 @@ namespace junk
             return value & mask;
         }
 
-        JUNK_EXPORT int32_t ClearFromBit32(int32_t value, unsigned int n)
+        int32_t ClearFromBit32(int32_t value, unsigned int n)
         {
             int32_t mask = ((1 << (n + 1)) - 1);
             return value & mask;
+        }
+
+        int32_t UpdateBit32(int32_t value, unsigned int n, unsigned int v)
+        {
+            int32_t mask = ~(1 << n);
+            return (value & mask) | (v << n);
         }
     }
 }

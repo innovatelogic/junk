@@ -47,5 +47,10 @@ namespace junk
             EXPECT_EQ(ClearFromBit32(120, 3), 8);
             EXPECT_EQ(ClearFromBit32(920, 4), 24);
         }
+
+        TEST(BinaryOperation, UpdateBit32)
+        {
+            EXPECT_EQ(UpdateBit32(920, 3, 0), 912);
+        }
     }
 }
