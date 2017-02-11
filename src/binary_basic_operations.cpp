@@ -27,5 +27,11 @@ namespace junk
             int32_t mask = ~((1 << (n + 1)) - 1);
             return value & mask;
         }
+
+        JUNK_EXPORT int32_t ClearFromBit32(int32_t value, unsigned int n)
+        {
+            int32_t mask = ((1 << (n + 1)) - 1);
+            return value & mask;
+        }
     }
 }
