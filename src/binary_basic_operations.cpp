@@ -39,5 +39,20 @@ namespace junk
             int32_t mask = ~(1 << n);
             return (value & mask) | (v << n);
         }
+
+        // [i, j)
+        int32_t MergeTwoNum32(int32_t in, int32_t v, unsigned int i, unsigned int j)
+        {
+            int32_t out = in;
+
+            unsigned int n_bits = (j - i) + 1;
+
+            if (v > 0 && (1 << (n_bits)) - 1 >= v) //check range
+            {
+                out &= (~((1 << (n_bits)) - 1) << i); // clear n bits
+                out |= v << i;
+            }
+            return out;
+        }
     }
 }

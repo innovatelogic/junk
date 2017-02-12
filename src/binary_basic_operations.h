@@ -18,5 +18,7 @@ namespace junk
         JUNK_EXPORT int32_t ClearFromBit32(int32_t value, unsigned int n);
 
         JUNK_EXPORT int32_t UpdateBit32(int32_t value, unsigned int n, unsigned int v);
+
+        JUNK_EXPORT int32_t MergeTwoNum32(int32_t in, int32_t v, unsigned int i, unsigned int j);
     }
 }

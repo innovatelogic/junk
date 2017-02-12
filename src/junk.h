@@ -35,3 +35,4 @@
 #include "stack_sort.h"
 #include "animal_shelter.h"
 #include "binary_basic_operations.h"
+#include "binary_float.h"

@@ -52,5 +52,11 @@ namespace junk
         {
             EXPECT_EQ(UpdateBit32(920, 3, 0), 912);
         }
+
+        TEST(BinaryOperation, MergeTwoNum32)
+        {
+            EXPECT_EQ(MergeTwoNum32(1024, 19, 2, 6), 1100);
+            EXPECT_EQ(MergeTwoNum32(1024, 19, 2, 5), 1024);
+        }
     }
 }
