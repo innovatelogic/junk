@@ -1,6 +1,7 @@
 
 #include "binary_basic_operations.h"
 #include <math.h>
+#include <climits>
 
 namespace junk
 {
@@ -53,6 +54,52 @@ namespace junk
                 out |= v << i;
             }
             return out;
+        }
+
+        size_t CountOneByteInNum32(int32_t value)
+        {
+            size_t n = 0;
+
+            for (int i = 0; i < sizeof(int32_t); i++)
+            {
+                if ((value & 1) == 1) {
+                    n++;
+                }
+                value >>= 1;
+            }
+            return n;
+        }
+
+        size_t GetNextClosestSameBits(int32_t value)
+        {
+            int32_t n = value;
+            size_t c0 = 0;
+            size_t c1 = 0;
+
+            // find trailing 0-s from the end
+            while (n > 0 && (n & 1) == 0) {
+                c0++;
+                n >>= 1;
+            }
+
+            // find trailing 1-s from the end
+            while (n > 0 && (n & 1) == 1)
+            {
+                c1++;
+                n >>= 1;
+            }
+
+            int p = c0 + c1;
+
+            if (p == (sizeof(int32_t) * CHAR_BIT) - 1 || c0 + c1 == 0) {
+                return -1;
+            }
+
+            value |= (1 << p); // set p bit to 1
+            value &= ~((1 << p) - 1); // clear prev to p bits
+            value |= (1 << (c1 - 1)) - 1; // set c1 - 1 bits right to p
+
+            return value;
         }
     }
 }

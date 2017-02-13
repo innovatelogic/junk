@@ -58,5 +58,23 @@ namespace junk
             EXPECT_EQ(MergeTwoNum32(1024, 19, 2, 6), 1100);
             EXPECT_EQ(MergeTwoNum32(1024, 19, 2, 5), 1024);
         }
+
+
+        TEST(BinaryOperation, CountOneByteInNum32)
+        {
+            EXPECT_EQ(CountOneByteInNum32(5), 2);
+            EXPECT_EQ(CountOneByteInNum32(8), 1);
+        }
+
+        TEST(BinaryOperation, GetNextClosestSameBits)
+        {
+            int val = GetNextClosestSameBits(22);
+            EXPECT_EQ(val, 25);
+            EXPECT_EQ(CountOneByteInNum32(val), CountOneByteInNum32(25));
+
+            val = GetNextClosestSameBits(45);
+            EXPECT_EQ(val, 46);
+            EXPECT_EQ(CountOneByteInNum32(val), CountOneByteInNum32(45));
+        }
     }
 }
