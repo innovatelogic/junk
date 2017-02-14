@@ -134,5 +134,15 @@ namespace junk
 
             return value;
         }
+
+        size_t BitSwapRequired(int32_t a, int32_t b)
+        {
+            size_t count = 0;
+            for (int32_t c = a ^ b; c > 0; c >>= 1)
+            {
+                count += c & 1;
+            }
+            return count;
+        }
     }
 }
