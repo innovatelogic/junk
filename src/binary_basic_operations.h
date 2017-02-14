@@ -23,6 +23,8 @@ namespace junk
 
         JUNK_EXPORT size_t CountOneByteInNum32(int32_t value);
 
-        JUNK_EXPORT size_t GetNextClosestSameBits(int32_t value);
+        JUNK_EXPORT int32_t GetNextClosestSameBits(int32_t value);
+
+        JUNK_EXPORT int32_t GetPrevClosetSameBits(int32_t value);
     }
 }

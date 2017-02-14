@@ -70,7 +70,7 @@ namespace junk
             return n;
         }
 
-        size_t GetNextClosestSameBits(int32_t value)
+        int32_t GetNextClosestSameBits(int32_t value)
         {
             int32_t n = value;
             size_t c0 = 0;
@@ -98,6 +98,39 @@ namespace junk
             value |= (1 << p); // set p bit to 1
             value &= ~((1 << p) - 1); // clear prev to p bits
             value |= (1 << (c1 - 1)) - 1; // set c1 - 1 bits right to p
+
+            return value;
+        }
+
+        int32_t GetPrevClosetSameBits(int32_t value)
+        {
+            int32_t temp = value;
+
+            int c0 = 0;
+            int c1 = 0;
+
+            // find ending trailing 1's
+            while (temp > 0 && (temp & 1) == 1)
+            {
+                temp >>= 1;
+                c1++;
+            }
+
+            if (temp == 0){
+                return -1;
+            }
+
+            // find ending trailing 0's
+            while (temp > 0 && (temp & 1) == 0)
+            {
+                temp >>= 1;
+                c0++;
+            }
+
+            int p = c0 + c1;
+            value &= (~0) << (p + 1);
+            int mask = (1 << (c1 + 1)) - 1;
+            value |= mask << (c0 - 1);
 
             return value;
         }

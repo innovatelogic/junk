@@ -76,5 +76,18 @@ namespace junk
             EXPECT_EQ(val, 46);
             EXPECT_EQ(CountOneByteInNum32(val), CountOneByteInNum32(45));
         }
+
+        TEST(BinaryOperation, GetPrevClosetSameBits)
+        {
+            int val = GetPrevClosetSameBits(5);
+            EXPECT_EQ(val, 3);
+            EXPECT_EQ(CountOneByteInNum32(val), CountOneByteInNum32(3));
+
+
+            EXPECT_EQ(GetPrevClosetSameBits(2), 1);
+            EXPECT_EQ(GetPrevClosetSameBits(7), -1);
+            EXPECT_EQ(GetPrevClosetSameBits(1), -1);
+
+        }
     }
 }
