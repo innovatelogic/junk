@@ -93,5 +93,12 @@ namespace junk
             EXPECT_EQ(BitSwapRequired(2, 1), 2);
             EXPECT_EQ(BitSwapRequired(5, 2), 3);
         }
+
+        TEST(BinaryOperation, IsLittleEndian)
+        {
+            bool isLSB = IsLittleEndian();
+
+        }
+
     }
 }

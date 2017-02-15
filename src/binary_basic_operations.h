@@ -28,5 +28,7 @@ namespace junk
         JUNK_EXPORT int32_t GetPrevClosetSameBits(int32_t value);
 
         JUNK_EXPORT size_t BitSwapRequired(int32_t a, int32_t b);
+
+        JUNK_EXPORT bool IsLittleEndian();
     }
 }

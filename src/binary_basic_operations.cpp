@@ -144,5 +144,17 @@ namespace junk
             }
             return count;
         }
+
+        bool IsLittleEndian()
+        {
+            union UBits
+            {
+                char single;
+                int32_t multibit;
+            } ubits;
+
+            ubits.multibit = 1;
+            return ubits.single == 1;
+        }
     }
 }
