@@ -97,7 +97,12 @@ namespace junk
         TEST(BinaryOperation, IsLittleEndian)
         {
             bool isLSB = IsLittleEndian();
+            EXPECT_TRUE(isLSB); // not equal test
+        }
 
+        TEST(BinaryOperation, SwapEvenOddBits32)
+        {
+            EXPECT_EQ(SwapEvenOddBits32(165), 90);
         }
 
     }

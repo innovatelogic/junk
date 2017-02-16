@@ -156,5 +156,21 @@ namespace junk
             ubits.multibit = 1;
             return ubits.single == 1;
         }
+
+        uint32_t SwapEvenOddBits32(uint32_t value)
+        {
+            uint32_t n = value;
+
+            uint32_t mask_odd = 0;
+            int i = 1;
+            while (i < sizeof(int32_t) * CHAR_BIT)
+            {
+                mask_odd += 1 << i;
+                i += 2;
+            }
+            uint32_t mask_even = (mask_odd << 1) | 1;
+
+            return ((n & mask_odd) >> 1) | ((n & mask_even) << 1);
+        }
     }
 }
