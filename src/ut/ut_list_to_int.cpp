@@ -79,8 +79,6 @@ namespace junk
             EXPECT_EQ(res, 1912);
         }
 
-
-
         TEST(Lists, OperatorPlusForwardOrder)
         {
             ListExt list, list2;

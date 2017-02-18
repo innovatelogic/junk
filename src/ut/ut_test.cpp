@@ -78,8 +78,6 @@ namespace cpptest
         dg = d.get_n();
     }
 
-    
-
     //----------------------------------------------------------------------------------------------
     TEST(CppTest, STLset)
     {
@@ -366,6 +364,82 @@ namespace cpptest
                 } while (--n > 0);
             }
             EXPECT_EQ(i, 5);
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    namespace right_lelf_reference
+    {
+        int y(int &)
+        {
+            return 1;
+        }
+        int y(int &&)
+        {
+            return 2;
+        }
+        template <class T> int f(T &&x)
+        {
+            return y(x);
+        }
+        template <class T> int g(T &&x)
+        {
+            return y(std::move(x));
+        }
+        template <class T> int h(T &&x)
+        {
+            return y(std::forward<T>(x));
+        }
+
+        TEST(CppTest, RightLeftReference)
+        {
+            int i = 10;
+
+            EXPECT_EQ(f(i), 1);
+            EXPECT_EQ(f(20), 1);
+            EXPECT_EQ(g(i), 2);
+            EXPECT_EQ(g(20), 2);
+            EXPECT_EQ(h(i), 1);
+            EXPECT_EQ(h(20), 2);
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------
+    namespace copy_vector
+    {
+        struct AAA
+        {
+            AAA()
+            {
+                int k = 0;
+            }
+
+            AAA(const AAA& obj)
+            {
+                int k = 0;
+            }
+
+            ~AAA()
+            {
+                int d = 0;
+            }
+
+            int __k;
+        };
+
+        std::vector<AAA> makeVec()
+        {
+            return{ AAA(), AAA() };
+        }
+
+        void SetAAA(std::vector<AAA> &v)
+        {
+            int d = 0;
+        }
+
+        TEST(CppTest, CopyVector)
+        {
+            SetAAA(makeVec());
         }
     }
 }

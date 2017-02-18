@@ -51,6 +51,11 @@ namespace junk
         TEST(BinaryOperation, UpdateBit32)
         {
             EXPECT_EQ(UpdateBit32(920, 3, 0), 912);
+
+            std::vector<int> v1(1, 2);
+            std::vector<int> v2{ 1, 2 };
+            size_t a = v1.size();
+            size_t b = v2.size();
         }
 
         TEST(BinaryOperation, MergeTwoNum32)
@@ -100,8 +105,40 @@ namespace junk
             EXPECT_TRUE(isLSB); // not equal test
         }
 
+        /*struct AAA
+        {
+            AAA()
+            {
+                int k = 0;
+            }
+
+            AAA(const AAA& obj)
+            {
+                int k = 0;
+            }
+
+            ~AAA()
+            {
+                int d = 0;
+            }
+
+            int __k;
+        };
+
+        std::vector<AAA> makeVec()
+        {
+            return { AAA(), AAA() };
+        }
+
+        void SetAAA(std::vector<AAA> &v)
+        {
+            int d = 0;
+        }*/
+
         TEST(BinaryOperation, SwapEvenOddBits32)
         {
+            //SetAAA(makeVec());
+
             EXPECT_EQ(SwapEvenOddBits32(165), 90);
         }
 
