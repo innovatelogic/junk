@@ -440,6 +440,10 @@ namespace cpptest
         TEST(CppTest, CopyVector)
         {
             SetAAA(makeVec());
+
+            int x = 0; //What is wrong here??/
+            x = 1;
+            int k = 0;
         }
     }
 }

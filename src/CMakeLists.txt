@@ -57,6 +57,8 @@ set(SOURCE
 	binary_basic_operations.cpp
 	binary_float.h
 	binary_float.cpp
+	sort_selection_rec.h
+	sort_selection_rec.cpp
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -112,6 +114,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_animal_shelter.cpp
 					ut/ut_binary_basic_operations.cpp
 					ut/ut_binary_float.cpp
+					ut/ut_sort_selection_rec.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
