@@ -63,6 +63,8 @@ set(SOURCE
 	sort_selection.cpp
 	sort_selection_stable.h
 	sort_selection_stable.cpp
+	sort_qsort.h
+	sort_qsort.cpp
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -121,6 +123,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_sort_selection_rec.cpp
 					ut/ut_sort_selection.cpp
 					ut/ut_sort_selection_stable.cpp
+					ut/ut_sort_qsort.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

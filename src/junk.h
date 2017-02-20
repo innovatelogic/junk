@@ -39,3 +39,4 @@
 #include "sort_selection_rec.h"
 #include "sort_selection.h"
 #include "sort_selection_stable.h"
+#include "sort_qsort.h"
