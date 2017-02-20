@@ -76,7 +76,6 @@ namespace junk
 
     namespace const_template_function_instantiate
     {
-
         template <class T> void f(T &i) { std::cout << 1; }
 
         template <> void f(const int &i) { std::cout << 2; }
