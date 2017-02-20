@@ -19,7 +19,6 @@ TEST(TestMath, DummySubstractTwoDigit)
 	EXPECT_EQ(i, -1);
 }
 
-
 namespace cpptest
 {
     class A

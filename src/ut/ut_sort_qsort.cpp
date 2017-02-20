@@ -1,6 +1,9 @@
 #include "junk.h"
 #include <gtest/gtest.h>
 
+#include <iostream>
+#include <memory>
+#include <vector>
 
 namespace junk
 {
