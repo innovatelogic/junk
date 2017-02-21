@@ -125,6 +125,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_sort_selection_stable.cpp
 					ut/ut_sort_qsort.cpp
 					ut/ut_cpp_const_call.cpp
+					ut/ut_static_global_local_init.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
