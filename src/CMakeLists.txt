@@ -65,6 +65,7 @@ set(SOURCE
 	sort_selection_stable.cpp
 	sort_qsort.h
 	sort_qsort.cpp
+	two_sum_in_array.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -130,6 +131,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_rvalue_instantiate.cpp
 					ut/ut_is_signed_char.cpp
 					ut/ut_explicit_class_int.cpp
+					ut/ut_two_sum_in_array.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

@@ -28,7 +28,7 @@ namespace junk
     {
         class C {
         public:
-            C(int) {
+            explicit C(int) {
                 std::cout << "i";
             };
             C(double) {
