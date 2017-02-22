@@ -21,7 +21,8 @@ namespace junk
         (since std::move(b1)converts the reference to b1 to an xvalue, 
         allowing it to be moved from.) In B's move constructor, a is initialized in the initializer list.
         Even though a is an rvalue reference (and bound to an rvalue),
-        a itself is an lvalue, and cannot be moved from. b2.a is then copy initialized, printing 2, 
+        a itself is an lvalue, and cannot be moved from.
+        b2.a is then copy initialized, printing 2, 
         and finally the body of B's move constructor prints 6.
 
         (If the concept of rvalue references being lvalues is confusing, 

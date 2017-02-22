@@ -128,6 +128,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_static_global_local_init.cpp
 					ut/ut_list_initializer.cpp
 					ut/ut_rvalue_instantiate.cpp
+					ut/ut_is_signed_char.cpp
+					ut/ut_explicit_class_int.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
