@@ -65,6 +65,7 @@ set(SOURCE
 	sort_selection_stable.cpp
 	sort_qsort.h
 	sort_qsort.cpp
+	sort_insertion.h
 	two_sum_in_array.h
 )
 
@@ -136,6 +137,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_static_construct_exeption.cpp
 					ut/ut_type_traits_is_same.cpp
 					ut/ut_rvalue_function_call.cpp
+					ut/ut_sort_insertion.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
