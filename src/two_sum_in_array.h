@@ -9,6 +9,7 @@ namespace junk
 {
     namespace two_sum_problem
     {
+        //----------------------------------------------------------------------------------------------
         template<typename>
         JUNK_EXPORT bool TwoSumProblem(std::vector<int> &in, int sum, int &i_out, int &j_out)
         {
@@ -44,6 +45,7 @@ namespace junk
             return bResult;
         }
 
+        //----------------------------------------------------------------------------------------------
         template<typename>
         JUNK_EXPORT bool TwoSumProblemHash(std::vector<int> &in, int sum, int &i_out, int &j_out)
         {

@@ -6,6 +6,7 @@
 
 namespace junk
 {
+    //----------------------------------------------------------------------------------------------
     template<class T> 
     JUNK_EXPORT void merge(std::vector<T> &arr, size_t left, size_t mid, size_t right)
     {
@@ -56,6 +57,7 @@ namespace junk
         }
     }
 
+    //----------------------------------------------------------------------------------------------
     template<class T>
     JUNK_EXPORT void merge_sort(std::vector<T> &arr, size_t l, size_t r)
     {

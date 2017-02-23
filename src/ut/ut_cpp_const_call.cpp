@@ -41,6 +41,7 @@ namespace junk
 {
     namespace cpp_const_call
     {
+        //----------------------------------------------------------------------------------------------
         class C {
         public:
             void foo() { std::cout << "A"; }
@@ -74,6 +75,7 @@ namespace junk
         }
     }
 
+    //----------------------------------------------------------------------------------------------
     namespace const_template_function_instantiate
     {
         template <class T> void f(T &i) { std::cout << 1; }
