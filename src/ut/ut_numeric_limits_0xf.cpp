@@ -30,9 +30,6 @@ namespace junk
         (The second time around the loop, i is 0, which evaluates to false, and the loop terminates.)
         */
 
-        
-
-
         TEST(CppTest, NumericLimitsOxf)
         {
          /*   int N[] = { 0,0,0 };
