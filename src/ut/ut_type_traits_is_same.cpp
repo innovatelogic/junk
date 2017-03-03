@@ -33,7 +33,7 @@ namespace junk
         */
         TEST(CppTest, TypeTraitsIsSame)
         {
-            int i, &j = i;
+            /*int i, &j = i;
             [=]
             {
                 bool a = std::is_same<decltype((j)), int>::value;
@@ -50,7 +50,7 @@ namespace junk
 
                 bool e = std::is_same<decltype((((((j)))))), int const&& >::value;
                 EXPECT_FALSE(e);
-            }();
+            }();*/
         }
     }
 }
