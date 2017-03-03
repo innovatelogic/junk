@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(junk)
+project(junk_Tests)
 
 add_definitions(-DUNICODE -D_UNICODE)
 add_definitions(-DLIB_COMPILE)
