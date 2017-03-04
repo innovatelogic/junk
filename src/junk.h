@@ -44,3 +44,4 @@
 #include "sort_merge.h"
 #include "two_sum_in_array.h"
 #include "hash_table.h"
+#include "heap_chart.h"

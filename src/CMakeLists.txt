@@ -28,6 +28,7 @@ set(SOURCE
 	file.cpp
 	merge_sort.h
 	heap.h
+	heap_chart.h
 	find_min_in_shifted_sorted_array.h
 	compare_binary_hex_digit.h
 	compare_binary_hex_digit.cpp
@@ -142,6 +143,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_sort_insertion.cpp
 					ut/ut_sort_merge.cpp
 					ut/ut_hash_table.cpp
+					ut/ut_heap_chart.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

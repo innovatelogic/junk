@@ -14,7 +14,7 @@ namespace junk
 
         public:
             heap()
-                : m_size(0)
+                : m_size(-1)
                 , m_last(-1)
                 , m_heap(nullptr)
             {
@@ -48,9 +48,8 @@ namespace junk
                 m_last += 1;
                 m_heap[m_last] = value;
 
-                insertImpl(m_last, value);
+                insertImpl(m_last);
             }
-
 
             void build_maxheap()
             {
@@ -60,13 +59,10 @@ namespace junk
                 }
             }
 
-            size_t LEFT(int i) {
-                return i * 2 + 1;
-            }
+            size_t PARENT(size_t i) const { return i / 2; }
+            size_t LEFT(int i) const { return i * 2 + 1; }
 
-            size_t RIGHT(int i) {
-                return i * 2 + 2;
-            }
+            size_t RIGHT(int i) const { return i * 2 + 2; }
 
             void max_heapify(int i, size_t len)
             {
@@ -107,7 +103,7 @@ namespace junk
 
                 if (!m_heap)
                 {
-                    size = (m_size == -1) ? 128 : m_size * 2;
+                    size = (m_size == 0) ? 128 : m_size * 2;
                     m_heap = new T[size];
                 }
                 else
@@ -132,11 +128,11 @@ namespace junk
                 }
             }
 
-            void insertImpl(int index, const T &value)
+            void insertImpl(int index)
             {
                 while (index)
                 {
-                    int parent = index / 2;
+                    int parent = PARENT(index);
 
                     if (m_heap[parent] > m_heap[index])
                     {
@@ -147,10 +143,9 @@ namespace junk
                 }
             }
 
-
         private:
             T *m_heap;
-            int m_size;
+            size_t m_size;
             int m_last;
         };
     }
