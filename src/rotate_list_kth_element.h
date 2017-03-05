@@ -82,7 +82,7 @@ namespace junk
                         iter = iter->next;
                     }
 
-                    // rearrange 
+                    // rearrange list nodes
                     Node<T> *new_head = iter_kth->next;
                     iter_kth->next = nullptr;
 
@@ -90,6 +90,8 @@ namespace junk
                     m_head = new_head;
                 }
             }
+
+            const Node<T>* head() const { return m_head; }
 
         protected:
         private:

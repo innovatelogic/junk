@@ -15,6 +15,13 @@ namespace junk
             list.Insert(5);
 
             list.RotateOn(7);
+
+            EXPECT_TRUE(list.head()->value == 3 && 
+                list.head()->next->value == 4 &&
+                list.head()->next->next->value == 5 && 
+                list.head()->next->next->next->value == 1 &&
+                list.head()->next->next->next->next->value == 2 &&
+                list.head()->next->next->next->next->next == nullptr);
         }
     }
 }
