@@ -45,3 +45,4 @@
 #include "two_sum_in_array.h"
 #include "hash_table.h"
 #include "heap_chart.h"
+#include "rotate_list_kth_element.h"

@@ -119,7 +119,6 @@ namespace junk
                     {
                         std::swap(m_heap[parent], m_heap[index]);
                     }
-
                     index = parent;
                 }
             }

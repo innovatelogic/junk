@@ -70,6 +70,7 @@ set(SOURCE
 	sort_merge.h
 	two_sum_in_array.h
 	hash_table.h
+	rotate_list_kth_element.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -144,6 +145,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_sort_merge.cpp
 					ut/ut_hash_table.cpp
 					ut/ut_heap_chart.cpp
+					ut/ut_rotate_list_kth_element.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
