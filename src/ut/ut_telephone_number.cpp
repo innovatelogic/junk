@@ -1,0 +1,15 @@
+#include "junk.h"
+#include <gtest/gtest.h>
+namespace junk
+{ 
+    namespace telephone_numbers
+    {
+        TEST(Combinatorics, TelephoneNumbers)
+        {
+            TelNumber tel(std::string("0730591731"));
+
+
+
+        }
+    }
+}

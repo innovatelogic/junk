@@ -72,6 +72,8 @@ set(SOURCE
 	hash_table.h
 	rotate_list_kth_element.h
 	combinations.h
+	subsets_in_string.h
+	telephone_numbers.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -148,6 +150,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_heap_chart.cpp
 					ut/ut_rotate_list_kth_element.cpp
 					ut/ut_combinations.cpp
+					ut/ut_partitions_of_set.cpp
+					ut/ut_telephone_number.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
