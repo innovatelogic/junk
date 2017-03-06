@@ -31,6 +31,8 @@ namespace junk
                 }
             }
 
+            const std::vector<std::string>& combinations() const { return m_combinations; }
+
         private:
             std::string out;
             std::string m_str;
