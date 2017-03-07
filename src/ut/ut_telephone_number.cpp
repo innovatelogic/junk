@@ -8,8 +8,15 @@ namespace junk
         {
             TelNumber tel(std::string("0730591731"));
 
+        }
 
+        namespace telephone_numbers_nonreq
+        {
+            TEST(Combinatorics, TelephoneNumbersNonReq)
+            {
+                TelNumber tel(std::string("0730591731"));
 
+            }
         }
     }
 }

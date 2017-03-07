@@ -74,6 +74,7 @@ set(SOURCE
 	combinations.h
 	subsets_in_string.h
 	telephone_numbers.h
+	telephone_numbers_nonreq.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})

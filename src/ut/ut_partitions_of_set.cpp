@@ -160,7 +160,8 @@ namespace junk
         }
         // Main program accepts one parameter: the number of elements
         // in the set. It loops over the allowed number of ones, from
-        // zero to n.       
+        // zero to n.
+       
         TEST(Combinatorics, PartitionsOfSet)
         {
             length = 4;

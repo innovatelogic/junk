@@ -5,37 +5,49 @@
 
 namespace junk
 {
-    namespace telephone_numbers
+    namespace telephone_numbers_nonreq
     {
         class TelNumber
         {
         public:
-            explicit TelNumber(const std::string &number)
-                : m_number(number)
+            TelNumber(const std::string &str)
+                : m_number(str)
             {
-                generate(0);
+                generate();
             }
 
-            void generate(size_t n)
+            void generate()
             {
-                if (m_buffer.size() == m_number.size())
+                std::string result;
+                for (size_t n = 0; n < m_number.size(); n++)
                 {
-                    m_combinations.push_back(m_buffer);
-                    return;
+                    result += GetCodeChar(m_number[n], 0);
                 }
 
-                for (size_t i = n; i < m_number.size(); ++i)
+                for (;;)
                 {
-                    for (int j = 0; j < 3; ++j)
+                    m_combinations.push_back(result);
+
+                    for (int i = m_number.size() - 1; i >= -1; --i)
                     {
-                        m_buffer.push_back(GetCodeChar(m_number[i], j));
-
-                        generate(i + 1);
-
-                        m_buffer.pop_back();
-
-                        if (m_number[i] == '0' || m_number[i] == '1') {
+                        if (i == -1) {
                             return;
+                        }
+
+                        if (GetCodeChar(m_number[i], 2) == result[i] ||
+                            m_number[i] == '0' || m_number['1'] == '1')
+                        {
+                            result[i] = GetCodeChar(m_number[i], 0);
+                        }
+                        else if (GetCodeChar(m_number[i], 0) == result[i])
+                        {
+                            result = GetCodeChar(m_number[i], 1);
+                            break;
+                        }
+                        else if (GetCodeChar(m_number[i], 1) == result[i])
+                        {
+                            result = GetCodeChar(m_number[i], 2);
+                            break;
                         }
                     }
                 }
@@ -63,10 +75,8 @@ namespace junk
                 }
                 return out;
             }
-
         private:
             std::string m_number;
-            std::string m_buffer;
             std::vector<std::string> m_combinations;
         };
     }
