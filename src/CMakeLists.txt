@@ -75,6 +75,8 @@ set(SOURCE
 	subsets_in_string.h
 	telephone_numbers.h
 	telephone_numbers_nonreq.h
+	step_ladder.h
+	egg_drop.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -153,6 +155,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_combinations.cpp
 					ut/ut_partitions_of_set.cpp
 					ut/ut_telephone_number.cpp
+					ut/ut_egg_drop.cpp
+					ut/ut_step_ladder.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

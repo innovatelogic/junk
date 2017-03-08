@@ -49,3 +49,5 @@
 #include "combinations.h"
 #include "telephone_numbers.h"
 #include "telephone_numbers_nonreq.h"
+#include "egg_drop.h"
+#include "step_ladder.h"
