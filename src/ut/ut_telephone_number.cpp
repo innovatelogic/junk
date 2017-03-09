@@ -7,7 +7,6 @@ namespace junk
         TEST(Combinatorics, TelephoneNumbers)
         {
             TelNumber tel(std::string("0730591731"));
-
         }
 
         namespace telephone_numbers_nonreq
@@ -15,7 +14,6 @@ namespace junk
             TEST(Combinatorics, TelephoneNumbersNonReq)
             {
                 TelNumber tel(std::string("0730591731"));
-
             }
         }
     }

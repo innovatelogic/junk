@@ -77,6 +77,7 @@ set(SOURCE
 	telephone_numbers_nonreq.h
 	step_ladder.h
 	egg_drop.h
+	get_all_split_strings.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -157,6 +158,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_telephone_number.cpp
 					ut/ut_egg_drop.cpp
 					ut/ut_step_ladder.cpp
+					ut/ut_get_all_split_strings.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
