@@ -52,3 +52,5 @@
 #include "egg_drop.h"
 #include "step_ladder.h"
 #include "get_all_split_strings.h"
+#include "tree_is_balanced.h"
+#include "tree_traverse.h"

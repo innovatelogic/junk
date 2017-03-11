@@ -78,6 +78,8 @@ set(SOURCE
 	step_ladder.h
 	egg_drop.h
 	get_all_split_strings.h
+	tree_is_balanced.h
+	tree_traverse.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -159,6 +161,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_egg_drop.cpp
 					ut/ut_step_ladder.cpp
 					ut/ut_get_all_split_strings.cpp
+					ut/ut_tree_is_balanced.cpp
+					ut/ut_tree_traverse.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
