@@ -80,6 +80,8 @@ set(SOURCE
 	get_all_split_strings.h
 	tree_is_balanced.h
 	tree_traverse.h
+	array_reverse_inplace.h
+	is_palindrome.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -163,6 +165,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_get_all_split_strings.cpp
 					ut/ut_tree_is_balanced.cpp
 					ut/ut_tree_traverse.cpp
+					ut/ut_array_reverse_inplace.cpp
+					ut/ut_is_palindrome.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

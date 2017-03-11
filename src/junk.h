@@ -54,3 +54,5 @@
 #include "get_all_split_strings.h"
 #include "tree_is_balanced.h"
 #include "tree_traverse.h"
+#include "array_reverse_inplace.h"
+#include "is_palindrome.h"

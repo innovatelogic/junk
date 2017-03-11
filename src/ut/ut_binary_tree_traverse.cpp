@@ -39,7 +39,7 @@ namespace junk
         }
 
         //----------------------------------------------------------------------------------------------
-        TEST(BinaryTree, NonRecursionTraverseDFS)
+        TEST(BTree, NonRecursionTraverseDFS)
         {
             TNode *root = AllocSampleTree();
                 
@@ -81,7 +81,7 @@ namespace junk
         }
 
         //----------------------------------------------------------------------------------------------
-        TEST(BinarySearchTree, DFS_Traverse)
+        TEST(BTree, DFS_Traverse)
         {
             BinarySearchTree<int> *bst = new BinarySearchTree<int>();
 
@@ -107,7 +107,7 @@ namespace junk
             delete bst;
         }
 
-        TEST(BinarySearchTree, BFS_Traverse)
+        TEST(BTree, BFS_Traverse)
         {
             BinarySearchTree<int> *bst = new BinarySearchTree<int>();
 

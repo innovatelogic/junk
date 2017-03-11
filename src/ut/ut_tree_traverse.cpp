@@ -49,7 +49,7 @@ namespace junk
             delete G;
         }
 
-        TEST(BTree, TreeTraverse_Simmetrical)
+        TEST(BTree, TreeTraverse_Inorder)
         {
             Node<char> *A = new Node<char>('A');
             Node<char> *B = new Node<char>('B');
