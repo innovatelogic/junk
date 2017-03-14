@@ -56,3 +56,4 @@
 #include "tree_traverse.h"
 #include "array_reverse_inplace.h"
 #include "is_palindrome.h"
+#include "check_braces.h"
