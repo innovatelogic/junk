@@ -58,3 +58,4 @@
 #include "is_palindrome.h"
 #include "check_braces.h"
 #include "bst_tree_probe_a.h"
+#include "bst_tree_probe_b.h"
