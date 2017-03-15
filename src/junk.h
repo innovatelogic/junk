@@ -57,3 +57,4 @@
 #include "array_reverse_inplace.h"
 #include "is_palindrome.h"
 #include "check_braces.h"
+#include "bst_tree_probe_a.h"
