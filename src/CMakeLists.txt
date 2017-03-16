@@ -85,6 +85,7 @@ set(SOURCE
 	check_braces.h
 	bst_tree_probe_a.h
 	bst_tree_probe_b.h
+	bst_tree_probe_c.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -173,6 +174,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_braces_check.cpp
 					ut/ut_bst.cpp
 					ut/ut_bst_probe_b.cpp
+					ut/ut_bst_probe_c.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

@@ -59,3 +59,4 @@
 #include "check_braces.h"
 #include "bst_tree_probe_a.h"
 #include "bst_tree_probe_b.h"
+#include "bst_tree_probe_c.h"
