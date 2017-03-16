@@ -91,7 +91,6 @@ namespace junk
                 m_head = nullptr;
             }
 
-
             void Insert(T *after, T_VAL val)
             {
                 if (m_head)
