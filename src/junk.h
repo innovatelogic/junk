@@ -60,5 +60,6 @@
 #include "bst_tree_probe_a.h"
 #include "bst_tree_probe_b.h"
 #include "bst_tree_probe_c.h"
+#include "bst_tree_probe_d.h"
 #include "list_c_probe_a.h"
 #include "list_cpp_probe_a.h"

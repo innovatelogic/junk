@@ -5,7 +5,7 @@ namespace junk
 {
     namespace list_cpp_probe_a
     {
-        TEST(List, List_HeadTail_probe_a)
+        TEST(List, List_cpp_HeadTail_probe_a)
         {
             List list;
 

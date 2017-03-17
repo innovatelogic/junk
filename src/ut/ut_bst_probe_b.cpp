@@ -51,7 +51,6 @@ namespace junk
                 }
                 EXPECT_FALSE(tree.is_balanced());
             }
-            
         }
     }
 }
