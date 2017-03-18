@@ -89,6 +89,7 @@ set(SOURCE
 	bst_tree_probe_d.h
 	list_c_probe_a.h
 	list_cpp_probe_a.h
+	list_cpp_probe_b.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -181,6 +182,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_bst_tree_probe_d.cpp
 					ut/ut_list_c_probe_a.cpp
 					ut/ut_list_cpp_probe_a.cpp
+					ut/ut_list_cpp_probe_b.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
