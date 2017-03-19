@@ -45,6 +45,7 @@
 #include "two_sum_in_array.h"
 #include "hash_table.h"
 #include "heap_chart.h"
+#include "heap_sort_probe_a.h"
 #include "rotate_list_kth_element.h"
 #include "combinations.h"
 #include "telephone_numbers.h"

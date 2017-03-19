@@ -14,7 +14,7 @@ namespace junk
 
         public:
             heap()
-                : m_size(-1)
+                : m_size(0)
                 , m_last(-1)
                 , m_heap(nullptr)
             {
@@ -61,7 +61,6 @@ namespace junk
 
             size_t PARENT(size_t i) const { return i / 2; }
             size_t LEFT(int i) const { return i * 2 + 1; }
-
             size_t RIGHT(int i) const { return i * 2 + 2; }
 
             void max_heapify(int i, size_t len)
@@ -93,6 +92,7 @@ namespace junk
                 {
                     std::swap(m_heap[0], m_heap[i]);
                     max_heapify(0, i);
+                    m_last--;
                 }
             }
 
@@ -122,7 +122,7 @@ namespace junk
 
             void build_max_heap()
             {
-                for (int i = m_last / 2; i >= 1; --i)
+                for (int i = m_last / 2; i >= 0; --i)
                 {
                     max_heapify(i);
                 }
@@ -139,7 +139,7 @@ namespace junk
                         std::swap(m_heap[parent], m_heap[index]);
                     }
 
-                    index = index / 2;
+                    index = parent;
                 }
             }
 

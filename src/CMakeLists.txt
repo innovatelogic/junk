@@ -29,6 +29,7 @@ set(SOURCE
 	merge_sort.h
 	heap.h
 	heap_chart.h
+	heap_sort_probe_a.h
 	find_min_in_shifted_sorted_array.h
 	compare_binary_hex_digit.h
 	compare_binary_hex_digit.cpp
@@ -123,6 +124,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_swap_sort.cpp
 					ut/ut_merge_sort.cpp
 					ut/ut_heap.cpp
+					ut/ut_heap_sort_probe_a.cpp
 					ut/ut_find_min_in_shifted_sorted_array.cpp
 					ut/ut_compare_binary_hex_digit.cpp
 					ut/ut_is_unique_chars_in_string.cpp
