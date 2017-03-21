@@ -46,6 +46,7 @@
 #include "hash_table.h"
 #include "heap_chart.h"
 #include "heap_sort_probe_a.h"
+#include "heap_min_probe_a.h"
 #include "rotate_list_kth_element.h"
 #include "combinations.h"
 #include "telephone_numbers.h"
@@ -65,3 +66,5 @@
 #include "list_c_probe_a.h"
 #include "list_cpp_probe_a.h"
 #include "list_cpp_probe_b.h"
+#include "list_cpp_probe_c.h"
+#include "qsort_probe_a.h"

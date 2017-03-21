@@ -59,7 +59,7 @@ namespace junk
                 }
             }
 
-            size_t PARENT(size_t i) const { return i / 2; }
+            size_t PARENT(size_t i) const { return (i - 1)  / 2; }
             size_t LEFT(int i) const { return i * 2 + 1; }
             size_t RIGHT(int i) const { return i * 2 + 2; }
 

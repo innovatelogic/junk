@@ -30,7 +30,7 @@ namespace junk
 			
 			static int LEFT(int i) { return i * 2 + 1;}
 			static int RIGHT(int i) { return i * 2 + 2; }
-			static int PARENT(int i) { return i / 2; }
+			static int PARENT(int i) { return (i - 1) / 2; }
 			
 			void build_max_heap()
 			{
@@ -80,15 +80,12 @@ namespace junk
 			
 		protected:
 		private:
-		
 			void insert_impl(int i)
 			{
 				if (i == 0){
 					return;
 				}
-				
 				int parent = PARENT(i);
-				
 				if (m_heap[i] > m_heap[parent])
 				{
 					std::swap(m_heap[i], m_heap[parent]);
@@ -99,7 +96,6 @@ namespace junk
 			int reallocate()
 			{
 				int size = m_size;
-				
 				if (size == 0)
 				{
 					size = (size == 0) ? 127 : size;

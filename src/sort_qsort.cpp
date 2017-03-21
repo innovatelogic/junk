@@ -17,12 +17,10 @@ namespace junk
 
             while (curr < end)
             {
-                if (in[curr] < pivotValue)
-                {
+                if (in[curr] < pivotValue){
                     curr++;
                 }
-                else
-                {
+                else{
                     std::swap(in[curr], in[--end]);
                 }
             }

@@ -30,6 +30,7 @@ set(SOURCE
 	heap.h
 	heap_chart.h
 	heap_sort_probe_a.h
+	heap_min_probe_a.h
 	find_min_in_shifted_sorted_array.h
 	compare_binary_hex_digit.h
 	compare_binary_hex_digit.cpp
@@ -91,6 +92,8 @@ set(SOURCE
 	list_c_probe_a.h
 	list_cpp_probe_a.h
 	list_cpp_probe_b.h
+	list_cpp_probe_c.h
+	qsort_probe_a.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -185,6 +188,9 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_list_c_probe_a.cpp
 					ut/ut_list_cpp_probe_a.cpp
 					ut/ut_list_cpp_probe_b.cpp
+					ut/ut_list_cpp_probe_c.cpp
+					ut/ut_heap_min_probe_a.cpp
+					ut/ut_qsort_probe_a.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

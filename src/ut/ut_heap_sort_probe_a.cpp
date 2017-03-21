@@ -23,8 +23,6 @@ namespace junk
             {
                 EXPECT_EQ(*(a + i), i);
             }
-            
         }
     }
-
 }
