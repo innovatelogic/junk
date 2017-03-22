@@ -14,6 +14,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 set(SOURCE 
 	oembase.h
 	defexport.h
+	array_frequency_rand.h
 	custom_list.h
 	custom_stack.h
 	find_list_nth_from_end.h
@@ -94,6 +95,7 @@ set(SOURCE
 	list_cpp_probe_b.h
 	list_cpp_probe_c.h
 	qsort_probe_a.h
+	qsort_probe_b.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -120,6 +122,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
+					ut/ut_array_frequency_rand.cpp
 					ut/ut_linearize.cpp
 					ut/ut_circular_list.cpp
 					ut/ut_binary_tree_traverse.cpp
@@ -191,6 +194,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_list_cpp_probe_c.cpp
 					ut/ut_heap_min_probe_a.cpp
 					ut/ut_qsort_probe_a.cpp
+					ut/ut_qsort_probe_b.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

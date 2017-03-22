@@ -1,5 +1,6 @@
 #pragma once
 
+#include "array_frequency_rand.h"
 #include "circular_list.h"
 #include "custom_list.h"
 #include "custom_list.h"
@@ -68,3 +69,4 @@
 #include "list_cpp_probe_b.h"
 #include "list_cpp_probe_c.h"
 #include "qsort_probe_a.h"
+#include "qsort_probe_b.h"
