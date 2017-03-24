@@ -5,7 +5,7 @@ namespace junk
 {
     namespace permutate_str
     {
-        TEST(Permutate, StringPermutation)
+        TEST(Permutation, StringPermutation)
         {
             std::string str("abcd");
             std::vector<std::string> out;

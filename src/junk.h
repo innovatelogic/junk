@@ -13,6 +13,7 @@
 #include "matrix_rotation.h"
 #include "binary_tree.h"
 #include "merge_sort.h"
+#include "merge_sort_probe_a.h"
 #include "peak_finding.h"
 #include "strings.h"
 #include "swap_sort.h"
