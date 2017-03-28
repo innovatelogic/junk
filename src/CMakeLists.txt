@@ -77,6 +77,7 @@ set(SOURCE
 	rotate_list_kth_element.h
 	combinations.h
 	subsets_in_string.h
+	subsets_str_sum_probe_a.h
 	telephone_numbers.h
 	telephone_numbers_nonreq.h
 	step_ladder.h
@@ -92,6 +93,7 @@ set(SOURCE
 	bst_tree_probe_c.h
 	bst_tree_probe_d.h
 	bst_tree_find_max_distinct_path_probe_e.h
+	bst_tree_check_bst_probe_f.h
 	list_c_probe_a.h
 	list_cpp_probe_a.h
 	list_cpp_probe_b.h
@@ -199,6 +201,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_qsort_probe_a.cpp
 					ut/ut_qsort_probe_b.cpp
 					ut/ut_merge_sort_probe_a.cpp
+					ut/ut_bst_tree_check_bst_probe_f.cpp
+					ut/ut_subsets_str_sum_probe_a.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

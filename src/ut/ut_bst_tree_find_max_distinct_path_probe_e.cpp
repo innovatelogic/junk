@@ -14,7 +14,6 @@ namespace junk
             //      30       60      165      185    
             //        30           164   165     185
             //
-            //
 
             tree.Insert(100);
             tree.Insert(50);
