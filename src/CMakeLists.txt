@@ -74,6 +74,7 @@ set(SOURCE
 	sort_merge.h
 	merge_sort_probe_a.h
 	sort_insertion_probe_a.h
+	sort_selection_probe_a.h
 	two_sum_in_array.h
 	hash_table.h
 	rotate_list_kth_element.h
@@ -207,6 +208,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_bst_tree_check_bst_probe_f.cpp
 					ut/ut_subsets_str_sum_probe_a.cpp
 					ut/ut_sort_insertion_probe_b.cpp
+					ut/ut_sort_selection_probe_a.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
