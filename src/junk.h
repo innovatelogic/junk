@@ -44,6 +44,7 @@
 #include "sort_qsort.h"
 #include "sort_insertion.h"
 #include "sort_merge.h"
+#include "sort_merge_probe_b.h"
 #include "sort_insertion_probe_a.h"
 #include "sort_insertion_probe_b.h"
 #include "sort_selection_probe_a.h"
