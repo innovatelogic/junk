@@ -76,6 +76,7 @@ set(SOURCE
 	sort_insertion_probe_a.h
 	sort_selection_probe_a.h
 	sort_merge_probe_b.h
+	sort_merge_probe_c.h
 	two_sum_in_array.h
 	hash_table.h
 	rotate_list_kth_element.h
@@ -104,6 +105,7 @@ set(SOURCE
 	list_cpp_probe_c.h
 	qsort_probe_a.h
 	qsort_probe_b.h
+	sort_qsort_pobe_c.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -211,6 +213,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_sort_insertion_probe_b.cpp
 					ut/ut_sort_selection_probe_a.cpp
 					ut/ut_merge_sort_probe_b.cpp
+					ut/ut_sort_merge_probe_c.cpp
+					ut/ut_sort_qsort_probe_c.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
