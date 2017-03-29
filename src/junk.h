@@ -44,6 +44,8 @@
 #include "sort_qsort.h"
 #include "sort_insertion.h"
 #include "sort_merge.h"
+#include "sort_insertion_probe_a.h"
+#include "sort_insertion_probe_b.h"
 #include "two_sum_in_array.h"
 #include "hash_table.h"
 #include "heap_chart.h"
