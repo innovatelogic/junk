@@ -32,6 +32,7 @@
 #include "list_circular_find_start_loop.h"
 #include "permutate.h"
 #include "stack.h"
+#include "stack_probe_a.h"
 #include "stack_min_track.h"
 #include "set_of_stacks.h"
 #include "hanoi_tower.h"

@@ -52,6 +52,7 @@ set(SOURCE
 	list_circular_find_start_loop.h
 	permutate.h
 	stack.h
+	stack_probe_a.h
 	stack_min_track.h
 	set_of_stacks.h
 	hanoi_tower.h
@@ -160,6 +161,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_permutate_str.cpp
 					ut/ut_permutate_probe_a.cpp
 					ut/ut_stack.cpp
+					ut/ut_stack_probe_a.cpp
 					ut/ut_stack_min_track.cpp
 					ut/ut_set_of_stacks.cpp
 					ut/ut_hanoi_tower.cpp
