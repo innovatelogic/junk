@@ -1,6 +1,7 @@
 #pragma once
 
 #include "array_frequency_rand.h"
+#include "array_combinations_probe_a.h"
 #include "circular_list.h"
 #include "custom_list.h"
 #include "custom_list.h"
