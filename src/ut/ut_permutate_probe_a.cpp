@@ -3,14 +3,16 @@
 
 namespace junk
 {
-    namespace permutate_str
+    namespace permutations_probe_a
     {
-        TEST(Permutation, StringPermutation)
+        TEST(Permutation, StringPermutation_probe_a)
         {
             std::string str("abcd");
             std::vector<std::string> out;
 
-            Permutate r(str, out);
+            Permutator r(str);
+            r.permutate();
+            out = r.out();
 
             EXPECT_TRUE(std::find(out.begin(), out.end(), "abcd") != out.end());
             EXPECT_TRUE(std::find(out.begin(), out.end(), "abdc") != out.end());

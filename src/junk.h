@@ -9,6 +9,7 @@
 #include "list_head_tail.h"
 #include "list_linearize.h"
 #include "permutations_array.h"
+#include "permutate_probe_a.h"
 #include "smart_ptr.h"
 #include "matrix_rotation.h"
 #include "binary_tree.h"

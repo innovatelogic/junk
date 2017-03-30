@@ -24,6 +24,7 @@ set(SOURCE
     inner_template_class.h
 	inner_template_class.ipp	
 	permutations_array.h
+	permutate_probe_a.h
 	smart_ptr.h
 	junk.h
 	file.cpp
@@ -155,6 +156,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_list_is_palindrome.cpp
 					ut/ut_list_circular_find_start_loop.cpp
 					ut/ut_permutate_str.cpp
+					ut/ut_permutate_probe_a.cpp
 					ut/ut_stack.cpp
 					ut/ut_stack_min_track.cpp
 					ut/ut_set_of_stacks.cpp
