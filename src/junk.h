@@ -37,7 +37,6 @@
 #include "set_of_stacks.h"
 #include "hanoi_tower.h"
 #include "two_stack_queue.h"
-#include "queue_probe_a.h"
 #include "stack_sort.h"
 #include "animal_shelter.h"
 #include "binary_basic_operations.h"
@@ -85,3 +84,5 @@
 #include "qsort_probe_a.h"
 #include "qsort_probe_b.h"
 #include "subsets_str_sum_probe_a.h"
+#include "queue_probe_a.h"
+#include "queue_probe_b.h"
