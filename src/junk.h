@@ -74,6 +74,7 @@
 #include "bst_tree_probe_b.h"
 #include "bst_tree_probe_c.h"
 #include "bst_tree_probe_d.h"
+#include "bst_probe_e.h"
 #include "bst_tree_find_max_distinct_path_probe_e.h"
 #include "bst_tree_check_bst_probe_f.h"
 #include "bst_tree_get_max_width_probe_a.h"

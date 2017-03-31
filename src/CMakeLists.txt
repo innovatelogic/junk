@@ -100,6 +100,7 @@ set(SOURCE
 	bst_tree_probe_b.h
 	bst_tree_probe_c.h
 	bst_tree_probe_d.h
+	bst_probe_e.h
 	bst_tree_find_max_distinct_path_probe_e.h
 	bst_tree_check_bst_probe_f.h
 	bst_tree_get_max_width_probe_a.h
@@ -207,6 +208,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_bst.cpp
 					ut/ut_bst_probe_b.cpp
 					ut/ut_bst_probe_c.cpp
+					ut/ut_bst_probe_e.cpp
 					ut/ut_bst_tree_probe_d.cpp
 					ut/ut_bst_tree_find_max_distinct_path_probe_e.cpp
 					ut/ut_bst_tree_get_max_width_probe_a.cpp
