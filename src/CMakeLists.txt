@@ -17,6 +17,7 @@ set(SOURCE
 	array_frequency_rand.h
 	array_combinations_probe_a.h
 	btree_is_subtree_probe_a.h
+	btree_all_path_sum_probe_a.h
 	custom_list.h
 	custom_stack.h
 	find_list_nth_from_end.h
@@ -144,6 +145,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_array_frequency_rand.cpp
 					ut/ut_array_combinations_probe_a.cpp
 					ut/ut_btree_is_subtree_probe_a.cpp
+					ut/ut_btree_all_path_sum_probe_a.cpp
 					ut/ut_linearize.cpp
 					ut/ut_circular_list.cpp
 					ut/ut_binary_tree_traverse.cpp

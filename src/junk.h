@@ -3,6 +3,7 @@
 #include "array_frequency_rand.h"
 #include "array_combinations_probe_a.h"
 #include "btree_is_subtree_probe_a.h"
+#include "btree_all_path_sum_probe_a.h"
 #include "circular_list.h"
 #include "custom_list.h"
 #include "custom_list.h"
