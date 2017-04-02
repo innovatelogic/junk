@@ -81,6 +81,7 @@
 #include "bst_tree_check_bst_probe_f.h"
 #include "bst_tree_get_max_width_probe_a.h"
 #include "bst_build_level_order_list_probe_f.h"
+#include "bst_find_next_successor.h"
 #include "list_c_probe_a.h"
 #include "list_cpp_probe_a.h"
 #include "list_cpp_probe_b.h"
