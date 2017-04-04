@@ -18,4 +18,5 @@ endif()
 
 add_subdirectory(src_bst)
 add_subdirectory(src_str)
+add_subdirectory(src_graph)
 add_subdirectory(src)

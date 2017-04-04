@@ -12,6 +12,7 @@ include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googlemock/include)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 include_directories(${CMAKE_SOURCE_DIR}/src_bst)
 include_directories(${CMAKE_SOURCE_DIR}/src_str)
+include_directories(${CMAKE_SOURCE_DIR}/src_graph)
 
 set(SOURCE 
 	oembase.h
@@ -148,6 +149,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_heap.cpp
 					ut/ut_heap_sort_probe_a.cpp
 					ut/ut_find_min_in_shifted_sorted_array.cpp
+					ut/ut_graph_bfs_search.cpp
 					ut/ut_compare_binary_hex_digit.cpp
 					ut/ut_is_unique_chars_in_string.cpp
 					ut/ut_strings.cpp
@@ -233,7 +235,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_queue_probe_b.cpp
 					ut/main.cpp )
 	
-	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${BST} ${STR} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
+	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${BST} ${STR} ${GRAPH} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
 
 	add_definitions(-DUSE_MOCK)
 
