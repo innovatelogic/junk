@@ -34,6 +34,8 @@ namespace junk
             bool flag = search_path<void>(n0, n7, out);
 
             EXPECT_TRUE(flag);
+
+            EXPECT_TRUE(out[0] == n7 && out[1] == n6 && out[2] == n5 && out[3] == n2 && out[4] == n0);
             
             delete n0, n1, n2, n3, n4, n5, n6, n7;
         }
