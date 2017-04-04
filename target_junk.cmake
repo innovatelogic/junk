@@ -17,4 +17,5 @@ if(ENABLE_TESTING)
 endif()
 
 add_subdirectory(src_bst)
+add_subdirectory(src_str)
 add_subdirectory(src)

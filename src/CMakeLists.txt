@@ -10,6 +10,8 @@ include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googletest/include)
 include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googlemock/include)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_SOURCE_DIR}/src_bst)
+include_directories(${CMAKE_SOURCE_DIR}/src_str)
 
 set(SOURCE 
 	oembase.h
@@ -98,16 +100,6 @@ set(SOURCE
 	array_reverse_inplace.h
 	is_palindrome.h
 	check_braces.h
-	bst_tree_probe_a.h
-	bst_tree_probe_b.h
-	bst_tree_probe_c.h
-	bst_tree_probe_d.h
-	bst_probe_e.h
-	bst_tree_find_max_distinct_path_probe_e.h
-	bst_tree_check_bst_probe_f.h
-	bst_tree_get_max_width_probe_a.h
-	bst_build_level_order_list_probe_f.h
-	bst_find_next_successor.h
 	list_c_probe_a.h
 	list_cpp_probe_a.h
 	list_cpp_probe_b.h
@@ -159,6 +151,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_compare_binary_hex_digit.cpp
 					ut/ut_is_unique_chars_in_string.cpp
 					ut/ut_strings.cpp
+					ut/ut_string_convert_probe_a.cpp
+					ut/ut_string_bin_frac_to_dec.cpp
 					ut/ut_matrix_rotation.cpp
 					ut/ut_smart_ptr.cpp
 					ut/ut_kevin_beakon_steps.cpp
@@ -239,7 +233,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_queue_probe_b.cpp
 					ut/main.cpp )
 	
-	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
+	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${BST} ${STR} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
 
 	add_definitions(-DUSE_MOCK)
 
