@@ -142,6 +142,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_btree_all_path_sum_probe_a.cpp
 					ut/ut_linearize.cpp
 					ut/ut_circular_list.cpp
+					ut/ut_dijkstra_probe_a.cpp
 					ut/ut_binary_tree_traverse.cpp
 					ut/ut_peak_find.cpp
 					ut/ut_swap_sort.cpp
