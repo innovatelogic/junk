@@ -14,6 +14,7 @@ set(SOURCE
 	graph.h
 	bfs_search_probe_a.h
 	dijkstra_probe_a.h
+	bellman_ford_probe_a.h
 	file.cpp
 )
 
