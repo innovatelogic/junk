@@ -11,6 +11,7 @@ include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googlemock/include)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 include_directories(${CMAKE_SOURCE_DIR}/src_bst)
+include_directories(${CMAKE_SOURCE_DIR}/src_dp)
 include_directories(${CMAKE_SOURCE_DIR}/src_str)
 include_directories(${CMAKE_SOURCE_DIR}/src_graph)
 
@@ -134,8 +135,12 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	set( PROJECT_TEST_NAME unittest_${PROJECT_NAME} )
 	string( TOUPPER ${PROJECT_NAME} PROJECT_NAME_U )
 
+	set(SRC_DP
+		ut/ut_fib_probe_a.cpp
+	)
+
 	set(SRC_GRAPH
-	ut/ut_bellman_ford_probe_a.cpp
+		ut/ut_bellman_ford_probe_a.cpp
 	)
 
 	add_executable( ${PROJECT_TEST_NAME} 
@@ -239,6 +244,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_queue_probe_a.cpp
 					ut/ut_queue_probe_b.cpp
 					ut/main.cpp 
+					${SRC_DP}
 					${SRC_GRAPH}
 					)
 
