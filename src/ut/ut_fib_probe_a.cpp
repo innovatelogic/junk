@@ -14,6 +14,9 @@ namespace junk
             EXPECT_EQ(fib(4), 3);
             EXPECT_EQ(fib(5), 5);
             EXPECT_EQ(fib(6), 8);
+            EXPECT_EQ(fib(7), 13);
+            EXPECT_EQ(fib(8), 21);
+            EXPECT_EQ(fib(9), 34);
             EXPECT_EQ(fib(10), 55);
         }
 
