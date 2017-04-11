@@ -16,6 +16,7 @@ if(ENABLE_TESTING)
 	enable_testing()
 endif()
 
+add_subdirectory(src_arr)
 add_subdirectory(src_bst)
 add_subdirectory(src_dp)
 add_subdirectory(src_str)
