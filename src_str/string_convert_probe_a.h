@@ -34,11 +34,10 @@ namespace junk
 		int str_to_int(const std::string &str)
 		{
 			int out = 0;
-			
+            bool minus = false;
+
 			if (!str.empty())
 			{
-				bool minus = false;
-				
 				if (str[0] == '-'){
 					minus = true;
 				}
@@ -56,8 +55,7 @@ namespace junk
 				}
 			}
 			
-			return out;
-			
+			return (minus ? -1 : 1) * out;
 		}
 	}
 }
