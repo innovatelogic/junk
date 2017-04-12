@@ -143,7 +143,9 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	set(SRC_GRAPH
 		ut/ut_bellman_ford_probe_a.cpp
 	)
-
+	set(SRC_ARR
+		ut/ut_rev_int.cpp
+	)
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
 					ut/ut_array_frequency_rand.cpp
@@ -245,14 +247,15 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_sort_qsort_probe_c.cpp
 					ut/ut_queue_probe_a.cpp
 					ut/ut_queue_probe_b.cpp
-					ut/main.cpp 
+					ut/main.cpp
+					${SRC_ARR}
 					${SRC_DP}
 					${SRC_GRAPH}
 					)
 
 
 	
-	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${BST} ${STR} ${GRAPH} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
+	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${ARR} ${BST} ${STR} ${GRAPH} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
 
 	add_definitions(-DUSE_MOCK)
 
