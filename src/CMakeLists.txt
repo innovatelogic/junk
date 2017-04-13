@@ -151,6 +151,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_array_frequency_rand.cpp
 					ut/ut_array_combinations_probe_a.cpp
 					ut/ut_array_binary_search_probe_a.cpp
+					ut/ut_array_max_subarray.cpp
 					ut/ut_btree_is_subtree_probe_a.cpp
 					ut/ut_btree_all_path_sum_probe_a.cpp
 					ut/ut_linearize.cpp
