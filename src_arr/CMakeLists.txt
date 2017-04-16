@@ -19,6 +19,7 @@ set(SOURCE
 	bin_search_probe_a.h
 	max_subarray_probe_a.h
 	rev_int_probe_a.h
+	array_sorted_rotation_point.h
 	arr.h
 	file.cpp
 )
