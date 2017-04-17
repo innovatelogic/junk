@@ -23,5 +23,45 @@ namespace junk
 			}
 			return get_array_rotation_point<T>(data, mid + 1, r, len); // pivot on the right
 		}
+
+        template<typename T>
+        int binary_search(int *data, int l, int r, int x)
+        {
+            if (l <= r)
+            {
+                int mid = (l + r) / 2;
+
+                if (data[mid] == x) {
+                    return mid;
+                }
+
+                if (x < data[mid]) {
+                    return binary_search<T>(data, l, mid - 1, x);
+                }
+                return binary_search<T>(data, mid + 1, r, x);
+            }
+            return -1;
+        }
+
+        template<typename T>
+        int binary_search_rotated(int *data, int len, int x)
+        {
+            int rev_point = get_array_rotation_point<T>(data, 0, len - 1, len);
+
+            int left = 0;
+            int right = len - 1;
+
+            if (rev_point > 0)
+            {
+                if (x >= data[0] && x <= data[rev_point - 1]) { // search on the left
+                    right = rev_point - 1;
+                }
+                else {
+                    left = rev_point;
+                }
+            }
+
+            return binary_search<T>(data, left, right, x);
+        }
 	}
 }

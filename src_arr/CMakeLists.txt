@@ -20,6 +20,7 @@ set(SOURCE
 	max_subarray_probe_a.h
 	rev_int_probe_a.h
 	array_sorted_rotation_point.h
+	str_equation_analise_probe_a.h
 	arr.h
 	file.cpp
 )

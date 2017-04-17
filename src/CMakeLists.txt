@@ -146,6 +146,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	set(SRC_ARR
 		ut/ut_rev_int.cpp
 		ut/ut_array_sorted_rotation_point.cpp
+		ut/ut_str_equation_analise_probe_a.cpp
 	)
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
