@@ -21,6 +21,7 @@ set(SOURCE
 	bst_tree_get_max_width_probe_a.h
 	bst_build_level_order_list_probe_f.h
 	bst_find_next_successor.h
+	bst_to_dlinked_list_probe_a.h
 	bst.h
 	file.cpp
 )

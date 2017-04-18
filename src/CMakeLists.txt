@@ -233,6 +233,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_bst_tree_get_max_width_probe_a.cpp
 					ut/ut_bst_build_level_order_list_probe_f.cpp
 					ut/ut_bst_find_next_successor.cpp
+					ut/ut_bst_to_dlinked_list_probe_a.cpp
 					ut/ut_list_c_probe_a.cpp
 					ut/ut_list_cpp_probe_a.cpp
 					ut/ut_list_cpp_probe_b.cpp
