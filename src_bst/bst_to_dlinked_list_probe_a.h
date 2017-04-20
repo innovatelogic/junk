@@ -17,7 +17,7 @@ namespace junk
 		{
 			public:
 				BSTree() : m_root(nullptr){}
-				~BSTree() { clear();}
+				~BSTree() { /*clear();*/}
 				
 				void insert(int data)
 				{
@@ -87,7 +87,6 @@ namespace junk
 					}
 					convert_l(l, node);
 					convert_l(r, parent);
-					
 				}
 				
 				void convert_r(Node *node, Node *parent)

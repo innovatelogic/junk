@@ -31,6 +31,5 @@ namespace junk
                 EXPECT_EQ(eqs, std::string("y=0.5x"));
             }
         }
-
     }
 }

@@ -8,6 +8,20 @@ namespace junk
 {
     namespace array_frequency_rand
     {
+
+        /*                 
+                                *
+                        *       *
+                        *       *
+                *       *       *
+            ______________________
+                0   1   2   3   4
+            S* = 8
+            k-prob = 1/8 -> 1.25
+
+            seq:
+            [0; .125), [X], [.125; .5), [X], [.5; 1.)
+        */
         template<typename T>
         class freq_random_selector
         {
@@ -20,7 +34,7 @@ namespace junk
             {
                 if (m_keys.size() > 0)
                 {
-                    float rnd = get_rand();
+                    float rnd = get_rand(); // 0..1
 
                     float last = 0.f;
                     for (size_t i = 0; i < m_keys.size(); ++i)
@@ -35,7 +49,7 @@ namespace junk
                 return false;
             }
 
-            float get_rand() const { return (float)rand() / (float)RAND_MAX; }
+            float get_rand() const { return (float)rand() / (float)(RAND_MAX + 1); } // from [0..1.f)
 
         protected:
             void redistribute_probability(const TVecIn &arr)
