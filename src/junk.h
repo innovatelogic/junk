@@ -14,6 +14,7 @@
 #include "permutations_array.h"
 #include "permutate_probe_a.h"
 #include "smart_ptr.h"
+#include "smart_ptr_probe_a.h"
 #include "matrix_rotation.h"
 #include "binary_tree.h"
 #include "merge_sort.h"

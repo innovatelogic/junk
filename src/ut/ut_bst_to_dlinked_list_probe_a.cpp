@@ -26,6 +26,11 @@ namespace junk
             EXPECT_EQ(head->right->right->right->right->right->data, 15);
         }
 
+
+    }
+
+    namespace binary_tree_to_dlinked_list_probe_b
+    {
         struct node
         {
             int data;

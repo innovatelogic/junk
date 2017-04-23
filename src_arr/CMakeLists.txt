@@ -21,6 +21,8 @@ set(SOURCE
 	rev_int_probe_a.h
 	array_sorted_rotation_point.h
 	str_equation_analise_probe_a.h
+	min_range_vacation_selector_probe_a.h
+	histogram_max_rect_probe_a.h
 	arr.h
 	file.cpp
 )

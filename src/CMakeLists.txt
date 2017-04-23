@@ -11,6 +11,7 @@ include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googlemock/include)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 include_directories(${CMAKE_SOURCE_DIR}/src_arr)
+include_directories(${CMAKE_SOURCE_DIR}/src_arr/ut)
 include_directories(${CMAKE_SOURCE_DIR}/src_bst)
 include_directories(${CMAKE_SOURCE_DIR}/src_dp)
 include_directories(${CMAKE_SOURCE_DIR}/src_str)
@@ -34,7 +35,7 @@ set(SOURCE
 	permutations_array.h
 	permutate_probe_a.h
 	smart_ptr.h
-	junk.h
+	smart_ptr_probe_a.h
 	file.cpp
 	merge_sort.h
 	heap.h
@@ -112,6 +113,7 @@ set(SOURCE
 	sort_qsort_pobe_c.h
 	queue_probe_a.h
 	queue_probe_b.h
+	junk.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -132,6 +134,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 
 	enable_testing()
 
+	include_directories(${CMAKE_SOURCE_DIR}/src_arr/ut)
+
 	set( PROJECT_NAME ${PROJECT_NAME} )
 	set( PROJECT_TEST_NAME unittest_${PROJECT_NAME} )
 	string( TOUPPER ${PROJECT_NAME} PROJECT_NAME_U )
@@ -147,6 +151,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_rev_int.cpp
 		ut/ut_array_sorted_rotation_point.cpp
 		ut/ut_str_equation_analise_probe_a.cpp
+		ut/ut_array_min_range_vacation_selector_probe_a.cpp
+		ut/ut_histogram_max_rect_probe_a.cpp
 	)
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
@@ -174,6 +180,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_string_bin_frac_to_dec.cpp
 					ut/ut_matrix_rotation.cpp
 					ut/ut_smart_ptr.cpp
+					ut/ut_smart_pointer_probe_a.cpp
 					ut/ut_kevin_beakon_steps.cpp
 					ut/ut_find_max_path_in_tree.cpp
 					ut/ut_list_find_duplicates.cpp

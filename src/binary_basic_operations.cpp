@@ -42,6 +42,7 @@ namespace junk
         }
 
         // [i, j)
+        // insert a digit v into in from i ot j bit range
         int32_t MergeTwoNum32(int32_t in, int32_t v, unsigned int i, unsigned int j)
         {
             int32_t out = in;
@@ -50,7 +51,7 @@ namespace junk
 
             if (v > 0 && (1 << (n_bits)) - 1 >= v) //check range
             {
-                out &= (~((1 << (n_bits)) - 1) << i); // clear n bits
+                out &= ~((1 << (n_bits)) - 1) << i; // clear n bits
                 out |= v << i;
             }
             return out;
