@@ -149,6 +149,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	)
 	set(SRC_ARR
 		ut/ut_rev_int.cpp
+		ut/ut_str_find_substring_probe_a.cpp
 		ut/ut_array_sorted_rotation_point.cpp
 		ut/ut_str_equation_analise_probe_a.cpp
 		ut/ut_array_min_range_vacation_selector_probe_a.cpp

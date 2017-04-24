@@ -9,7 +9,7 @@ namespace junk
         if (arr.size() > 1)
         {
             const size_t size = arr.size();
-            for (size_t i = 1; i < arr.size(); ++i)
+            for (size_t i = 1; i < size; ++i)
             {
                 int key = i;
                 while (key > 0 && arr[key - 1] > arr[key])
