@@ -1,4 +1,5 @@
 #include "cpp.h"
+#include <type_traits>
 #include <gtest/gtest.h>
 
 namespace junk
@@ -17,10 +18,13 @@ namespace junk
         TEST(Cpp, IsDerivedClass_probe_a)
         {
             bool is_derived_ab = IsDerivedClass<B, A>();
-            EXPECT_TRUE(is_derived_ab);
+            bool _ab = std::is_base_of<A, B>::value;
+            EXPECT_EQ(is_derived_ab, _ab);
+
 
             bool is_derived_ca = IsDerivedClass<C, A>();
-            EXPECT_FALSE(is_derived_ca);
+            bool _ca = std::is_base_of<A, C>::value;
+            EXPECT_EQ(is_derived_ca, _ca);
         }
     }
 }
