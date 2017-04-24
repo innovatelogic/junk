@@ -16,6 +16,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src_bst)
 include_directories(${CMAKE_SOURCE_DIR}/src_dp)
 include_directories(${CMAKE_SOURCE_DIR}/src_str)
 include_directories(${CMAKE_SOURCE_DIR}/src_graph)
+include_directories(${CMAKE_SOURCE_DIR}/src_cpp)
 
 set(SOURCE 
 	oembase.h
@@ -155,6 +156,10 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_array_min_range_vacation_selector_probe_a.cpp
 		ut/ut_histogram_max_rect_probe_a.cpp
 	)
+
+	set(SRC_CPP
+		ut/ut_cpp/ut_is_derived_class.cpp
+	)
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
 					ut/ut_array_frequency_rand.cpp
@@ -263,6 +268,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					${SRC_ARR}
 					${SRC_DP}
 					${SRC_GRAPH}
+					${SRC_CPP}
 					)
 
 
