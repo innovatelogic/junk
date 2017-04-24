@@ -12,6 +12,7 @@ set(SOURCE
 	oembase.h
 	defexport.h
 	is_derived_class_probe_a.h
+	threadpool_probe_a.h
 	cpp.h
 	file.cpp
 )

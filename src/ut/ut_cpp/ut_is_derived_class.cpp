@@ -21,7 +21,6 @@ namespace junk
             bool _ab = std::is_base_of<A, B>::value;
             EXPECT_EQ(is_derived_ab, _ab);
 
-
             bool is_derived_ca = IsDerivedClass<C, A>();
             bool _ca = std::is_base_of<A, C>::value;
             EXPECT_EQ(is_derived_ca, _ca);
