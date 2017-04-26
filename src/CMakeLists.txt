@@ -155,11 +155,13 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_str_equation_analise_probe_a.cpp
 		ut/ut_array_min_range_vacation_selector_probe_a.cpp
 		ut/ut_histogram_max_rect_probe_a.cpp
+		ut/ut_arr/matrix_ccw.cpp
 	)
 
 	set(SRC_CPP
 		ut/ut_cpp/ut_is_derived_class.cpp
 		ut/ut_cpp/ut_threadpool_probe_a.cpp
+		ut/ut_cpp/ut_segment_sphere_collision_2d.cpp
 	)
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp

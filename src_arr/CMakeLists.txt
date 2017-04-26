@@ -23,6 +23,7 @@ set(SOURCE
 	str_equation_analise_probe_a.h
 	min_range_vacation_selector_probe_a.h
 	histogram_max_rect_probe_a.h
+	matrix_ccw.h
 	arr.h
 	file.cpp
 )

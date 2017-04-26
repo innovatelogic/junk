@@ -13,6 +13,7 @@ set(SOURCE
 	defexport.h
 	is_derived_class_probe_a.h
 	threadpool_probe_a.h
+	segment_sphere_collision_2d.h
 	cpp.h
 	file.cpp
 )

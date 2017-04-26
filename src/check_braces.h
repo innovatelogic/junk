@@ -38,7 +38,6 @@ namespace junk
                     }
                 }
                 return s.empty();
-
             }
 
             bool isPair(char opening, char closing)
