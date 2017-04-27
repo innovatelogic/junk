@@ -57,5 +57,37 @@ namespace junk
 			
 			return (minus ? -1 : 1) * out;
 		}
+
+        template<typename T>
+        int ConvertStringToInt(const char *str)
+        {
+            int out = 0;
+            bool minus = false;
+
+            if (str)
+            {
+                size_t len = strlen(str);
+                if (len > 0)
+                {
+                    if (str[0] == '-') {
+                        minus = true;
+                    }
+
+                    for (size_t i = minus ? 1 : 0; i < len; i++)
+                    {
+                        int digit = str[i] - '0';
+
+                        if (digit >= 0 && digit <= 9) {
+                            out = out * 10 + digit;
+                        }
+                        else {
+                            return 0;
+                        }
+                    }
+                }
+            }
+
+            return (minus ? -1 : 1) * out;
+        }
 	}
 }

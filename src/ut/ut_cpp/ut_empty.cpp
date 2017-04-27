@@ -6,7 +6,7 @@ namespace junk
     {
         TEST(ATest, AEmptyTest)
         {
-
+            int k = 0;
         }
     }
 }
