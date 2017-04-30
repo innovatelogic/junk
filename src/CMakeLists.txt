@@ -147,6 +147,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 
 	set(SRC_GRAPH
 		ut/ut_bellman_ford_probe_a.cpp
+		ut/ut_graph/ut_dlist_probe_a.cpp
 	)
 	set(SRC_ARR
 		ut/ut_rev_int.cpp

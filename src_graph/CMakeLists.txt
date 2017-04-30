@@ -15,6 +15,7 @@ set(SOURCE
 	bfs_search_probe_a.h
 	dijkstra_probe_a.h
 	bellman_ford_probe_a.h
+	dlist_probe_a.h
 	file.cpp
 )
 
