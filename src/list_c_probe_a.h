@@ -51,6 +51,7 @@ namespace junk
 						iter->next = next;
 						return true;
 					}
+                    iter = iter->next;
 				}
 			}
 			return false;
