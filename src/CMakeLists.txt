@@ -157,6 +157,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_array_min_range_vacation_selector_probe_a.cpp
 		ut/ut_histogram_max_rect_probe_a.cpp
 		ut/ut_arr/matrix_ccw.cpp
+		ut/ut_arr/combinations_of_sum_num.cpp
+		ut/ut_arr/ut_string_permute_probe_a.cpp
 	)
 
 	set(SRC_CPP

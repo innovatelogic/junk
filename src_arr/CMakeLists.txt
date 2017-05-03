@@ -24,6 +24,8 @@ set(SOURCE
 	min_range_vacation_selector_probe_a.h
 	histogram_max_rect_probe_a.h
 	matrix_ccw.h
+	combinations_of_sum_num.h
+	string_permute_probe_a.h
 	arr.h
 	file.cpp
 )

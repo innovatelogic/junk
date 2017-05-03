@@ -9,3 +9,5 @@
 #include "histogram_max_rect_probe_a.h"
 #include "str_find_substring_probe_a.h"
 #include "matrix_ccw.h"
+#include "combinations_of_sum_num.h"
+#include "string_permute_probe_a.h"
