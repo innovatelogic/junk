@@ -10,6 +10,7 @@ include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googletest/include)
 include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googlemock/include)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_SOURCE_DIR}/src_list)
 include_directories(${CMAKE_SOURCE_DIR}/src_arr)
 include_directories(${CMAKE_SOURCE_DIR}/src_arr/ut)
 include_directories(${CMAKE_SOURCE_DIR}/src_bst)
@@ -17,6 +18,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src_dp)
 include_directories(${CMAKE_SOURCE_DIR}/src_str)
 include_directories(${CMAKE_SOURCE_DIR}/src_graph)
 include_directories(${CMAKE_SOURCE_DIR}/src_cpp)
+
 
 set(SOURCE 
 	oembase.h
@@ -143,6 +145,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 
 	set(SRC_DP
 		ut/ut_fib_probe_a.cpp
+		ut/ut_dp/coin_change_probe_a.cpp
 	)
 
 	set(SRC_GRAPH
@@ -160,7 +163,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_arr/combinations_of_sum_num.cpp
 		ut/ut_arr/ut_string_permute_probe_a.cpp
 	)
-
+	set(SRC_LST 
+		ut/ut_list/ut_list_merge_sort_probe_a.cpp)
 	set(SRC_CPP
 		ut/ut_cpp/ut_is_derived_class.cpp
 		ut/ut_cpp/ut_threadpool_probe_a.cpp
@@ -276,6 +280,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					${SRC_DP}
 					${SRC_GRAPH}
 					${SRC_CPP}
+					${SRC_LST}
 					)
 
 

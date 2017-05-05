@@ -72,14 +72,12 @@ namespace junk
 				
 				while (iter)
 				{
-					if (node1 < iter->data &&
-						node2 < iter->data)
+					if (node1 < iter->data && node2 < iter->data)
 					{
 						iter = iter->left;
 						continue;
 					}
-					else if (node1 > iter->data &&
-							 node2 > iter->data)
+					else if (node1 > iter->data && node2 > iter->data)
 					{
 						iter = iter->right;
 						continue;
@@ -112,7 +110,7 @@ namespace junk
 						continue;
 					}
 				
-					SNode* lowest = iter;
+					SNode *lowest = iter;
 					
 					int dist_l = findNode(iter, n1);
 					int dist_r = findNode(iter, n2);
@@ -128,11 +126,11 @@ namespace junk
 				return out;
 			}
 			
-			int findNode(SNode* root, int n)
+			int findNode(SNode *root, int n)
 			{
 				int out = 0;
 				
-				SNode* iter = root;
+				SNode *iter = root;
 				
 				while(iter)
 				{

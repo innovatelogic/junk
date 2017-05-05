@@ -1,19 +1,18 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(dp)
+project(list)
 
 add_definitions(-DUNICODE -D_UNICODE)
 add_definitions(-DLIB_COMPILE)
 #add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
 
-set( GRAPH ${PROJECT_NAME} )
+set( LIST ${PROJECT_NAME} )
 
 set(SOURCE 
 	oembase.h
 	defexport.h
-	fib_probe_a.h
-	coin_change_probe_a.h
-	dp.h
+	list_merge_sort_probe_a.h
+	lst.h
 	file.cpp
 )
 
