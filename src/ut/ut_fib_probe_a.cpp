@@ -5,7 +5,7 @@ namespace junk
 {
     namespace dp_fib_probe_a
     {
-        TEST(DP, Fib_non_dp_probe_a)
+        TEST(Dp, Fib_non_dp_probe_a)
         {
             EXPECT_EQ(fib<int>(0), 0);
             EXPECT_EQ(fib<int>(1), 1);
@@ -20,7 +20,7 @@ namespace junk
             EXPECT_EQ(fib<int>(10), 55);
         }
 
-        TEST(DP, Fib_dp_probe_a)
+        TEST(Dp, Fib_dp_probe_a)
         {
             std::map<int, int> mem;
             EXPECT_EQ(fib_dp<int>(0, mem), 0);

@@ -145,13 +145,15 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 
 	set(SRC_DP
 		ut/ut_fib_probe_a.cpp
-		ut/ut_dp/coin_change_probe_a.cpp
+		ut/ut_dp/ut_coin_change_probe_a.cpp
+		ut/ut_dp/ut_coin_change_dp_probe_b.cpp
 	)
 
 	set(SRC_GRAPH
 		ut/ut_bellman_ford_probe_a.cpp
 		ut/ut_graph/ut_dlist_probe_a.cpp
 	)
+
 	set(SRC_ARR
 		ut/ut_rev_int.cpp
 		ut/ut_str_find_substring_probe_a.cpp
@@ -169,6 +171,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_cpp/ut_is_derived_class.cpp
 		ut/ut_cpp/ut_threadpool_probe_a.cpp
 		ut/ut_cpp/ut_segment_sphere_collision_2d.cpp
+		ut/ut_cpp/ut_tcp_read_state_machine.cpp
 		ut/ut_cpp/ut_empty.cpp
 	)
 	add_executable( ${PROJECT_TEST_NAME} 
