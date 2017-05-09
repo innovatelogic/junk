@@ -13,5 +13,4 @@ namespace junk
             int k = count<int>(arr, m, 4);
         }
     }
-
 }

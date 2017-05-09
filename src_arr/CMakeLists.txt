@@ -26,6 +26,7 @@ set(SOURCE
 	matrix_ccw.h
 	combinations_of_sum_num.h
 	string_permute_probe_a.h
+	union_intersection_array_probe_a.h
 	arr.h
 	file.cpp
 )
