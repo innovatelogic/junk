@@ -14,8 +14,20 @@ namespace junk
 				SumsSeq(unsigned int n) { generate_impl(n); }
 
 			private:
+			/*!
+				List all combination sums on N 
+				Ex. 4 -> {1, 1, 1, 1},
+						 {1, 1, 2},
+						 {1, 2, 1},
+						 {1, 3},
+						 {2, 1, 1},
+						 {2, 2},
+						 {3, 1},
+						 {4}
+			*/
 				void generate_impl(unsigned int n)
 				{
+					// base case
 					if (n == 0){
 						m_results.push_back(m_track);
                         return;

@@ -6,7 +6,7 @@ namespace junk
 {
 	namespace histogram_max_rect_probe_a
 	{
-		/*              
+		/*!              
 		                
 		              * 
 		          * * *   *

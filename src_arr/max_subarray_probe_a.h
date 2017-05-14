@@ -10,6 +10,7 @@ namespace junk
         template<typename T>
 		int max_cross(int *data, int start, int mid, int end)
 		{
+			// left side max sum [start, mid]
 			int lmax = INT_MIN;
 			int sum = 0;
 			for (int i = mid; i >= start; i--)
@@ -20,6 +21,7 @@ namespace junk
 				}
 			}
 			
+			// right side max sum [mid + 1, end]
 			int rmax = INT_MIN;
 			sum = 0;
 			for (int i = mid + 1; i <= end; i++)
@@ -32,6 +34,12 @@ namespace junk
 			return lmax + rmax;
 		}
 		
+		/*!
+			Returns max sum of sequence of subarray in array
+			Ex. in { -2, -5, 6, -2, -3, 1, 5, -6 } 
+			max sequence {6, -2, -3, 1, 5} 
+			sum: 7
+		*/
         template<typename T>
 		int max_subarray(int *data, int start, int end)
 		{
