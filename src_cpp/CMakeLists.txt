@@ -15,6 +15,7 @@ set(SOURCE
 	threadpool_probe_a.h
 	segment_sphere_collision_2d.h
 	tcp_read_state_machine.h
+	triangle_point_2d.h
 	cpp.h
 	file.cpp
 )

@@ -168,11 +168,13 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	)
 	set(SRC_LST 
 		ut/ut_list/ut_list_merge_sort_probe_a.cpp)
+
 	set(SRC_CPP
 		ut/ut_cpp/ut_is_derived_class.cpp
 		ut/ut_cpp/ut_threadpool_probe_a.cpp
 		ut/ut_cpp/ut_segment_sphere_collision_2d.cpp
 		ut/ut_cpp/ut_tcp_read_state_machine.cpp
+		ut/ut_cpp/triangle_point_2d_probe_a.cpp
 		ut/ut_cpp/ut_empty.cpp
 	)
 	add_executable( ${PROJECT_TEST_NAME} 
