@@ -16,6 +16,7 @@ set(SOURCE
 	dijkstra_probe_a.h
 	bellman_ford_probe_a.h
 	dlist_probe_a.h
+	array_2d_bfs_path_find.h
 	file.cpp
 )
 
