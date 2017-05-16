@@ -166,6 +166,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_arr/combinations_of_sum_num.cpp
 		ut/ut_arr/ut_string_permute_probe_a.cpp
 		ut/ut_arr/ut_union_intersection_array_probe_a.cpp
+		ut/ut_arr/ut_remove_duplicates_probe_b.cpp
 	)
 	set(SRC_LST 
 		ut/ut_list/ut_list_merge_sort_probe_a.cpp)

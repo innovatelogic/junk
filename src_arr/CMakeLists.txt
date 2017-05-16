@@ -27,6 +27,7 @@ set(SOURCE
 	combinations_of_sum_num.h
 	string_permute_probe_a.h
 	union_intersection_array_probe_a.h
+	remove_duplicates_probe_b.h
 	arr.h
 	file.cpp
 )
