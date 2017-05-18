@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project(junk_Tests)
 
+set(JUNK ${PROJECT_NAME} )
+
 add_definitions(-DUNICODE -D_UNICODE)
 add_definitions(-DLIB_COMPILE)
 #add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
@@ -19,7 +21,6 @@ include_directories(${CMAKE_SOURCE_DIR}/src_str)
 include_directories(${CMAKE_SOURCE_DIR}/src_graph)
 include_directories(${CMAKE_SOURCE_DIR}/src_cpp)
 
-
 set(SOURCE 
 	oembase.h
 	defexport.h
@@ -28,7 +29,6 @@ set(SOURCE
 	btree_is_subtree_probe_a.h
 	btree_all_path_sum_probe_a.h
 	custom_stack.h
-	list_linearize.h
 	circular_list.h
     inner_template_class.h
 	inner_template_class.ipp	
@@ -124,8 +124,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 
 	enable_testing()
 
-	include_directories(${CMAKE_SOURCE_DIR}/src_arr/ut)
-
 	set( PROJECT_NAME ${PROJECT_NAME} )
 	set( PROJECT_TEST_NAME unittest_${PROJECT_NAME} )
 	string( TOUPPER ${PROJECT_NAME} PROJECT_NAME_U )
@@ -166,6 +164,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_cpp/triangle_point_2d_probe_a.cpp
 		ut/ut_cpp/ut_empty.cpp
 	)
+
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
 					ut/ut_array_frequency_rand.cpp
@@ -278,9 +277,16 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					${SRC_LST}
 					)
 
-
+	set(LIBRARIES
+		${JUNK}
+		#${ARR}
+		#${BST}
+		#${STR}
+		${GRAPH}
+		${GTEST_BOTH_LIBRARIES}
+		${GMOCK_BOTH_LIBRARIES})
 	
-	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${ARR} ${BST} ${STR} ${GRAPH} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
+	target_link_libraries(${PROJECT_TEST_NAME} ${LIBRARIES})
 
 	add_definitions(-DUSE_MOCK)
 

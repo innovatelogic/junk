@@ -22,9 +22,10 @@ set(SOURCE
 	list_cpp_probe_b.h
 	list_cpp_probe_c.h
 	list_delete_nth_element.h
-	list_head_tail.
+	list_head_tail.h
 	list_is_palindrome.h
 	list_rearrange_by_kth_element.h
+	list_linearize.h
 	lst.h
 	file.cpp
 )
