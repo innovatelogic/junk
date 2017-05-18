@@ -1,5 +1,7 @@
 #pragma once
+
 #include <vector>
+#include <assert.h>
 
 namespace junk
 {

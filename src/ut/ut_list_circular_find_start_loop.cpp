@@ -1,11 +1,11 @@
-#include "junk.h"
+#include "lst.h"
 #include <gtest/gtest.h>
 
 namespace junk
 {
     namespace list_is_circular
     {
-        TEST(Lists, IsListCircular)
+        TEST(List, IsListCircular)
         {
             ListExt<char> list;
 
@@ -26,7 +26,7 @@ namespace junk
             list.head()->next->next->next->next->next->next = nullptr;
         }
 
-        TEST(Lists, IsListCircularEndToHead)
+        TEST(List, IsListCircularEndToHead)
         {
             ListExt<char> list;
 
@@ -47,7 +47,7 @@ namespace junk
             list.head()->next->next->next->next->next->next = nullptr;
         }
 
-        TEST(Lists, IsListCircularEmpty)
+        TEST(List, IsListCircularEmpty)
         {
             ListExt<char> list;
 

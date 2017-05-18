@@ -5,7 +5,7 @@ namespace junk
 {
     namespace dlist_probe_a
     {
-        TEST(Lists, DList_insert_pobe_a)
+        TEST(List, DList_insert_pobe_a)
         {
             // size <= 2 case
             {

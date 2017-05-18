@@ -5,7 +5,7 @@ namespace junk
 {
     namespace rotate_list_kth_element
     {
-        TEST(Lists, RotateListKthElement)
+        TEST(List, RotateListKthElement)
         {
             List<int> list;
             list.Insert(1);

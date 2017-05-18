@@ -1,5 +1,5 @@
 
-#include "../junk.h"
+#include "lst.h"
 #include <iostream>
 #include <gtest/gtest.h>
 
@@ -39,7 +39,7 @@ namespace junk
     };
 
     //----------------------------------------------------------------------------------------------
-    TEST(list_tail, ListInsertRemoveTest)
+    TEST(List, ListInsertRemoveTest)
     {
         list_tail<int> list;
 
@@ -55,7 +55,7 @@ namespace junk
     }
 
     //----------------------------------------------------------------------------------------------
-    TEST(list_tail, ListLinearizeTest)
+    TEST(List, ListLinearizeTest)
     {
         //list_tail<int, list_node_ex<int>> list;
 

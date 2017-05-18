@@ -27,10 +27,7 @@ set(SOURCE
 	array_combinations_probe_a.h
 	btree_is_subtree_probe_a.h
 	btree_all_path_sum_probe_a.h
-	custom_list.h
 	custom_stack.h
-	find_list_nth_from_end.h
-	list_head_tail.h
 	list_linearize.h
 	circular_list.h
     inner_template_class.h
@@ -55,12 +52,6 @@ set(SOURCE
 	matrix_rotation.h
 	kevin_beakon_steps.h
 	find_max_path_in_tree.h
-	list_find_duplicates.h
-	list_delete_nth_element.h
-	list_rearrange_by_kth_element.h
-	list_is_palindrome.h
-	list_to_int.h
-	list_circular_find_start_loop.h
 	permutate.h
 	stack.h
 	stack_probe_a.h
@@ -107,10 +98,6 @@ set(SOURCE
 	array_reverse_inplace.h
 	is_palindrome.h
 	check_braces.h
-	list_c_probe_a.h
-	list_cpp_probe_a.h
-	list_cpp_probe_b.h
-	list_cpp_probe_c.h
 	qsort_probe_a.h
 	qsort_probe_b.h
 	sort_qsort_pobe_c.h

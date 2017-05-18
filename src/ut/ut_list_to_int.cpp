@@ -1,11 +1,11 @@
-#include "junk.h"
+#include "lst.h"
 #include <gtest/gtest.h>
 
 namespace junk
 {
     namespace list_to_int
     {
-        TEST(Lists, IntToIntReverse)
+        TEST(List, IntToIntReverse)
         {
             ListExt list, list2;
 
@@ -27,7 +27,7 @@ namespace junk
             EXPECT_EQ(res, 912);
         }
 
-        TEST(Lists, IntToInt)
+        TEST(List, IntToInt)
         {
             ListExt list, list2;
 
@@ -46,7 +46,7 @@ namespace junk
             EXPECT_EQ(b, 592);
         }
 
-        TEST(Lists, OperatorPlusRevOrder)
+        TEST(List, OperatorPlusRevOrder)
         {
             ListExt list, list2;
 
@@ -62,7 +62,7 @@ namespace junk
             EXPECT_EQ(res, 912);
         }
 
-        TEST(Lists, OperatorPlusRevOrderDiffSize)
+        TEST(List, OperatorPlusRevOrderDiffSize)
         {
             ListExt list, list2;
 
@@ -79,7 +79,7 @@ namespace junk
             EXPECT_EQ(res, 1912);
         }
 
-        TEST(Lists, OperatorPlusForwardOrder)
+        TEST(List, OperatorPlusForwardOrder)
         {
             ListExt list, list2;
 
@@ -95,7 +95,7 @@ namespace junk
             EXPECT_EQ(res, 912);
         }
 
-        TEST(Lists, OperatorPlusForwardOrderDiffSize)
+        TEST(List, OperatorPlusForwardOrderDiffSize)
         {
             ListExt list, list2;
 

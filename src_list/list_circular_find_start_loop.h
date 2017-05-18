@@ -3,6 +3,7 @@
 #include "defexport.h"
 #include "lists.h"
 #include <stack>
+#include <assert.h>
 
 namespace junk
 {

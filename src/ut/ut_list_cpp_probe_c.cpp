@@ -1,11 +1,11 @@
-#include "junk.h"
+#include "lst.h"
 #include <gtest/gtest.h>
 
 namespace junk
 {
     namespace list_cpp_probe_c
     {
-        TEST(Lists, Build_ArrayA_over_ArrayB)
+        TEST(List, Build_ArrayA_over_ArrayB)
         {
             List list;
 

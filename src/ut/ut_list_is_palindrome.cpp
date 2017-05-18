@@ -1,17 +1,17 @@
-#include "junk.h"
+#include "lst.h"
 #include <gtest/gtest.h>
 
 namespace junk
 {
     namespace list_is_palindrome
     {
-        TEST(Lists, NotPalindrome_Empty)
+        TEST(List, NotPalindrome_Empty)
         {
             ListExt<char> list;
             EXPECT_FALSE(list.IsPalindrome());
         }
 
-        TEST(Lists, NotPalindrome_EvenSize)
+        TEST(List, NotPalindrome_EvenSize)
         {
             ListExt<char> list;
 
@@ -23,7 +23,7 @@ namespace junk
             EXPECT_FALSE(list.IsPalindrome());
         }
 
-        TEST(Lists, NotPalindrome_OddSize)
+        TEST(List, NotPalindrome_OddSize)
         {
             ListExt<char> list;
 
@@ -36,7 +36,7 @@ namespace junk
             EXPECT_FALSE(list.IsPalindrome());
         }
 
-        TEST(Lists, IsPalindrome_OneElementSize)
+        TEST(List, IsPalindrome_OneElementSize)
         {
             ListExt<char> list;
 
@@ -45,7 +45,7 @@ namespace junk
             EXPECT_TRUE(list.IsPalindrome());
         }
 
-        TEST(Lists, Palindrome_EvenSize)
+        TEST(List, Palindrome_EvenSize)
         {
             ListExt<char> list;
 
@@ -57,7 +57,7 @@ namespace junk
             EXPECT_TRUE(list.IsPalindrome());
         }
 
-        TEST(Lists, Palindrome_OddSize)
+        TEST(List, Palindrome_OddSize)
         {
             ListExt<char> list;
 

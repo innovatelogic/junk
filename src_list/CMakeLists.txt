@@ -12,6 +12,19 @@ set(SOURCE
 	oembase.h
 	defexport.h
 	list_merge_sort_probe_a.h
+	find_list_nth_from_end.h
+	custom_list.h
+	list_c_probe_a.h
+	list_find_duplicates.h
+	list_circular_find_start_loop.h
+	list_to_int.h
+	list_cpp_probe_a.h
+	list_cpp_probe_b.h
+	list_cpp_probe_c.h
+	list_delete_nth_element.h
+	list_head_tail.
+	list_is_palindrome.h
+	list_rearrange_by_kth_element.h
 	lst.h
 	file.cpp
 )

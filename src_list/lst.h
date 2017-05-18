@@ -1,3 +1,15 @@
 #pragma once
 
 #include "list_merge_sort_probe_a.h"
+#include "find_list_Nth_from_end.h"
+#include "list_c_probe_a.h"
+#include "list_find_duplicates.h"
+#include "list_circular_find_start_loop.h"
+#include "list_to_int.h"
+#include "list_cpp_probe_a.h"
+#include "list_cpp_probe_b.h"
+#include "list_cpp_probe_c.h"
+#include "list_head_tail.h"
+#include "list_is_palindrome.h"
+#include "list_linearize.h"
+#include "list_rearrange_by_kth_element.h"

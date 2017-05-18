@@ -1,11 +1,11 @@
-#include "junk.h"
+#include "lst.h"
 #include <gtest/gtest.h>
 
 namespace junk
 {
     namespace list_find_duplicates
     {
-        TEST(Lists, ListFindAndRemoveDuplicates)
+        TEST(List, ListFindAndRemoveDuplicates)
         {
             ListExt<char> list;
 
@@ -31,13 +31,13 @@ namespace junk
 
     namespace list_find_nth_from_end
     {
-        TEST(Lists, ListFindNthFromEnd_EmptyList)
+        TEST(List, ListFindNthFromEnd_EmptyList)
         {
             ListExt<char> list;
             EXPECT_EQ(list.FindNthFromEnd(0), nullptr);
         }
 
-        TEST(Lists, ListFindNthFromEnd)
+        TEST(List, ListFindNthFromEnd)
         {
             ListExt<char> list;
 
@@ -68,7 +68,7 @@ namespace junk
 
     namespace list_rearrange_by_kth_element
     {
-        TEST(Lists, ListRearrangeByElem)
+        TEST(List, ListRearrangeByElem)
         {
             ListExt<int> list;
 
