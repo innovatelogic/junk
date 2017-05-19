@@ -95,7 +95,7 @@ namespace junk
             int i;
 
             for (i = 0;
-                i < pxcols && PPM_GETR(Bixels(row, i)) == 0;
+                i < pxcols && PPM_GETR(pixels[row][i]) == 0;
                 ++i);
 
             if (i >= pxcols)
@@ -107,7 +107,7 @@ namespace junk
                 *presentP = true;
 
                 for (j = pxcols - 1;
-                    j >= leftEdge && PPM_GETR(Bixels(row, j)) == 0;
+                    j >= leftEdge && PPM_GETR(pixels[row][j]) == 0;
                     --j);
 
                 *rightEdgeP = j;
@@ -273,32 +273,7 @@ namespace junk
 
         //----------------------------------------------------------------------------------------------
 
-        static pixel averageTwoColors(pixel const p1, pixel const p2) {
-
-            pixel p;
-
-            PPM_ASSIGN(p,
-                (PPM_GETR(p1) + PPM_GETR(p2)) / 2,
-                (PPM_GETG(p1) + PPM_GETG(p2)) / 2,
-                (PPM_GETB(p1) + PPM_GETB(p2)) / 2);
-
-            return p;
-        }
-
-        static void
-            average_drawproc(pixel **     const pixels,
-                int          const cols,
-                int          const rows,
-                pixval       const maxval,
-                int          const col,
-                int          const row,
-                const void * const clientdata) {
-
-            if (col >= 0 && col < cols && row >= 0 && row < rows) {
-                pixels[row][col] =
-                    averageTwoColors(pixels[row][col], *((const pixel*)clientdata));
-            }
-        }
+        
 
        // static ppmd_drawproc average_drawproc;
        
@@ -513,7 +488,7 @@ namespace junk
                             jb = jb / jmax;
                         }
                         /* gamma correct from linear rgb to nonlinear rgb. */
-                        gamma_correct_rgb(cs, &jr, &jg, &jb);
+                        //gamma_correct_rgb(cs, &jr, &jg, &jb);
                         r = static_cast<int>(mx * jr);
                         g = static_cast<int>(mx * jg);
                         b = static_cast<int>(mx * jb);

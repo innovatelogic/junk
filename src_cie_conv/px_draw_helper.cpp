@@ -5,7 +5,6 @@ namespace junk
 {
     namespace cie_conv
     {
-
         void drawPoint(
             const void *   const clientdata,
             pixel **       const pixels,
@@ -110,6 +109,33 @@ namespace junk
                 row += dy;
                 scol += dx;
                 col = scol / DDA_SCALE;
+            }
+        }
+
+        static pixel averageTwoColors(pixel const p1, pixel const p2) {
+
+            pixel p;
+
+            PPM_ASSIGN(p,
+                (PPM_GETR(p1) + PPM_GETR(p2)) / 2,
+                (PPM_GETG(p1) + PPM_GETG(p2)) / 2,
+                (PPM_GETB(p1) + PPM_GETB(p2)) / 2);
+
+            return p;
+        }
+
+        void
+            average_drawproc(pixel **     const pixels,
+                int          const cols,
+                int          const rows,
+                pixval       const maxval,
+                int          const col,
+                int          const row,
+                const void * const clientdata) {
+
+            if (col >= 0 && col < cols && row >= 0 && row < rows) {
+                pixels[row][col] =
+                    averageTwoColors(pixels[row][col], *((const pixel*)clientdata));
             }
         }
     }
