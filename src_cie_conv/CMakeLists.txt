@@ -20,6 +20,8 @@ set(SOURCE
 	conv_impl.cpp
 	px_draw_helper.h
 	px_draw_helper.cpp
+	cie_model_helper.h
+	cie_model_helper.cpp
 	mathlib.h
 	file.cpp
 )

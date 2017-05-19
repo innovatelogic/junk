@@ -1,29 +1,13 @@
 
 #pragma once
 
+#include <math.h>
+
 namespace junk
 {
     namespace cie_conv
     {
-
         static long int const DDA_SCALE = 8192;
-
-        struct RGB
-        {
-            int r;
-            int g;
-            int b;
-        };
-
-        // normalized 0-1.f
-        struct fRGB
-        {
-            float r;
-            float g;
-            float b;
-        };
-
-        // float get_
 
         typedef unsigned char pixval;
         typedef struct {

@@ -5,6 +5,7 @@ namespace junk
 {
     namespace cie_conv
     {
+        //----------------------------------------------------------------------------------------------
         void drawPoint(
             const void *   const clientdata,
             pixel **       const pixels,
@@ -22,8 +23,8 @@ namespace junk
             pixels[p.y][p.x] = *pixelP;
         }
 
-        void
-            drawShallowLine(
+        //----------------------------------------------------------------------------------------------
+        void drawShallowLine(
                 const void *   const clientdata,
                 pixel **       const pixels,
                 int            const cols,
@@ -67,8 +68,8 @@ namespace junk
             }
         }
 
-        void
-            drawSteepLine(
+        //----------------------------------------------------------------------------------------------
+        void drawSteepLine(
                 const void *   const clientdata,
                 pixel **       const pixels,
                 int            const cols,
@@ -112,6 +113,7 @@ namespace junk
             }
         }
 
+        //----------------------------------------------------------------------------------------------
         static pixel averageTwoColors(pixel const p1, pixel const p2) {
 
             pixel p;
@@ -124,8 +126,8 @@ namespace junk
             return p;
         }
 
-        void
-            average_drawproc(pixel **     const pixels,
+        //----------------------------------------------------------------------------------------------
+        void average_drawproc(pixel **     const pixels,
                 int          const cols,
                 int          const rows,
                 pixval       const maxval,

@@ -25,9 +25,7 @@ namespace junk
                     unsigned int const cols,
                     unsigned int const rows);
 
-
-                static void
-                    fillInTongue(pixel **          const pixels,
+                static void fillInTongue(pixel **          const pixels,
                         int                        const pixcols,
                         int                        const pixrows,
                         pixval                     const maxval,
@@ -37,14 +35,18 @@ namespace junk
                         int                        const yBias,
                         bool                       const highlightGamut);
 
-                static void
-                    drawTongueOutline(pixel ** const pixels,
+                static void drawTongueOutline(pixel ** const pixels,
                         int    const pixcols,
                         int    const pixrows,
                         pixval const maxval,
                         bool   const upvp,
                         int    const xBias,
                         int    const yBias);
+
+                static void DrawPlackanLocus(pixel ** const pixels, int    const pixcols,
+                    int    const pixrows,
+                    pixval const maxval,
+                    const struct colorSystem * const cs);
 
 			private:
                 const size_t SIZE_ROWS;

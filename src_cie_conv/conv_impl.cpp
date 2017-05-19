@@ -1,6 +1,6 @@
 #include "conv_impl.h"
-#include "mathlib.h"
 #include "px_draw_helper.h"
+#include "cie_model_helper.h"
 #include <stdio.h>
 #include <algorithm>
 
@@ -75,6 +75,13 @@ namespace junk
             drawTongueOutline(pixels, SIZE_COLS, SIZE_ROWS, Maxval, false, 0, 0);
 
             fillInTongue(pixels, SIZE_COLS, SIZE_ROWS, Maxval, &CIEsystem, false, 0, 0, true);
+
+            DrawPlackanLocus(pixels,
+                SIZE_COLS,
+                SIZE_ROWS,
+                Maxval,
+                &CIEsystem
+            );
         }
         //----------------------------------------------------------------------------------------------
         static void
@@ -116,188 +123,6 @@ namespace junk
         }
 
         //----------------------------------------------------------------------------------------------
-        static void
-            upvp_to_xy(double   const up,
-                double   const vp,
-                double * const xc,
-                double * const yc) {
-            /*----------------------------------------------------------------------------
-            Given 1976 coordinates u', v', determine 1931 chromaticities x, y
-            -----------------------------------------------------------------------------*/
-            *xc = 9 * up / (6 * up - 16 * vp + 12);
-            *yc = 4 * vp / (6 * up - 16 * vp + 12);
-        }
-
-        static void
-            xyz_to_rgb(const struct colorSystem * const cs,
-                double                      const xc,
-                double                      const yc,
-                double                      const zc,
-                double *                    const r,
-                double *                    const g,
-                double *                    const b) {
-            /*----------------------------------------------------------------------------
-            Given  an additive tricolor system CS, defined by the CIE x and y
-            chromaticities of its three primaries (z is derived  trivially  as
-            1-(x+y)),  and  a  desired chromaticity (XC, YC, ZC) in CIE space,
-            determine the contribution of each primary in a linear combination
-            which   sums  to  the  desired  chromaticity.   If  the  requested
-            chromaticity falls outside the  Maxwell  triangle  (color  gamut)
-            formed  by the three primaries, one of the r, g, or b weights will
-            be negative.
-
-            Caller can use constrain_rgb() to desaturate an outside-gamut
-            color to the closest representation within the available
-            gamut.
-            -----------------------------------------------------------------------------*/
-            double xr, yr, zr, xg, yg, zg, xb, yb, zb;
-            double xw, yw, zw;
-            double rx, ry, rz, gx, gy, gz, bx, by, bz;
-            double rw, gw, bw;
-
-            xr = cs->xRed;    yr = cs->yRed;    zr = 1 - (xr + yr);
-            xg = cs->xGreen;  yg = cs->yGreen;  zg = 1 - (xg + yg);
-            xb = cs->xBlue;   yb = cs->yBlue;   zb = 1 - (xb + yb);
-
-            xw = cs->xWhite;  yw = cs->yWhite;  zw = 1 - (xw + yw);
-
-            /* xyz -> rgb matrix, before scaling to white. */
-            rx = yg*zb - yb*zg;  ry = xb*zg - xg*zb;  rz = xg*yb - xb*yg;
-            gx = yb*zr - yr*zb;  gy = xr*zb - xb*zr;  gz = xb*yr - xr*yb;
-            bx = yr*zg - yg*zr;  by = xg*zr - xr*zg;  bz = xr*yg - xg*yr;
-
-            /* White scaling factors.
-            Dividing by yw scales the white luminance to unity, as conventional. */
-            rw = (rx*xw + ry*yw + rz*zw) / yw;
-            gw = (gx*xw + gy*yw + gz*zw) / yw;
-            bw = (bx*xw + by*yw + bz*zw) / yw;
-
-            /* xyz -> rgb matrix, correctly scaled to white. */
-            rx = rx / rw;  ry = ry / rw;  rz = rz / rw;
-            gx = gx / gw;  gy = gy / gw;  gz = gz / gw;
-            bx = bx / bw;  by = by / bw;  bz = bz / bw;
-
-            /* rgb of the desired point */
-            *r = rx*xc + ry*yc + rz*zc;
-            *g = gx*xc + gy*yc + gz*zc;
-            *b = bx*xc + by*yc + bz*zc;
-        }
-
-        static int
-            constrain_rgb(double * const r,
-                double * const g,
-                double * const b) {
-            /*----------------------------------------------------------------------------
-            If  the  requested RGB shade contains a negative weight for one of
-            the primaries, it lies outside the color  gamut  accessible  from
-            the  given  triple  of  primaries.  Desaturate it by adding white,
-            equal quantities of R, G, and B, enough to make RGB all positive.
-            -----------------------------------------------------------------------------*/
-            double w;
-
-            /* Amount of white needed is w = - min(0, *r, *g, *b) */
-            w = (0 < *r) ? 0 : *r;
-            w = (w < *g) ? w : *g;
-            w = (w < *b) ? w : *b;
-            w = -w;
-
-            /* Add just enough white to make r, g, b all positive. */
-            if (w > 0) {
-                *r += w;  *g += w; *b += w;
-
-                return 1;                     /* Color modified to fit RGB gamut */
-            }
-
-            return 0;                         /* Color within RGB gamut */
-        }
-
-        static void
-            gamma_correct(const struct colorSystem * const cs,
-                double *                   const c) {
-            /*----------------------------------------------------------------------------
-            Transform linear RGB values to nonlinear RGB values.
-
-            Rec. 709 is ITU-R Recommendation BT. 709 (1990)
-            ``Basic Parameter Values for the HDTV Standard for the Studio and for
-            International Programme Exchange'', formerly CCIR Rec. 709.
-
-            For details see
-            http://www.inforamp.net/~poynton/ColorFAQ.html
-            http://www.inforamp.net/~poynton/GammaFAQ.html
-            -----------------------------------------------------------------------------*/
-            double gamma;
-
-            gamma = cs->gamma;
-
-            if (gamma == 0.) {
-                /* Rec. 709 gamma correction. */
-                double cc = 0.018;
-                if (*c < cc) {
-                    *c *= (1.099 * pow(cc, 0.45) - 0.099) / cc;
-                }
-                else {
-                    *c = 1.099 * pow(*c, 0.45) - 0.099;
-                }
-            }
-            else {
-                /* Nonlinear color = (Linear color)^(1/gamma) */
-                *c = pow(*c, 1. / gamma);
-            }
-        }
-
-        //----------------------------------------------------------------------------------------------
-
-        static void
-            gamma_correct_rgb(const struct colorSystem * const cs,
-                double * const r,
-                double * const g,
-                double * const b) {
-            gamma_correct(cs, r);
-            gamma_correct(cs, g);
-            gamma_correct(cs, b);
-        }
-
-        //----------------------------------------------------------------------------------------------
-
-        static void
-            xy_to_upvp(double   const xc,
-                double   const yc,
-                double * const up,
-                double * const vp) {
-            /*----------------------------------------------------------------------------
-            Given 1931 chromaticities x, y, determine 1976 coordinates u', v'
-            -----------------------------------------------------------------------------*/
-            *up = 4 * xc / (-2 * xc + 12 * yc + 3);
-            *vp = 9 * yc / (-2 * xc + 12 * yc + 3);
-        }
-
-        //----------------------------------------------------------------------------------------------
-
-        
-
-       // static ppmd_drawproc average_drawproc;
-       
-
-        static bool
-            pointsEqual(ppmd_point const a,
-                ppmd_point const b) {
-
-            return a.x == b.x && a.y == b.y;
-        }
-
-        static ppmd_point
-            makePoint(unsigned int const x,
-                unsigned int const y) {
-
-            ppmd_point p;
-
-            p.x = x;
-            p.y = y;
-
-            return p;
-        }
-
-        
 
         void
             ppmd_linep(pixel **       const pixels,
@@ -358,34 +183,12 @@ namespace junk
                 int           const y1,
                 const void *  const clientData) {
 
-            ppmd_linep(pixels, cols, rows, maxval,
-                makePoint(x0, y0), makePoint(x1, y1), clientData);
+            ppmd_linep(pixels, cols, rows, maxval, { x0, y0 }, { x1, y1 }, clientData);
         }
 
         //----------------------------------------------------------------------------------------------
 
-        static void
-            computeMonochromeColorLocation(
-                double                     const waveLength,
-                int                        const pxcols,
-                int                        const pxrows,
-                bool                       const upvp,
-                int *                      const xP,
-                int *                      const yP) {
-
-            int const ix = (int)((waveLength - 380) / 5);
-            double const px = spectral_chromaticity[ix][0];
-            double const py = spectral_chromaticity[ix][1];
-
-            *xP = (int)(px * (pxcols - 1));
-            *yP = (int)((pxrows - 1) - py * (pxrows - 1));
-
-        }
-
-        //----------------------------------------------------------------------------------------------
-
-        void
-            CieConvertorImpl::drawTongueOutline(pixel ** const pixels,
+        void CieConvertorImpl::drawTongueOutline(pixel ** const pixels,
                 int    const pixcols,
                 int    const pixrows,
                 pixval const maxval,
@@ -411,9 +214,7 @@ namespace junk
 
                 if (wavelength > 380)
                 {
-                    ppmd_line(pixels, pixcols, pixrows, Maxval,
-                        B(lx, ly), B(icx, icy),
-                        (char *)&rgbcolor);
+                    ppmd_line(pixels, pixcols, pixrows, Maxval, B(lx, ly), B(icx, icy), (char *)&rgbcolor);
                 }
                 else {
                     fx = icx;
@@ -428,8 +229,73 @@ namespace junk
         }
 
         //----------------------------------------------------------------------------------------------
+        void CieConvertorImpl::DrawPlackanLocus(pixel ** const pixels, 
+            int    const pixcols,
+            int    const pixrows,
+            pixval const maxval,
+            const struct colorSystem * const cs
+        )
+        {
+            double lx = -1, ly = -1;
+            double x, y;
+
+            const double pow_10_9 = std::pow(10, 9);
+            const double pow_10_6 = std::pow(10, 6);
+            const double pow_10_3 = std::pow(10, 3);
+
+            for (int T = 1500; T < 10000; T+=5) 
+            {
+                double T_pow_3 = std::pow(T, 3);
+                double T_pow_2 = std::pow(T, 2);
+
+                double M1 = pow_10_9 / T_pow_3;
+                double M2 = pow_10_6 / T_pow_2;
+                double M3 = pow_10_3 / T;
+
+                if (T <= 4000) {
+                    x = -0.2661239f * M1 - 0.23435f * M2 + 0.8776756f * M3 + 0.179910;
+                }
+                else {
+                    x = -3.0258469 * M1 + 2.10703f * M2 + 0.22263 * M3 + 0.2403;
+                }
+
+                if (T <= 2222) {
+                    y = -1.10638 * std::pow(x, 3) - 1.3481102 * std::pow(x, 2) + 2.18555 * x - 0.202196;
+                }
+                else if (T > 2222 && T <= 4000) {
+                    y = -0.9549476 * std::pow(x, 3) - 1.374185 * std::pow(x, 2) + 2.09137015 * x - 0.16748867;
+                }
+                else  {
+                    y = 3.081758 * std::pow(x, 3) - 5.873386 * std::pow(x, 2) + 3.751129 * x - 0.37001483;
+                }
+
+                double cx =  ((double)x) * (pixcols - 1);
+                double cy = pixrows - ((double)y) * (pixrows - 1);
+
+                if (lx == -1 && ly == -1)
+                {
+                    lx = cx;
+                    ly = cy;
+                }
+                else
+                {
+                    static const pixel rgbcolor = { 0, 0, 0 };
+                    ppmd_line(pixels, pixcols, pixrows, maxval,
+                        (int)lx, (int)ly, (int)cx, (int)cy,
+                        (char *)&rgbcolor);
+                    lx = cx;
+                    ly = cy;
+                }
+
+                //pixels[(int)cy][(int)cx].r = 0; //= { maxval, maxval, maxval };
+                //pixels[(int)cy][(int)cx].g = 0;
+                //pixels[(int)cy][(int)cx].b = 0;
+            }
+        }
+        
+        //----------------------------------------------------------------------------------------------
         void CieConvertorImpl::fillInTongue(
-            pixel **                   const pixels,
+            pixel **                       const pixels,
                 int                        const pixcols,
                 int                        const pixrows,
                 pixval                     const maxval,
@@ -437,10 +303,11 @@ namespace junk
                 bool                       const upvp,
                 int                        const xBias,
                 int                        const yBias,
-                bool                       const highlightGamut) {
+                bool                       const highlightGamut)
+        {
 
-            int const pxcols = pixcols - xBias;
-            int const pxrows = pixrows - yBias;
+            int const pxcols = pixcols;
+            int const pxrows = pixrows;
 
             int y;
 
@@ -492,7 +359,7 @@ namespace junk
                         r = static_cast<int>(mx * jr);
                         g = static_cast<int>(mx * jg);
                         b = static_cast<int>(mx * jb);
-                        PPM_ASSIGN(Bixels(y, x), (pixval)r, (pixval)g, (pixval)b);
+                        PPM_ASSIGN(pixels[y][x], (pixval)r, (pixval)g, (pixval)b);
                     }
                 }
             }
