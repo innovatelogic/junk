@@ -18,9 +18,8 @@ set(SOURCE
 	cie.cpp
 	conv_impl.h
 	conv_impl.cpp
-	#ppm.h
-	#pm_c_util.h
-	#ppmdraw.h
+	px_draw_helper.h
+	px_draw_helper.cpp
 	mathlib.h
 	file.cpp
 )

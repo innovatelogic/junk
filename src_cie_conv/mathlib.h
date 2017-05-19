@@ -5,6 +5,9 @@ namespace junk
 {
     namespace cie_conv
     {
+
+        static long int const DDA_SCALE = 8192;
+
         struct RGB
         {
             int r;

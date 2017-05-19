@@ -1,16 +1,13 @@
 #include "conv_impl.h"
 #include "mathlib.h"
+#include "px_draw_helper.h"
 #include <stdio.h>
 #include <algorithm>
-
-static long int const DDA_SCALE = 8192;
 
 namespace junk
 {
     namespace cie_conv
     {
-        static ppmd_drawprocp drawProcPointXY;
-
         //----------------------------------------------------------------------------------------------
         CieConvertorImpl::CieConvertorImpl()
             : SIZE_ROWS(1024)
@@ -25,7 +22,10 @@ namespace junk
         //----------------------------------------------------------------------------------------------
         CieConvertorImpl::~CieConvertorImpl()
         {
-
+            for (size_t r = 0; r < SIZE_ROWS; r++) {
+                delete[] pixels[r];
+            }
+            delete[] pixels;
         }
 
         //----------------------------------------------------------------------------------------------
@@ -75,14 +75,6 @@ namespace junk
             drawTongueOutline(pixels, SIZE_COLS, SIZE_ROWS, Maxval, false, 0, 0);
 
             fillInTongue(pixels, SIZE_COLS, SIZE_ROWS, Maxval, &CIEsystem, false, 0, 0, true);
-
-            /* for (size_t i = 0; i < SIZE_X; i++)
-            {
-            for (size_t j = 0; j < SIZE_Y; j++)
-            {
-
-            }
-            }*/
         }
         //----------------------------------------------------------------------------------------------
         static void
@@ -293,23 +285,6 @@ namespace junk
             return p;
         }
 
-        struct drawProcXY {
-            ppmd_drawproc * drawProc;
-            const void *    clientData;
-        };
-
-        static struct drawProcXY makeDrawProcXY(ppmd_drawproc * const drawProc,
-                const void *    const clientData)
-        {
-
-            struct drawProcXY retval;
-
-            retval.drawProc = drawProc;
-            retval.clientData = clientData;
-
-            return retval;
-        }
-
         static void
             average_drawproc(pixel **     const pixels,
                 int          const cols,
@@ -325,7 +300,7 @@ namespace junk
             }
         }
 
-        static ppmd_drawproc average_drawproc;
+       // static ppmd_drawproc average_drawproc;
        
 
         static bool
@@ -347,116 +322,7 @@ namespace junk
             return p;
         }
 
-        static void
-            drawPoint(
-                const void *   const clientdata,
-                pixel **       const pixels,
-                int            const cols,
-                int            const rows,
-                pixval         const maxval,
-                ppmd_point     const p) {
-            /*----------------------------------------------------------------------------
-            Draw a single point, assuming that it is within the bounds of the
-            image.
-            -----------------------------------------------------------------------------*/
-            
-                const pixel * const pixelP = (pixel *)clientdata;
-
-                pixels[p.y][p.x] = *pixelP;
-        }
-
-        static void
-            drawShallowLine(
-                const void *   const clientdata,
-                pixel **       const pixels,
-                int            const cols,
-                int            const rows,
-                pixval         const maxval,
-                ppmd_point     const p0,
-                ppmd_point     const p1) {
-            /*----------------------------------------------------------------------------
-            Draw a line that is more horizontal than vertical.
-
-            Don't clip.
-
-            Assume the line has distinct start and end points (i.e. it's at least
-            two points).
-            -----------------------------------------------------------------------------*/
-            /* Loop over X domain. */
-            long dy, srow;
-            int dx, col, row, prevrow;
-
-            if (p1.x > p0.x)
-                dx = 1;
-            else
-                dx = -1;
-            dy = (p1.y - p0.y) * DDA_SCALE / abs(p1.x - p0.x);
-            prevrow = row = p0.y;
-            srow = row * DDA_SCALE + DDA_SCALE / 2;
-            col = p0.x;
-            for (; ; ) {
-                if (/*linetype == PPMD_LINETYPE_NODIAGS &&*/ row != prevrow) {
-                    drawPoint(clientdata,
-                        pixels, cols, rows, maxval, makePoint(col, prevrow));
-                    prevrow = row;
-                }
-                drawPoint(clientdata, pixels, cols, rows, maxval,
-                    makePoint(col, row));
-                if (col == p1.x)
-                    break;
-                srow += dy;
-                row = srow / DDA_SCALE;
-                col += dx;
-            }
-        }
-
         
-
-        static void
-            drawSteepLine(
-                const void *   const clientdata,
-                pixel **       const pixels,
-                int            const cols,
-                int            const rows,
-                pixval         const maxval,
-                ppmd_point     const p0,
-                ppmd_point     const p1) {
-            /*----------------------------------------------------------------------------
-            Draw a line that is more vertical than horizontal.
-
-            Don't clip.
-
-            Assume the line has distinct start and end points (i.e. it's at least
-            two points).
-            -----------------------------------------------------------------------------*/
-            /* Loop over Y domain. */
-
-            long dx, scol;
-            int dy, col, row, prevcol;
-
-            if (p1.y > p0.y)
-                dy = 1;
-            else
-                dy = -1;
-            dx = (p1.x - p0.x) * DDA_SCALE / abs(p1.y - p0.y);
-            row = p0.y;
-            prevcol = col = p0.x;
-            scol = col * DDA_SCALE + DDA_SCALE / 2;
-            for (; ; ) {
-                if (/*linetype == PPMD_LINETYPE_NODIAGS &&*/ col != prevcol) {
-                    drawPoint(clientdata,
-                        pixels, cols, rows, maxval, makePoint(prevcol, row));
-                    prevcol = col;
-                }
-                drawPoint(clientdata, pixels, cols, rows, maxval,
-                    makePoint(col, row));
-                if (row == p1.y)
-                    break;
-                row += dy;
-                scol += dx;
-                col = scol / DDA_SCALE;
-            }
-        }
 
         void
             ppmd_linep(pixel **       const pixels,
@@ -517,8 +383,6 @@ namespace junk
                 int           const y1,
                 const void *  const clientData) {
 
-            //struct drawProcXY const xy = makeDrawProcXY(drawProc, clientData);
-
             ppmd_linep(pixels, cols, rows, maxval,
                 makePoint(x0, y0), makePoint(x1, y1), clientData);
         }
@@ -538,16 +402,9 @@ namespace junk
             double const px = spectral_chromaticity[ix][0];
             double const py = spectral_chromaticity[ix][1];
 
-            if (upvp) {
-                double up, vp;
-                xy_to_upvp(px, py, &up, &vp);
-                *xP = (int)(up * (pxcols - 1));
-                *yP = (int)((pxrows - 1) - vp * (pxrows - 1));
-            }
-            else {
-                *xP = (int)(px * (pxcols - 1));
-                *yP = (int)((pxrows - 1) - py * (pxrows - 1));
-            }
+            *xP = (int)(px * (pxcols - 1));
+            *yP = (int)((pxrows - 1) - py * (pxrows - 1));
+
         }
 
         //----------------------------------------------------------------------------------------------
@@ -575,13 +432,14 @@ namespace junk
             {
                 int icx, icy;
 
-                computeMonochromeColorLocation(wavelength, pxcols, pxrows, upvp,
-                    &icx, &icy);
+                computeMonochromeColorLocation(wavelength, pxcols, pxrows, upvp, &icx, &icy);
 
                 if (wavelength > 380)
+                {
                     ppmd_line(pixels, pixcols, pixrows, Maxval,
                         B(lx, ly), B(icx, icy),
                         (char *)&rgbcolor);
+                }
                 else {
                     fx = icx;
                     fy = icy;
@@ -630,18 +488,10 @@ namespace junk
                         double cx, cy, cz, jr, jg, jb, jmax;
                         int r, g, b, mx;
 
-                        if (upvp) {
-                            double up, vp;
-                            up = ((double)x) / (pxcols - 1);
-                            vp = 1.0 - ((double)y) / (pxrows - 1);
-                            upvp_to_xy(up, vp, &cx, &cy);
-                            cz = 1.0 - (cx + cy);
-                        }
-                        else {
-                            cx = ((double)x) / (pxcols - 1);
-                            cy = 1.0 - ((double)y) / (pxrows - 1);
-                            cz = 1.0 - (cx + cy);
-                        }
+                        
+                        cx = ((double)x) / (pxcols - 1);
+                        cy = 1.0 - ((double)y) / (pxrows - 1);
+                        cz = 1.0 - (cx + cy);
 
                         xyz_to_rgb(cs, cx, cy, cz, &jr, &jg, &jb);
 
