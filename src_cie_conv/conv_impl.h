@@ -28,11 +28,7 @@ namespace junk
                         int                        const pixcols,
                         int                        const pixrows,
                         pixval                     const maxval,
-                        const struct colorSystem * const cs,
-                        bool                       const upvp,
-                        int                        const xBias,
-                        int                        const yBias,
-                        bool                       const highlightGamut);
+                        const struct colorSystem * const cs);
 
                 static void drawTongueOutline(pixel ** const pixels,
                         int    const pixcols,
@@ -51,6 +47,7 @@ namespace junk
                 const size_t SIZE_ROWS;
                 const size_t SIZE_COLS;
 
+                struct Canvas *m_canvas;
                 pixel **pixels;
         };
 	}

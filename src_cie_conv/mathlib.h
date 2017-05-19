@@ -22,9 +22,9 @@ namespace junk
 #define PPM_GETG(p) ((p).g)
 #define PPM_GETB(p) ((p).b)
 
-#define B(x, y) ((x) + xBias), (y)
+//#define B(x, y) ((x) + xBias), (y)
 
-#define Bixels(y, x) pixels[y][x + xBias]
+//#define Bixels(y, x) pixels[y][x + xBias]
 
 #define Maxval  255                   /* Maxval to use in generated pixmaps */
 

@@ -1,8 +1,11 @@
-#include "conv_impl.h"
-#include "px_draw_helper.h"
-#include "cie_model_helper.h"
+
 #include <stdio.h>
 #include <algorithm>
+
+#include "px_canvas.h"
+#include "cie_model_helper.h"
+#include "conv_impl.h"
+#include "px_draw_helper.h"
 
 #pragma warning (disable : 4996)
 
@@ -15,6 +18,9 @@ namespace junk
             : SIZE_ROWS(1024)
             , SIZE_COLS(1024)
         {
+            m_canvas = new Canvas(SIZE_ROWS, SIZE_COLS);
+            m_canvas->allocate();
+
             pixels = new pixel*[SIZE_ROWS];
             for (size_t r = 0; r < SIZE_ROWS; r++) {
                 pixels[r] = new pixel[SIZE_COLS];
@@ -24,6 +30,9 @@ namespace junk
         //----------------------------------------------------------------------------------------------
         CieConvertorImpl::~CieConvertorImpl()
         {
+            m_canvas->free();
+            delete m_canvas;
+
             for (size_t r = 0; r < SIZE_ROWS; r++) {
                 delete[] pixels[r];
             }
@@ -35,11 +44,10 @@ namespace junk
             unsigned int const cols,
             unsigned int const rows)
         {
-            unsigned int row;
-            for (row = 0; row < rows; ++row) {
-                unsigned int col;
-                for (col = 0; col < cols; ++col)
+            for (size_t row = 0; row < rows; ++row) {
+                for (size_t col = 0; col < cols; ++col) {
                     PPM_ASSIGN(pixels[row][col], 0, 0, 0);
+                }
             }
         }
 
@@ -76,7 +84,7 @@ namespace junk
 
             drawTongueOutline(pixels, SIZE_COLS, SIZE_ROWS, Maxval, false, 0, 0);
 
-            fillInTongue(pixels, SIZE_COLS, SIZE_ROWS, Maxval, &CIEsystem, false, 0, 0, true);
+            fillInTongue(pixels, SIZE_COLS, SIZE_ROWS, Maxval, &CIEsystem);
 
             DrawPlackanLocus(pixels,
                 SIZE_COLS,
@@ -215,7 +223,7 @@ namespace junk
 
                 if (wavelength > 380)
                 {
-                    ppmd_line(pixels, pixcols, pixrows, Maxval, B(lx, ly), B(icx, icy), (char *)&rgbcolor);
+                    ppmd_line(pixels, pixcols, pixrows, Maxval, lx, ly, icx, icy, (char *)&rgbcolor);
                 }
                 else {
                     fx = icx;
@@ -225,7 +233,7 @@ namespace junk
                 ly = icy;
             }
             ppmd_line(pixels, pixcols, pixrows, maxval,
-                B(lx, ly), B(fx, fy),
+                lx, ly, fx, fy,
                 (char *)&rgbcolor);
         }
 
@@ -296,11 +304,7 @@ namespace junk
                 int                        const pixcols,
                 int                        const pixrows,
                 pixval                     const maxval,
-                const struct colorSystem * const cs,
-                bool                       const upvp,
-                int                        const xBias,
-                int                        const yBias,
-                bool                       const highlightGamut)
+                const struct colorSystem * const cs)
         {
 
             int const pxcols = pixcols;
@@ -343,7 +347,7 @@ namespace junk
                         by desaturation to the closest within-gamut color. */
 
                         if (constrain_rgb(&jr, &jg, &jb)) {
-                            mx = highlightGamut ? Maxval : ((Maxval + 1) * 3) / 4;
+                            mx = Maxval;
                         }
                         /* Scale to max(rgb) = 1. */
                         jmax = std::max(jr, std::max(jg, jb));
