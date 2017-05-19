@@ -54,10 +54,3 @@
 
 #define ARRAY_COUNT_SIZE( array ) \
 	( sizeof(array) / sizeof((array)[0]) )
-
-
-namespace common_base
-{
-
-
-}

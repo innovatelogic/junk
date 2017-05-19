@@ -23,8 +23,7 @@ namespace junk
             ppmd_point     const p0,
             ppmd_point     const p1);
 
-        void
-            drawSteepLine(
+        void drawSteepLine(
                 const void *   const clientdata,
                 pixel **       const pixels,
                 int            const cols,
@@ -33,8 +32,7 @@ namespace junk
                 ppmd_point     const p0,
                 ppmd_point     const p1);
 
-        void
-            average_drawproc(pixel **     const pixels,
+        void average_drawproc(pixel **     const pixels,
                 int          const cols,
                 int          const rows,
                 pixval       const maxval,

@@ -22,7 +22,6 @@ namespace junk
             double                     const waveLength,
             int                        const pxcols,
             int                        const pxrows,
-            bool                       const upvp,
             int *                      const xP,
             int *                      const yP);
 

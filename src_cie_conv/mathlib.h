@@ -176,8 +176,5 @@ namespace junk
             int x;
             int y;
         } ppmd_point;
-
-        typedef void ppmd_drawproc(pixel **, int, int, pixval, int, int, const void *);
-        typedef void ppmd_drawprocp(pixel **, unsigned int, unsigned int, pixval, ppmd_point, const void *);
     }
 }

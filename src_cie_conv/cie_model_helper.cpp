@@ -77,7 +77,6 @@ namespace junk
             double                     const waveLength,
             int                        const pxcols,
             int                        const pxrows,
-            bool                       const upvp,
             int *                      const xP,
             int *                      const yP) {
 
@@ -87,7 +86,6 @@ namespace junk
 
             *xP = (int)(px * (pxcols - 1));
             *yP = (int)((pxrows - 1) - py * (pxrows - 1));
-
         }
 
         void gamma_correct(const struct colorSystem * const cs,

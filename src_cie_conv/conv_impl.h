@@ -1,7 +1,6 @@
 #pragma once
 
 #include "defexport.h"
-#include "bmpread.h"
 #include "mathlib.h"
 #include <string>
 

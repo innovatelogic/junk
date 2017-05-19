@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <algorithm>
 
+#pragma warning (disable : 4996)
+
 namespace junk
 {
     namespace cie_conv
@@ -56,7 +58,7 @@ namespace junk
                 for (size_t col = 0; col < SIZE_COLS; ++col)
                 {
                     static unsigned char color[3];
-                    color[0] = pixels[row][col].r;  //red 
+                    color[0] = pixels[row][col].r;  // red 
                     color[1] = pixels[row][col].g;  // green
                     color[2] = pixels[row][col].b;  // blue 
                     fwrite(color, 1, 3, fp);
@@ -87,7 +89,6 @@ namespace junk
         static void
             findTongue(pixel ** const pixels,
                 int      const pxcols,
-                int      const xBias,
                 int      const row,
                 bool *   const presentP,
                 int *    const leftEdgeP,
@@ -210,7 +211,7 @@ namespace junk
             {
                 int icx, icy;
 
-                computeMonochromeColorLocation(wavelength, pxcols, pxrows, upvp, &icx, &icy);
+                computeMonochromeColorLocation(wavelength, pxcols, pxrows, &icx, &icy);
 
                 if (wavelength > 380)
                 {
@@ -286,10 +287,6 @@ namespace junk
                     lx = cx;
                     ly = cy;
                 }
-
-                //pixels[(int)cy][(int)cx].r = 0; //= { maxval, maxval, maxval };
-                //pixels[(int)cy][(int)cx].g = 0;
-                //pixels[(int)cy][(int)cx].b = 0;
             }
         }
         
@@ -316,12 +313,13 @@ namespace junk
             co-ordinates within the tongue.
             */
 
-            for (y = 0; y < pxrows; ++y) {
+            for (y = 0; y < pxrows; ++y) 
+            {
                 bool present;  /* There is some tongue on this line */
                 int leftEdge; /* x position of leftmost pixel in tongue on this line */
                 int rightEdge; /* same, but rightmost */
 
-                findTongue(pixels, pxcols, xBias, y, &present, &leftEdge, &rightEdge);
+                findTongue(pixels, pxcols, y, &present, &leftEdge, &rightEdge);
 
                 if (present) {
                     int x;
