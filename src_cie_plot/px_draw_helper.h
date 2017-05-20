@@ -31,13 +31,5 @@ namespace junk
                 pixval         const maxval,
                 pos_point     const p0,
                 pos_point     const p1);
-
-        void average_drawproc(pixel **     const pixels,
-                int          const cols,
-                int          const rows,
-                pixval       const maxval,
-                int          const col,
-                int          const row,
-                const void * const clientdata);
     }
 }

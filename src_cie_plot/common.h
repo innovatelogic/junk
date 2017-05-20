@@ -19,17 +19,13 @@ namespace junk
             int y;
         } pos_point;
 
-        #define PPM_GETR(p) ((p).r)
-        #define PPM_GETG(p) ((p).g)
-        #define PPM_GETB(p) ((p).b)
-
         #define Maxval  255                   /* Maxval to use in generated pixmaps */
 
         struct colorSystem
         {
-            double xRed, yRed,     /* Red primary illuminant */
-                xGreen, yGreen,    /* Green primary illuminant */
-                xBlue, yBlue,      /* Blue primary illuminant */
+            double xRed, yRed,     /* Red xy */
+                xGreen, yGreen,    /* Green xy */
+                xBlue, yBlue,      /* Blue xy */
                 xWhite, yWhite,    /* White point */
                 gamma;             /* gamma of nonlinear correction */
         };
@@ -38,7 +34,7 @@ namespace junk
         //// https://books.google.com.ua/books?id=SKT8BAAAQBAJ&pg=PA148&lpg=PA148&dq=Red+primary+illuminant+CIE+0.670&source=bl&ots=N5k9TX508W&sig=NpuCICrSQ_Oy0X8q7Ar08_CwKec&hl=en&sa=X&ved=0ahUKEwjt76HJrv7TAhUjDZoKHVoQCXkQ6AEIPTAF#v=onepage&q=Red%20primary%20illuminant%20CIE%200.670&f=false
 
         #define IlluminantC     0.3101, 0.3162  /* White point Chromaticities */
-        #define IlluminantD65   0.3127, 0.3291  /* For EBU and SMPTE */
+        #define IlluminantD65   0.3127, 0.3291 
 
         #define GAMMA_REC709    0.      /* Rec. 709 */
 
