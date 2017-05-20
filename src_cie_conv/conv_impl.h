@@ -33,10 +33,7 @@ namespace junk
                 static void drawTongueOutline(pixel ** const pixels,
                         int    const pixcols,
                         int    const pixrows,
-                        pixval const maxval,
-                        bool   const upvp,
-                        int    const xBias,
-                        int    const yBias);
+                        pixval const maxval);
 
                 static void DrawPlackanLocus(pixel ** const pixels, int    const pixcols,
                     int    const pixrows,

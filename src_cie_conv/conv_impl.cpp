@@ -66,9 +66,9 @@ namespace junk
                 for (size_t col = 0; col < SIZE_COLS; ++col)
                 {
                     static unsigned char color[3];
-                    color[0] = pixels[row][col].r;  // red 
-                    color[1] = pixels[row][col].g;  // green
-                    color[2] = pixels[row][col].b;  // blue 
+                    color[0] = m_canvas->pixels[row][col].r;  // red 
+                    color[1] = m_canvas->pixels[row][col].g;  // green
+                    color[2] = m_canvas->pixels[row][col].b;  // blue 
                     fwrite(color, 1, 3, fp);
                 }
             }
@@ -80,13 +80,13 @@ namespace junk
         //----------------------------------------------------------------------------------------------
         void CieConvertorImpl::Generate()
         {
-            makeAllBlack(pixels, SIZE_COLS, SIZE_ROWS);
+            makeAllBlack(m_canvas->pixels, SIZE_COLS, SIZE_ROWS);
 
-            drawTongueOutline(pixels, SIZE_COLS, SIZE_ROWS, Maxval, false, 0, 0);
+            drawTongueOutline(m_canvas->pixels, SIZE_COLS, SIZE_ROWS, Maxval);
 
-            fillInTongue(pixels, SIZE_COLS, SIZE_ROWS, Maxval, &CIEsystem);
+            fillInTongue(m_canvas->pixels, SIZE_COLS, SIZE_ROWS, Maxval, &CIEsystem);
 
-            DrawPlackanLocus(pixels,
+            DrawPlackanLocus(m_canvas->pixels,
                 SIZE_COLS,
                 SIZE_ROWS,
                 Maxval,
@@ -200,13 +200,10 @@ namespace junk
         void CieConvertorImpl::drawTongueOutline(pixel ** const pixels,
                 int    const pixcols,
                 int    const pixrows,
-                pixval const maxval,
-                bool   const upvp,
-                int    const xBias,
-                int    const yBias) {
+                pixval const maxval) {
 
-            int const pxcols = pixcols - xBias;
-            int const pxrows = pixrows - yBias;
+            int const pxcols = pixcols;
+            int const pxrows = pixrows;
 
             pixel rgbcolor;
             int wavelength;
@@ -232,9 +229,7 @@ namespace junk
                 lx = icx;
                 ly = icy;
             }
-            ppmd_line(pixels, pixcols, pixrows, maxval,
-                lx, ly, fx, fy,
-                (char *)&rgbcolor);
+            ppmd_line(pixels, pixcols, pixrows, maxval, lx, ly, fx, fy, (char *)&rgbcolor);
         }
 
         //----------------------------------------------------------------------------------------------
