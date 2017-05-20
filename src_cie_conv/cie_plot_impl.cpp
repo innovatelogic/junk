@@ -1,11 +1,9 @@
 
-#include <stdio.h>
-#include <algorithm>
-
 #include "px_canvas.h"
 #include "cie_model_helper.h"
 #include "cie_plot_impl.h"
 #include "px_draw_helper.h"
+#include <string>
 
 #pragma warning (disable : 4996)
 
@@ -17,31 +15,47 @@ namespace junk
         CiePlotImpl::CiePlotImpl()
             : SIZE_ROWS(1024)
             , SIZE_COLS(1024)
+            , m_canvas(new Canvas(SIZE_ROWS, SIZE_COLS))
         {
-            m_canvas = new Canvas(SIZE_ROWS, SIZE_COLS);
         }
 
         //----------------------------------------------------------------------------------------------
         CiePlotImpl::~CiePlotImpl()
         {
-            delete m_canvas;
         }
 
         //----------------------------------------------------------------------------------------------
-        bool CiePlotImpl::Save(const std::string &filename)
+        void CiePlotImpl::Plot()
+        {
+            if (m_canvas)
+            {
+                m_canvas->FillColor({ 0, 0, 0 }); // feel canvas black
+
+                m_canvas->PlotCIESpace(Maxval, &CIEsystem);
+
+                m_canvas->DrawPlackanLocus(Maxval);
+            }
+        }
+
+        //----------------------------------------------------------------------------------------------
+        bool CiePlotImpl::Save(const std::wstring &path)
         {
             bool bResult = true;
 
             if (m_canvas)
             {
-                const int dimx = SIZE_COLS;
-                const int dimy = SIZE_ROWS;
+                FILE *fp = _wfopen(path.c_str(), L"wb");
+                if (!fp) {
+                    return false;
+                }
 
-                FILE *fp = fopen(filename.c_str(), "wb");
-                fprintf(fp, "P6\n%d %d\n255\n", SIZE_COLS, SIZE_ROWS);
-                for (size_t row = 0; row < SIZE_ROWS; ++row)
+                const size_t n_rows = m_canvas->rows();
+                const size_t n_cols = m_canvas->cols();
+
+                fprintf(fp, "P6\n%d %d\n255\n", n_cols, n_rows);
+                for (size_t row = 0; row < n_rows; ++row)
                 {
-                    for (size_t col = 0; col < SIZE_COLS; ++col)
+                    for (size_t col = 0; col < n_cols; ++col)
                     {
                         static unsigned char color[3];
                         color[0] = m_canvas->data()[row][col].r;  // red 
@@ -54,19 +68,6 @@ namespace junk
                 bResult = true;
             }
             return bResult;
-        }
-
-        //----------------------------------------------------------------------------------------------
-        void CiePlotImpl::Plot()
-        {
-            if (m_canvas)
-            {
-                m_canvas->FeelColor({ 0, 0, 0 }); // feel canvas black
-
-                m_canvas->PlotCIESpace(Maxval, &CIEsystem);
-
-                m_canvas->DrawPlackanLocus(Maxval);
-            }
         }
     }
 }

@@ -17,7 +17,6 @@ namespace junk
                 double * const xc,
                 double * const yc);
 
-
         void computeMonochromeColorLocation(
             double                     const waveLength,
             int                        const pxcols,
@@ -29,7 +28,7 @@ namespace junk
                 double * const g,
                 double * const b);
 
-        bool pointsEqual(ppmd_point const a, ppmd_point const b);
+        bool pointsEqual(pos_point a, pos_point b);
 
         //----------------------------------------------------------------------------------------------
         void findTongue(pixel ** const pixels,

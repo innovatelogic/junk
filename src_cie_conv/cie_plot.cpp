@@ -21,9 +21,9 @@ namespace junk
             m_pImpl->Plot();
         }
 
-        bool CiePlot::Save(const std::string &filename)
+        bool CiePlot::Save(const std::wstring &path)
         {
-            return m_pImpl->Save(filename);
+            return m_pImpl->Save(path);
         }
     }
 }

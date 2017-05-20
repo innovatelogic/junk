@@ -25,7 +25,7 @@ namespace junk
             delete[] m_pixels;
         }
 
-        void Canvas::FeelColor(pixel color)
+        void Canvas::FillColor(pixel color)
         {
             for (size_t row = 0; row < m_rows; ++row) {
                 for (size_t col = 0; col < m_cols; ++col) {
@@ -122,12 +122,12 @@ namespace junk
 
         void Canvas::line(
                 pixval         const maxval,
-                ppmd_point     const p0,
-                ppmd_point     const p1,
+                pos_point     const p0,
+                pos_point     const p1,
                 const void *   const clientdata) 
         {
 
-            ppmd_point c0, c1;
+            pos_point c0, c1;
             bool noLine;  /* There's no line left after clipping */
 
                           //ppmd_validateCoord(cols);

@@ -89,10 +89,8 @@ namespace junk
             *yP = (int)((pxrows - 1) - py * (pxrows - 1));
         }
 
-        int
-            constrain_rgb(double * const r,
-                double * const g,
-                double * const b)
+        //----------------------------------------------------------------------------------------------
+        int constrain_rgb(double * const r, double * const g, double * const b)
         {
             /*----------------------------------------------------------------------------
             If  the  requested RGB shade contains a negative weight for one of
@@ -118,8 +116,7 @@ namespace junk
             return 0;                         /* Color within RGB gamut */
         }
 
-        bool pointsEqual(ppmd_point const a,
-                ppmd_point const b) {
+        bool pointsEqual(pos_point a, pos_point b) {
 
             return a.x == b.x && a.y == b.y;
         }
@@ -140,9 +137,7 @@ namespace junk
             -----------------------------------------------------------------------------*/
             int i;
 
-            for (i = 0;
-                i < pxcols && PPM_GETR(pixels[row][i]) == 0;
-                ++i);
+            for (i = 0; i < pxcols && pixels[row][i].r == 0; ++i);
 
             if (i >= pxcols)
                 *presentP = false;
@@ -152,9 +147,7 @@ namespace junk
 
                 *presentP = true;
 
-                for (j = pxcols - 1;
-                    j >= leftEdge && PPM_GETR(pixels[row][j]) == 0;
-                    --j);
+                for (j = pxcols - 1; j >= leftEdge && pixels[row][j].r == 0; --j);
 
                 *rightEdgeP = j;
                 *leftEdgeP = leftEdge;

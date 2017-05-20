@@ -14,19 +14,19 @@ namespace junk
             pixval r, g, b;
         } pixel;
 
-#define PPM_ASSIGN(p,red,grn,blu) \
-    do { (p).r = (red); (p).g = (grn); (p).b = (blu); } while (0)
+        typedef struct {
+            int x;
+            int y;
+        } pos_point;
 
-
-#define PPM_GETR(p) ((p).r)
-#define PPM_GETG(p) ((p).g)
-#define PPM_GETB(p) ((p).b)
+        #define PPM_GETR(p) ((p).r)
+        #define PPM_GETG(p) ((p).g)
+        #define PPM_GETB(p) ((p).b)
 
         #define Maxval  255                   /* Maxval to use in generated pixmaps */
 
         struct colorSystem
         {
-            const char *name;      /* Color system name */
             double xRed, yRed,     /* Red primary illuminant */
                 xGreen, yGreen,    /* Green primary illuminant */
                 xBlue, yBlue,      /* Blue primary illuminant */
@@ -44,7 +44,6 @@ namespace junk
 
         static struct colorSystem const
         CIEsystem = {
-            "HDTV ideal",
             0.670, 0.330, 0.210, 0.710, 0.150, 0.060,
             IlluminantD65,  GAMMA_REC709
         };
@@ -139,10 +138,5 @@ namespace junk
             { 0.7347, 0.2653 },
             { 0.7347, 0.2653 }                /* 780 nm */
         };
-
-        typedef struct {
-            int x;
-            int y;
-        } ppmd_point;
     }
 }

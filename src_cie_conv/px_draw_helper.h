@@ -12,7 +12,7 @@ namespace junk
                 int            const cols,
                 int            const rows,
                 pixval         const maxval,
-                ppmd_point     const p);
+                pos_point     const p);
 
         void drawShallowLine(
             const void *   const clientdata,
@@ -20,8 +20,8 @@ namespace junk
             int            const cols,
             int            const rows,
             pixval         const maxval,
-            ppmd_point     const p0,
-            ppmd_point     const p1);
+            pos_point     const p0,
+            pos_point     const p1);
 
         void drawSteepLine(
                 const void *   const clientdata,
@@ -29,8 +29,8 @@ namespace junk
                 int            const cols,
                 int            const rows,
                 pixval         const maxval,
-                ppmd_point     const p0,
-                ppmd_point     const p1);
+                pos_point     const p0,
+                pos_point     const p1);
 
         void average_drawproc(pixel **     const pixels,
                 int          const cols,

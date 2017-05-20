@@ -12,7 +12,7 @@ namespace junk
             int            const cols,
             int            const rows,
             pixval         const maxval,
-            ppmd_point     const p) {
+            pos_point      const p) {
             /*----------------------------------------------------------------------------
             Draw a single point, assuming that it is within the bounds of the
             image.
@@ -30,8 +30,8 @@ namespace junk
                 int            const cols,
                 int            const rows,
                 pixval         const maxval,
-                ppmd_point     const p0,
-                ppmd_point     const p1) {
+                pos_point     const p0,
+                pos_point     const p1) {
             /*----------------------------------------------------------------------------
             Draw a line that is more horizontal than vertical.
 
@@ -75,8 +75,8 @@ namespace junk
                 int            const cols,
                 int            const rows,
                 pixval         const maxval,
-                ppmd_point     const p0,
-                ppmd_point     const p1) {
+                pos_point      const p0,
+                pos_point      const p1) {
             /*----------------------------------------------------------------------------
             Draw a line that is more vertical than horizontal.
 
@@ -110,34 +110,6 @@ namespace junk
                 row += dy;
                 scol += dx;
                 col = scol / DDA_SCALE;
-            }
-        }
-
-        //----------------------------------------------------------------------------------------------
-        static pixel averageTwoColors(pixel const p1, pixel const p2) {
-
-            pixel p;
-
-            PPM_ASSIGN(p,
-                (PPM_GETR(p1) + PPM_GETR(p2)) / 2,
-                (PPM_GETG(p1) + PPM_GETG(p2)) / 2,
-                (PPM_GETB(p1) + PPM_GETB(p2)) / 2);
-
-            return p;
-        }
-
-        //----------------------------------------------------------------------------------------------
-        void average_drawproc(pixel **     const pixels,
-                int          const cols,
-                int          const rows,
-                pixval       const maxval,
-                int          const col,
-                int          const row,
-                const void * const clientdata) {
-
-            if (col >= 0 && col < cols && row >= 0 && row < rows) {
-                pixels[row][col] =
-                    averageTwoColors(pixels[row][col], *((const pixel*)clientdata));
             }
         }
     }

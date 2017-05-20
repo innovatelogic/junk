@@ -20,7 +20,7 @@ namespace junk
 
             void Plot();
 
-            bool Save(const std::string &filename);
+            bool Save(const std::wstring &path);
 
         protected:
         private:
