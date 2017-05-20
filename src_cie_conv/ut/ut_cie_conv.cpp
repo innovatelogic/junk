@@ -1,5 +1,5 @@
 
-#include "../cie.h"
+#include "../cie_plot.h"
 #include <gtest/gtest.h>
 
 #if 0
@@ -1369,7 +1369,7 @@ namespace junk
 
             bool bLoaded = false;
             
-            convertor->Generate();
+            convertor->Plot();
 
             if (convertor->Save(std::string("d:/junk/src_cie_conv/data/1.ppm")))
             {

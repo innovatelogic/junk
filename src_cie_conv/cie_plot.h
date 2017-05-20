@@ -1,7 +1,7 @@
 #pragma once
 
 #include "defexport.h"
-#include "conv_impl.h"
+#include "cie_plot_impl.h"
 #include <string>
 #include <memory>
 
@@ -18,7 +18,7 @@ namespace junk
             CiePlot();
             virtual ~CiePlot();
 
-            void Generate();
+            void Plot();
 
             bool Save(const std::string &filename);
 

@@ -1,6 +1,6 @@
 
-#include "conv_impl.h"
-#include "cie.h"
+#include "cie_plot_impl.h"
+#include "cie_plot.h"
 
 namespace junk
 {
@@ -16,9 +16,9 @@ namespace junk
             delete m_pImpl;
         }
 
-        void CiePlot::Generate()
+        void CiePlot::Plot()
         {
-            m_pImpl->Generate();
+            m_pImpl->Plot();
         }
 
         bool CiePlot::Save(const std::string &filename)

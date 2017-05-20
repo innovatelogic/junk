@@ -11,17 +11,17 @@ set(CIE_CONV ${PROJECT_NAME})
 set(SOURCE 
 	oembase.h
 	defexport.h
-	cie.h
-	cie.cpp
-	conv_impl.h
-	conv_impl.cpp
+	cie_plot.h
+	cie_plot.cpp
+	cie_plot_impl.h
+	cie_plot_impl.cpp
 	px_canvas.h
 	px_canvas.cpp
 	px_draw_helper.h
 	px_draw_helper.cpp
 	cie_model_helper.h
 	cie_model_helper.cpp
-	mathlib.h
+	common.h
 	file.cpp
 )
 

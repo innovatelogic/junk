@@ -1,7 +1,7 @@
 #pragma once
 
 #include "defexport.h"
-#include "mathlib.h"
+#include "common.h"
 #include <string>
 
 namespace junk
@@ -14,7 +14,7 @@ namespace junk
                 CiePlotImpl();
 				~CiePlotImpl();
 
-                void Generate();
+                void Plot();
 
                 bool Save(const std::string &filename);
 			
