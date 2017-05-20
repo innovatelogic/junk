@@ -54,7 +54,7 @@ namespace junk
 
                     if (wavelength > 380)
                     {
-                        line(Maxval, { lx, ly }, { icx, icy }, (char *)&rgbcolor);
+                        line({ lx, ly }, { icx, icy }, rgbcolor);
                     }
                     else {
                         fx = icx;
@@ -63,7 +63,7 @@ namespace junk
                     lx = icx;
                     ly = icy;
                 }
-                line(Maxval, { lx, ly }, { fx, fy }, (char *)&rgbcolor);
+                line({ lx, ly }, { fx, fy }, rgbcolor);
             }
         }
 
@@ -113,7 +113,7 @@ namespace junk
                 else
                 {
                     static const pixel rgbcolor = { 0, 0, 0 };
-                    line(maxval, { (int)lx, (int)ly }, { (int)cx, (int)cy }, (char *)&rgbcolor);
+                    line({ (int)lx, (int)ly }, { (int)cx, (int)cy }, rgbcolor);
                     lx = cx;
                     ly = cy;
                 }
@@ -121,44 +121,32 @@ namespace junk
         }
 
         void Canvas::line(
-                pixval         const maxval,
-                pos_point     const p0,
-                pos_point     const p1,
-                const void *   const clientdata) 
+                const pos_point &p0,
+                const pos_point &p1,
+                const pixel &color)
         {
 
             pos_point c0, c1;
-            bool noLine;  /* There's no line left after clipping */
 
-                          //ppmd_validateCoord(cols);
-                          //ppmd_validateCoord(rows);
-                          //ppmd_validatePoint(p0);
-                          //ppmd_validatePoint(p1);
-
-                          //if (lineclip) {
-                          //    clipLine(p0, p1, cols, rows, &c0, &c1, &noLine);
-                          //}
-                          //else {
             c0 = p0;
             c1 = p1;
-            noLine = false;
-            //}
-
-            if (noLine) {
-                /* Nothing to draw */
-            }
-            else if (pointsEqual(c0, c1)) {
+            
+            if (pointsEqual(c0, c1))
+            {
                 /* This line is just a point.  Because there aren't two
                 distinct endpoints, we have a special case.
                 */
-                drawPoint(clientdata, m_pixels, m_cols, m_rows, maxval, c0);
+                drawPoint(m_pixels, c0, color);
             }
             else {
                 /* Draw, using a simple DDA. */
-                if (abs(c1.x - c0.x) > abs(c1.y - c0.y))
-                    drawShallowLine(clientdata, m_pixels, m_cols, m_rows, maxval, c0, c1);
+                if (abs(c1.x - c0.x) > abs(c1.y - c0.y)) {
+                    drawShallowLine(m_pixels, c0, c1, color);
+                }
                 else
-                    drawSteepLine(clientdata, m_pixels, m_cols, m_rows, maxval, c0, c1);
+                {
+                    drawSteepLine(m_pixels, c0, c1, color);
+                }
             }
         }
 

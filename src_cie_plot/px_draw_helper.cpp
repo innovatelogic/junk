@@ -7,31 +7,20 @@ namespace junk
     {
         //----------------------------------------------------------------------------------------------
         void drawPoint(
-            const void *   const clientdata,
-            pixel **       const pixels,
-            int            const cols,
-            int            const rows,
-            pixval         const maxval,
-            pos_point      const p) {
-            /*----------------------------------------------------------------------------
-            Draw a single point, assuming that it is within the bounds of the
-            image.
-            -----------------------------------------------------------------------------*/
-
-            const pixel * const pixelP = (pixel *)clientdata;
-
-            pixels[p.y][p.x] = *pixelP;
+            pixel** const pixels,
+            const pos_point &p,
+            const pixel &color)
+        {
+            pixels[p.y][p.x] = color;
         }
 
         //----------------------------------------------------------------------------------------------
         void drawShallowLine(
-                const void *   const clientdata,
-                pixel **       const pixels,
-                int            const cols,
-                int            const rows,
-                pixval         const maxval,
-                pos_point     const p0,
-                pos_point     const p1) {
+            pixel ** const pixels,
+            const pos_point &p0,
+            const pos_point &p1,
+            const pixel &color)
+        {
             /*----------------------------------------------------------------------------
             Draw a line that is more horizontal than vertical.
 
@@ -49,17 +38,19 @@ namespace junk
             else
                 dx = -1;
             dy = (p1.y - p0.y) * DDA_SCALE / abs(p1.x - p0.x);
+            
             prevrow = row = p0.y;
+            
             srow = row * DDA_SCALE + DDA_SCALE / 2;
+
             col = p0.x;
             for (; ; ) {
                 if (row != prevrow) {
-                    drawPoint(clientdata,
-                        pixels, cols, rows, maxval, { col, prevrow });
+                    drawPoint(pixels,  { col, prevrow }, color);
                     prevrow = row;
                 }
-                drawPoint(clientdata, pixels, cols, rows, maxval,
-                { col, row });
+
+                drawPoint(pixels, { col, row }, color);
                 if (col == p1.x)
                     break;
                 srow += dy;
@@ -70,13 +61,11 @@ namespace junk
 
         //----------------------------------------------------------------------------------------------
         void drawSteepLine(
-                const void *   const clientdata,
-                pixel **       const pixels,
-                int            const cols,
-                int            const rows,
-                pixval         const maxval,
-                pos_point      const p0,
-                pos_point      const p1) {
+            pixel ** const pixels,
+            const pos_point &p0,
+            const pos_point &p1,
+            const pixel &color)
+        {
             /*----------------------------------------------------------------------------
             Draw a line that is more vertical than horizontal.
 
@@ -99,12 +88,12 @@ namespace junk
             prevcol = col = p0.x;
             scol = col * DDA_SCALE + DDA_SCALE / 2;
             for (; ; ) {
-                if (col != prevcol) {
-                    drawPoint(clientdata,
-                        pixels, cols, rows, maxval, { prevcol, row });
+                if (col != prevcol) 
+                {
+                    drawPoint(pixels, { prevcol, row }, color);
                     prevcol = col;
                 }
-                drawPoint(clientdata, pixels, cols, rows, maxval, { col, row });
+                drawPoint(pixels, { col, row }, color);
                 if (row == p1.y)
                     break;
                 row += dy;

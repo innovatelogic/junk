@@ -7,29 +7,20 @@ namespace junk
     namespace cie_conv
     {
         void drawPoint(
-                const void *   const clientdata,
-                pixel **       const pixels,
-                int            const cols,
-                int            const rows,
-                pixval         const maxval,
-                pos_point     const p);
+            pixel** const pixels,
+            const pos_point &p,
+            const pixel &color);
 
         void drawShallowLine(
-            const void *   const clientdata,
-            pixel **       const pixels,
-            int            const cols,
-            int            const rows,
-            pixval         const maxval,
-            pos_point     const p0,
-            pos_point     const p1);
+            pixel ** const pixels,
+            const pos_point     &p0,
+            const pos_point     &p1,
+            const pixel &color);
 
         void drawSteepLine(
-                const void *   const clientdata,
-                pixel **       const pixels,
-                int            const cols,
-                int            const rows,
-                pixval         const maxval,
-                pos_point     const p0,
-                pos_point     const p1);
+                pixel ** const pixels,
+                const pos_point &p0,
+                const pos_point &p1,
+                const pixel &color);
     }
 }

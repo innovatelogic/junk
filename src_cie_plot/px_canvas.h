@@ -34,11 +34,11 @@ namespace junk
             void DrawPlackanLocus(pixval const maxval);
             void PlotCIESpace(pixval const maxval, const struct colorSystem * const cs);
 
+            // draw line. warn do not check bounds
             void line(
-                pixval        const maxval,
-                pos_point     const p0,
-                pos_point     const p1,
-                const void *  const clientdata);
+                const pos_point &p0,
+                const pos_point &p1,
+                const pixel &color);
 
         private:
             void Allocate();
