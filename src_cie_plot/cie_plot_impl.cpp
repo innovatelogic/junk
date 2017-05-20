@@ -31,9 +31,9 @@ namespace junk
             {
                 m_canvas->FillColor({ 0, 0, 0 }); // feel canvas black
 
-                m_canvas->PlotCIESpace(Maxval, &CIEsystem);
+                m_canvas->PlotCIESpace(&CIEsystem);
 
-                m_canvas->DrawPlackanLocus(Maxval);
+                m_canvas->DrawPlackanLocus();
             }
         }
 

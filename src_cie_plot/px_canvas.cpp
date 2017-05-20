@@ -34,14 +34,14 @@ namespace junk
             }
         }
 
-        void Canvas::DrawCIEPlotOutline(pixval maxval)
+        void Canvas::DrawCIEPlotOutline()
         {
             if (m_pixels)
             {
                 int const pxcols = m_rows;
                 int const pxrows = m_cols;
 
-                pixel rgbcolor = { maxval , maxval , maxval };
+                pixel rgbcolor = { Maxval , Maxval , Maxval };
                 int wavelength;
                 int lx, ly;
                 int fx, fy;
@@ -67,7 +67,7 @@ namespace junk
             }
         }
 
-        void Canvas::DrawPlackanLocus(pixval const maxval)
+        void Canvas::DrawPlackanLocus()
         {
             double lx = -1, ly = -1;
             double x, y;
@@ -151,16 +151,14 @@ namespace junk
         }
 
         //----------------------------------------------------------------------------------------------
-        void Canvas::PlotCIESpace(pixval const maxval, const struct colorSystem * const cs)
+        void Canvas::PlotCIESpace(const struct colorSystem * const cs)
         {
-            DrawCIEPlotOutline(Maxval);
-            FillCIE(maxval, cs);
+            DrawCIEPlotOutline();
+            FillCIE(cs);
         }
 
         //----------------------------------------------------------------------------------------------
-        void Canvas::FillCIE(
-            pixval                     const maxval,
-            const struct colorSystem * const cs)
+        void Canvas::FillCIE(const struct colorSystem * const cs)
         {
 
             int const pxcols = m_cols;
@@ -203,6 +201,7 @@ namespace junk
                         if (constrain_rgb(&jr, &jg, &jb)) {
                             mx = Maxval;
                         }
+
                         /* Scale to max(rgb) = 1. */
                         jmax = std::max(jr, std::max(jg, jb));
                         if (jmax > 0) {

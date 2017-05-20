@@ -30,9 +30,9 @@ namespace junk
             size_t cols() const { return m_cols; }
 
             // CIE plot helper functions
-            void DrawCIEPlotOutline(pixval maxval);
-            void DrawPlackanLocus(pixval const maxval);
-            void PlotCIESpace(pixval const maxval, const struct colorSystem * const cs);
+            void DrawCIEPlotOutline();
+            void DrawPlackanLocus();
+            void PlotCIESpace(const struct colorSystem * const cs);
 
             // draw line. warn do not check bounds
             void line(
@@ -44,7 +44,7 @@ namespace junk
             void Allocate();
             void Free();
 
-            void FillCIE(pixval const maxval, const struct colorSystem * const cs);
+            void FillCIE(const struct colorSystem * const cs);
 
         private:
             pixel **m_pixels;
