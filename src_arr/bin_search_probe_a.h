@@ -20,7 +20,8 @@ namespace junk
                 return bin_search<T>(data, start, mid - start, x);
             }
 
-            return bin_search<T>(data, mid + 1, (start + len) - (mid + 1), x);
+            return bin_search<T>(data, mid + 1, 
+                (start + len) - (mid + 1), x);
         }
     }
 }
