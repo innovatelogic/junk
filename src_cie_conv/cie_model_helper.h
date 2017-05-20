@@ -25,14 +25,6 @@ namespace junk
             int *                      const xP,
             int *                      const yP);
 
-        void gamma_correct(const struct colorSystem * const cs,
-            double *                   const c);
-
-        void gamma_correct_rgb(const struct colorSystem * const cs,
-                double * const r,
-                double * const g,
-                double * const b);
-
         int constrain_rgb(double * const r,
                 double * const g,
                 double * const b);

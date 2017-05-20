@@ -1365,7 +1365,7 @@ namespace junk
     {
         TEST(Cie_Conv, LoadBMP)
         {
-            junk::cie_conv::CieConvertor *convertor = new junk::cie_conv::CieConvertor();
+            junk::cie_conv::CiePlot *convertor = new junk::cie_conv::CiePlot();
 
             bool bLoaded = false;
             

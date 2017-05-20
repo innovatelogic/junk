@@ -1,6 +1,7 @@
 
 #include "mathlib.h"
 #include "cie_model_helper.h"
+#include <algorithm>
 
 namespace junk
 {
@@ -88,49 +89,6 @@ namespace junk
             *yP = (int)((pxrows - 1) - py * (pxrows - 1));
         }
 
-        void gamma_correct(const struct colorSystem * const cs,
-                double *                   const c) 
-        {
-            /*----------------------------------------------------------------------------
-            Transform linear RGB values to nonlinear RGB values.
-
-            Rec. 709 is ITU-R Recommendation BT. 709 (1990)
-            ``Basic Parameter Values for the HDTV Standard for the Studio and for
-            International Programme Exchange'', formerly CCIR Rec. 709.
-
-            For details see
-            http://www.inforamp.net/~poynton/ColorFAQ.html
-            http://www.inforamp.net/~poynton/GammaFAQ.html
-            -----------------------------------------------------------------------------*/
-            double gamma;
-
-            gamma = cs->gamma;
-
-            if (gamma == 0.) {
-                /* Rec. 709 gamma correction. */
-                double cc = 0.018;
-                if (*c < cc) {
-                    *c *= (1.099 * pow(cc, 0.45) - 0.099) / cc;
-                }
-                else {
-                    *c = 1.099 * pow(*c, 0.45) - 0.099;
-                }
-            }
-            else {
-                /* Nonlinear color = (Linear color)^(1/gamma) */
-                *c = pow(*c, 1. / gamma);
-            }
-        }
-
-        void gamma_correct_rgb(const struct colorSystem * const cs,
-                double * const r,
-                double * const g,
-                double * const b) {
-            gamma_correct(cs, r);
-            gamma_correct(cs, g);
-            gamma_correct(cs, b);
-        }
-
         int
             constrain_rgb(double * const r,
                 double * const g,
@@ -171,7 +129,8 @@ namespace junk
             int      const row,
             bool *   const presentP,
             int *    const leftEdgeP,
-            int *    const rightEdgeP) {
+            int *    const rightEdgeP) 
+        {
             /*----------------------------------------------------------------------------
             Find out if there is any tongue on row 'row' of image 'pixels', and if
             so, where.

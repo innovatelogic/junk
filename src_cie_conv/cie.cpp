@@ -6,22 +6,22 @@ namespace junk
 {
     namespace cie_conv
     {
-        CieConvertor::CieConvertor()
-            : m_pImpl(new CieConvertorImpl())
+        CiePlot::CiePlot()
+            : m_pImpl(new CiePlotImpl())
         {
         }
 
-        CieConvertor::~CieConvertor()
+        CiePlot::~CiePlot()
         {
             delete m_pImpl;
         }
 
-        void CieConvertor::Generate()
+        void CiePlot::Generate()
         {
             m_pImpl->Generate();
         }
 
-        bool CieConvertor::Save(const std::string &filename)
+        bool CiePlot::Save(const std::string &filename)
         {
             return m_pImpl->Save(filename);
         }

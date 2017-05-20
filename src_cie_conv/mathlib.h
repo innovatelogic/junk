@@ -22,63 +22,31 @@ namespace junk
 #define PPM_GETG(p) ((p).g)
 #define PPM_GETB(p) ((p).b)
 
-//#define B(x, y) ((x) + xBias), (y)
+        #define Maxval  255                   /* Maxval to use in generated pixmaps */
 
-//#define Bixels(y, x) pixels[y][x + xBias]
-
-#define Maxval  255                   /* Maxval to use in generated pixmaps */
-
-        struct colorSystem {
-            const char *name;                       /* Color system name */
-            double xRed, yRed,                /* Red primary illuminant */
-                xGreen, yGreen,            /* Green primary illuminant */
-                xBlue, yBlue,              /* Blue primary illuminant */
-                xWhite, yWhite,            /* White point */
+        struct colorSystem
+        {
+            const char *name;      /* Color system name */
+            double xRed, yRed,     /* Red primary illuminant */
+                xGreen, yGreen,    /* Green primary illuminant */
+                xBlue, yBlue,      /* Blue primary illuminant */
+                xWhite, yWhite,    /* White point */
                 gamma;             /* gamma of nonlinear correction */
         };
 
-#define IlluminantC     0.3101, 0.3162  /* For NTSC television */
-#define IlluminantD65   0.3127, 0.3291  /* For EBU and SMPTE */
+        // Primary Color Chromatics
+        //// https://books.google.com.ua/books?id=SKT8BAAAQBAJ&pg=PA148&lpg=PA148&dq=Red+primary+illuminant+CIE+0.670&source=bl&ots=N5k9TX508W&sig=NpuCICrSQ_Oy0X8q7Ar08_CwKec&hl=en&sa=X&ved=0ahUKEwjt76HJrv7TAhUjDZoKHVoQCXkQ6AEIPTAF#v=onepage&q=Red%20primary%20illuminant%20CIE%200.670&f=false
 
-#define GAMMA_REC709    0.      /* Rec. 709 */
+        #define IlluminantC     0.3101, 0.3162  /* White point Chromaticities */
+        #define IlluminantD65   0.3127, 0.3291  /* For EBU and SMPTE */
+
+        #define GAMMA_REC709    0.      /* Rec. 709 */
 
         static struct colorSystem const
-            NTSCsystem = {
-                "NTSC",
-                0.67,  0.33,  0.21,  0.71,  0.14,  0.08,
-                IlluminantC,   GAMMA_REC709
-        },
-            EBUsystem = {
-                "EBU (PAL/SECAM)",
-                0.64,  0.33,  0.29,  0.60,  0.15,  0.06,
-                IlluminantD65, GAMMA_REC709
-        },
-            SMPTEsystem = {
-                "SMPTE",
-                0.630, 0.340, 0.310, 0.595, 0.155, 0.070,
-                IlluminantD65, GAMMA_REC709
-        },
-            HDTVsystem = {
-                "HDTV",
-                0.670, 0.330, 0.210, 0.710, 0.150, 0.060,
-                IlluminantD65,  GAMMA_REC709
-        },
-            /* Huh? -ajsh
-            CIEsystem = {
-            "CIE",
-            0.7355, 0.2645, 0.2658, 0.7243, 0.1669, 0.0085,
-            0.3894, 0.3324, GAMMA_REC709
-            },
-            */
-            CIEsystem = {
-                "CIE",
-                0.7355,0.2645,0.2658,0.7243,0.1669,0.0085, 0.33333333, 0.33333333,
-                GAMMA_REC709
-        },
-            Rec709system = {
-                "CIE REC 709",
-                0.64,  0.33,  0.30,  0.60,  0.15,  0.06,
-                IlluminantD65, GAMMA_REC709
+        CIEsystem = {
+            "HDTV ideal",
+            0.670, 0.330, 0.210, 0.710, 0.150, 0.060,
+            IlluminantD65,  GAMMA_REC709
         };
 
         /* The following table gives the  spectral  chromaticity  co-ordinates

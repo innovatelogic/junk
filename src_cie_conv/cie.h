@@ -9,14 +9,14 @@ namespace junk
 {
     namespace cie_conv
     {
-        class CIE_EXPORT CieConvertor
+        class CIE_EXPORT CiePlot
         {
-            CieConvertor(const CieConvertor&) = delete;
-            CieConvertor& operator=(CieConvertor&) = delete;
+            CiePlot(const CiePlot&) = delete;
+            CiePlot& operator=(CiePlot&) = delete;
         
         public:
-            CieConvertor();
-            virtual ~CieConvertor();
+            CiePlot();
+            virtual ~CiePlot();
 
             void Generate();
 
@@ -25,7 +25,7 @@ namespace junk
         protected:
         private:
            // std::unique_ptr<CieConvertorImpl> m_pImpl;
-            CieConvertorImpl *m_pImpl;
+            CiePlotImpl *m_pImpl;
         };
     }
 }

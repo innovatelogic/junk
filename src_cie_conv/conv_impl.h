@@ -8,43 +8,22 @@ namespace junk
 {
 	namespace cie_conv
 	{
-		class CIE_EXPORT CieConvertorImpl
+		class CIE_EXPORT CiePlotImpl
 		{
 			public:
-				CieConvertorImpl();
-				~CieConvertorImpl();
+                CiePlotImpl();
+				~CiePlotImpl();
 
                 void Generate();
 
                 bool Save(const std::string &filename);
 			
             protected:
-
-                static void makeAllBlack(pixel** const pixels,
-                    unsigned int const cols,
-                    unsigned int const rows);
-
-                static void fillInTongue(pixel **          const pixels,
-                        int                        const pixcols,
-                        int                        const pixrows,
-                        pixval                     const maxval,
-                        const struct colorSystem * const cs);
-
-                static void drawTongueOutline(pixel ** const pixels,
-                        int    const pixcols,
-                        int    const pixrows,
-                        pixval const maxval);
-
-                static void DrawPlackanLocus(pixel ** const pixels, int    const pixcols,
-                    int    const pixrows,
-                    pixval const maxval);
-
 			private:
                 const size_t SIZE_ROWS;
                 const size_t SIZE_COLS;
 
-                struct Canvas *m_canvas;
-                pixel **pixels;
+                class Canvas *m_canvas;
         };
 	}
 }
