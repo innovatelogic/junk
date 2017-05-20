@@ -29,9 +29,9 @@ namespace junk
         {
             if (m_canvas)
             {
-                m_canvas->FillColor({ 0, 0, 0 }); // feel canvas black
+                m_canvas->FillColor({ 0, 0, 0 }); // fill canvas black
 
-                m_canvas->PlotCIESpace(&CIEsystem);
+                m_canvas->PlotCIESpace();
 
                 m_canvas->DrawPlackanLocus();
             }

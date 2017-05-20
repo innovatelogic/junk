@@ -32,7 +32,7 @@ namespace junk
             // CIE plot helper functions
             void DrawCIEPlotOutline();
             void DrawPlackanLocus();
-            void PlotCIESpace(const struct colorSystem * const cs);
+            void PlotCIESpace();
 
             // draw line. warn do not check bounds
             void line(
@@ -44,7 +44,7 @@ namespace junk
             void Allocate();
             void Free();
 
-            void FillCIE(const struct colorSystem * const cs);
+            void FillCIE();
 
         private:
             pixel **m_pixels;

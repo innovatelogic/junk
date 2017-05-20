@@ -151,16 +151,15 @@ namespace junk
         }
 
         //----------------------------------------------------------------------------------------------
-        void Canvas::PlotCIESpace(const struct colorSystem * const cs)
+        void Canvas::PlotCIESpace()
         {
             DrawCIEPlotOutline();
-            FillCIE(cs);
+            FillCIE();
         }
 
         //----------------------------------------------------------------------------------------------
-        void Canvas::FillCIE(const struct colorSystem * const cs)
+        void Canvas::FillCIE()
         {
-
             int const pxcols = m_cols;
             int const pxrows = m_rows;
 
@@ -189,7 +188,7 @@ namespace junk
                         cy = 1.0 - ((double)y) / (pxrows - 1);
                         cz = 1.0 - (cx + cy);
 
-                        xyz_to_rgb(cs, cx, cy, cz, &jr, &jg, &jb);
+                        xyz_to_rgb(&CIEsystem, cx, cy, cz, &jr, &jg, &jb);
 
                         mx = Maxval;
 
