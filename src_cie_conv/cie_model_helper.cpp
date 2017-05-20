@@ -134,7 +134,8 @@ namespace junk
         int
             constrain_rgb(double * const r,
                 double * const g,
-                double * const b) {
+                double * const b)
+        {
             /*----------------------------------------------------------------------------
             If  the  requested RGB shade contains a negative weight for one of
             the primaries, it lies outside the color  gamut  accessible  from
@@ -159,11 +160,46 @@ namespace junk
             return 0;                         /* Color within RGB gamut */
         }
 
-        bool
-            pointsEqual(ppmd_point const a,
+        bool pointsEqual(ppmd_point const a,
                 ppmd_point const b) {
 
             return a.x == b.x && a.y == b.y;
+        }
+
+        void findTongue(pixel ** const pixels,
+            int      const pxcols,
+            int      const row,
+            bool *   const presentP,
+            int *    const leftEdgeP,
+            int *    const rightEdgeP) {
+            /*----------------------------------------------------------------------------
+            Find out if there is any tongue on row 'row' of image 'pixels', and if
+            so, where.
+
+            We assume the image consists of all black except a white outline of the
+            tongue.
+            -----------------------------------------------------------------------------*/
+            int i;
+
+            for (i = 0;
+                i < pxcols && PPM_GETR(pixels[row][i]) == 0;
+                ++i);
+
+            if (i >= pxcols)
+                *presentP = false;
+            else {
+                int j;
+                int const leftEdge = i;
+
+                *presentP = true;
+
+                for (j = pxcols - 1;
+                    j >= leftEdge && PPM_GETR(pixels[row][j]) == 0;
+                    --j);
+
+                *rightEdgeP = j;
+                *leftEdgeP = leftEdge;
+            }
         }
     }
 }

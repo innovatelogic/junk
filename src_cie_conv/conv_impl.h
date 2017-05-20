@@ -37,8 +37,7 @@ namespace junk
 
                 static void DrawPlackanLocus(pixel ** const pixels, int    const pixcols,
                     int    const pixrows,
-                    pixval const maxval,
-                    const struct colorSystem * const cs);
+                    pixval const maxval);
 
 			private:
                 const size_t SIZE_ROWS;

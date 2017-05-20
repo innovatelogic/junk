@@ -89,46 +89,8 @@ namespace junk
             DrawPlackanLocus(m_canvas->pixels,
                 SIZE_COLS,
                 SIZE_ROWS,
-                Maxval,
-                &CIEsystem
+                Maxval
             );
-        }
-        //----------------------------------------------------------------------------------------------
-        static void
-            findTongue(pixel ** const pixels,
-                int      const pxcols,
-                int      const row,
-                bool *   const presentP,
-                int *    const leftEdgeP,
-                int *    const rightEdgeP) {
-            /*----------------------------------------------------------------------------
-            Find out if there is any tongue on row 'row' of image 'pixels', and if
-            so, where.
-
-            We assume the image consists of all black except a white outline of the
-            tongue.
-            -----------------------------------------------------------------------------*/
-            int i;
-
-            for (i = 0;
-                i < pxcols && PPM_GETR(pixels[row][i]) == 0;
-                ++i);
-
-            if (i >= pxcols)
-                *presentP = false;
-            else {
-                int j;
-                int const leftEdge = i;
-
-                *presentP = true;
-
-                for (j = pxcols - 1;
-                    j >= leftEdge && PPM_GETR(pixels[row][j]) == 0;
-                    --j);
-
-                *rightEdgeP = j;
-                *leftEdgeP = leftEdge;
-            }
         }
 
         //----------------------------------------------------------------------------------------------
@@ -236,8 +198,7 @@ namespace junk
         void CieConvertorImpl::DrawPlackanLocus(pixel ** const pixels, 
             int    const pixcols,
             int    const pixrows,
-            pixval const maxval,
-            const struct colorSystem * const cs
+            pixval const maxval
         )
         {
             double lx = -1, ly = -1;

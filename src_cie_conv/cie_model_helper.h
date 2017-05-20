@@ -37,7 +37,14 @@ namespace junk
                 double * const g,
                 double * const b);
 
-        bool pointsEqual(ppmd_point const a,
-                ppmd_point const b);
+        bool pointsEqual(ppmd_point const a, ppmd_point const b);
+
+        //----------------------------------------------------------------------------------------------
+        void findTongue(pixel ** const pixels,
+            int      const pxcols,
+            int      const row,
+            bool *   const presentP,
+            int *    const leftEdgeP,
+            int *    const rightEdgeP);
     }
 }
