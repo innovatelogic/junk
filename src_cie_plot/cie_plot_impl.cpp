@@ -40,7 +40,7 @@ namespace junk
         //----------------------------------------------------------------------------------------------
         bool CiePlotImpl::Save(const std::wstring &path)
         {
-            bool bResult = true;
+            bool bResult = false;
 
             if (m_canvas)
             {

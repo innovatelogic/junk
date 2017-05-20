@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(cie_conv)
+project(cie_plot)
 
 add_definitions(-DUNICODE -D_UNICODE)
 add_definitions(-DCIE_CONV_LIB_COMPILE)
 #add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
 
-set(CIE_CONV ${PROJECT_NAME})
+set(CIE_PLOT ${PROJECT_NAME})
 
 set(SOURCE 
 	oembase.h
@@ -47,7 +47,7 @@ if (${ENABLE_TESTING})
 	string( TOUPPER ${PROJECT_NAME} PROJECT_NAME_U )
 
 	add_executable( ${PROJECT_TEST_NAME}
-					ut/ut_cie_conv.cpp
+					ut/ut_cie_plot.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})
