@@ -1,7 +1,7 @@
 #include "px_draw_helper.h"
 #include <math.h>
 
-namespace junk
+namespace cie
 {
     namespace cie_plot
     {

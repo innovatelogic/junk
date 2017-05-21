@@ -2,7 +2,7 @@
 #include "cie_plot_impl.h"
 #include "cie_plot.h"
 
-namespace junk
+namespace cie
 {
     namespace cie_plot
     {
@@ -16,9 +16,9 @@ namespace junk
             delete m_pImpl;
         }
 
-        void CiePlot::Plot()
+        bool CiePlot::Plot()
         {
-            m_pImpl->Plot();
+            return m_pImpl->Plot();
         }
 
         bool CiePlot::Save(const std::wstring &path)

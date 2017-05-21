@@ -2,7 +2,7 @@
 
 #include "common.h"
 
-namespace junk
+namespace cie
 {
     namespace cie_plot
     {

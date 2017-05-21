@@ -3,7 +3,7 @@
 
 #include <math.h>
 
-namespace junk
+namespace cie
 {
     namespace cie_plot
     {

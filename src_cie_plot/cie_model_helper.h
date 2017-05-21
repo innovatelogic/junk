@@ -1,6 +1,6 @@
 #pragma once
 
-namespace junk
+namespace cie
 {
     namespace cie_plot
     {

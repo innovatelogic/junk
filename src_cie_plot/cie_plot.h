@@ -5,7 +5,7 @@
 #include <string>
 #include <memory>
 
-namespace junk
+namespace cie
 {
     namespace cie_plot
     {
@@ -18,7 +18,7 @@ namespace junk
             CiePlot();
             virtual ~CiePlot();
 
-            void Plot();
+            bool Plot();
 
             bool Save(const std::wstring &path);
 

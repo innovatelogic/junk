@@ -12,7 +12,7 @@
 #pragma warning (disable : 4996) // fopen warn
 #endif
 
-namespace junk
+namespace cie
 {
     namespace cie_plot
     {
@@ -34,7 +34,7 @@ namespace junk
         //----------------------------------------------------------------------------------------------
         TEST(Cie_Plot, PlotSave)
         {
-            std::unique_ptr<junk::cie_plot::CiePlot> convertor(new junk::cie_plot::CiePlot());
+            std::unique_ptr<cie::cie_plot::CiePlot> convertor(new cie::cie_plot::CiePlot());
 
             convertor->Plot();
 
@@ -65,7 +65,7 @@ namespace junk
             bool bCatch = false;
             try
             {
-                std::unique_ptr<junk::cie_plot::Canvas>(new Canvas(0, 0));
+                std::unique_ptr<cie::cie_plot::Canvas>(new Canvas(0, 0));
             }
             catch (std::bad_alloc&)
             {
@@ -81,7 +81,7 @@ namespace junk
             try
             {
                 const size_t MAX = UINT_MAX;
-                std::unique_ptr<junk::cie_plot::Canvas>(new Canvas(MAX, MAX));
+                std::unique_ptr<cie::cie_plot::Canvas>(new Canvas(MAX, MAX));
             }
             catch (std::bad_alloc&)
             {

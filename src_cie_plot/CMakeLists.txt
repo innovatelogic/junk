@@ -22,7 +22,6 @@ set(SOURCE
 	cie_model_helper.h
 	cie_model_helper.cpp
 	common.h
-	file.cpp
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})

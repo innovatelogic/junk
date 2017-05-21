@@ -10,7 +10,7 @@
 #pragma warning (disable : 4996) // fopen warn
 #endif
 
-namespace junk
+namespace cie
 {
     namespace cie_plot
     {
@@ -26,8 +26,9 @@ namespace junk
         }
 
         //----------------------------------------------------------------------------------------------
-        void CiePlotImpl::Plot()
+        bool CiePlotImpl::Plot()
         {
+            bool bResult = false;
             if (m_canvas)
             {
                 m_canvas->FillColor({ 0, 0, 0 }); // fill canvas black
@@ -35,7 +36,10 @@ namespace junk
                 m_canvas->PlotCIESpace();
 
                 m_canvas->DrawPlackanLocus(1500, 10000);
+
+                bResult = true;
             }
+            return bResult;
         }
 
         //----------------------------------------------------------------------------------------------

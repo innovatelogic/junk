@@ -3,7 +3,7 @@
 #include "cie_model_helper.h"
 #include <algorithm>
 
-namespace junk
+namespace cie
 {
     namespace cie_plot
     {

@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <assert.h>
 
-namespace junk
+namespace cie
 {
     namespace cie_plot
     {
