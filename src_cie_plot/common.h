@@ -5,19 +5,26 @@
 
 namespace junk
 {
-    namespace cie_conv
+    namespace cie_plot
     {
         static long int const DDA_SCALE = 8192;
 
         typedef unsigned char pixval;
-        typedef struct {
+        struct pixel 
+        {
             pixval r, g, b;
-        } pixel;
+        };
 
-        typedef struct {
+        struct pos_point 
+        {
             int x;
             int y;
-        } pos_point;
+
+            bool operator==(const pos_point &right) const
+            {
+                return x == right.x && y == right.y;
+            }
+        };
 
         #define Maxval  255                   /* Maxval to use in generated pixmaps */
 
@@ -44,12 +51,9 @@ namespace junk
             IlluminantD65,  GAMMA_REC709
         };
 
-        /* The following table gives the  spectral  chromaticity  co-ordinates
-        x(\lambda) and y(\lambda) for wavelengths in 5 nanometre increments
-        from 380 nm through  780  nm.   These  co-ordinates  represent  the
-        position in the CIE x-y space of pure spectral colors of the given
-        wavelength, and  thus  define  the  outline  of  the  CIE  "tongue"
-        diagram. */
+        /* CIE x-y space x(\lambda) and y(\lambda) 
+        5 nm increments
+        from 380 nm through  780  nm. */
 
         static double spectral_chromaticity[81][3] = {
             { 0.1741, 0.0050 },               /* 380 nm */
@@ -133,6 +137,18 @@ namespace junk
             { 0.7347, 0.2653 },
             { 0.7347, 0.2653 },
             { 0.7347, 0.2653 }                /* 780 nm */
+        };
+
+        // Plackan locus cubic spline x-y coef
+        static double pl_x_temperature[2][4] = {
+            { -0.2661, -0.2343, 0.8776, 0.1799 }, // T <= 4000
+            { -3.0258, 2.1070, 0.2226, 0.2403 },
+        };
+
+        static double pl_y_temperature[3][4] = {
+            { -1.1063, -1.3481, 2.1855, -0.2021 }, // T <= 2222
+            { -0.9549, -1.3741, 2.0913, -0.1674 }, // T > 2222 && T <= 4000
+            { 3.0817, -5.8733, 3.7511, -0.3700 },
         };
     }
 }

@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(cie_plot)
 
 add_definitions(-DUNICODE -D_UNICODE)
-add_definitions(-DCIE_CONV_LIB_COMPILE)
+add_definitions(-DCIE_PLOT_LIB_COMPILE)
 #add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
 
 set(CIE_PLOT ${PROJECT_NAME})

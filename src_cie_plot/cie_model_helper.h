@@ -2,7 +2,7 @@
 
 namespace junk
 {
-    namespace cie_conv
+    namespace cie_plot
     {
         void xyz_to_rgb(const struct colorSystem * const cs,
                 double                      const xc,
@@ -28,13 +28,9 @@ namespace junk
                 double * const g,
                 double * const b);
 
-        bool pointsEqual(pos_point a, pos_point b);
-
-        //----------------------------------------------------------------------------------------------
-        void findTongue(pixel ** const pixels,
+        bool findCIERowRange(pixel ** const pixels,
             int      const pxcols,
             int      const row,
-            bool *   const presentP,
             int *    const leftEdgeP,
             int *    const rightEdgeP);
     }

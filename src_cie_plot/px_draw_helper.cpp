@@ -3,7 +3,7 @@
 
 namespace junk
 {
-    namespace cie_conv
+    namespace cie_plot
     {
         //----------------------------------------------------------------------------------------------
         void drawPoint(
@@ -21,22 +21,17 @@ namespace junk
             const pos_point &p1,
             const pixel &color)
         {
-            /*----------------------------------------------------------------------------
-            Draw a line that is more horizontal than vertical.
-
-            Don't clip.
-
-            Assume the line has distinct start and end points (i.e. it's at least
-            two points).
-            -----------------------------------------------------------------------------*/
-            /* Loop over X domain. */
+            
+            // Loop over X domain
             long dy, srow;
             int dx, col, row, prevrow;
 
-            if (p1.x > p0.x)
+            if (p1.x > p0.x) {
                 dx = 1;
-            else
+            }
+            else {
                 dx = -1;
+            }
             dy = (p1.y - p0.y) * DDA_SCALE / abs(p1.x - p0.x);
             
             prevrow = row = p0.y;
@@ -44,15 +39,17 @@ namespace junk
             srow = row * DDA_SCALE + DDA_SCALE / 2;
 
             col = p0.x;
-            for (; ; ) {
+            for (; ; ) 
+            {
                 if (row != prevrow) {
                     drawPoint(pixels,  { col, prevrow }, color);
                     prevrow = row;
                 }
 
                 drawPoint(pixels, { col, row }, color);
-                if (col == p1.x)
+                if (col == p1.x) {
                     break;
+                }
                 srow += dy;
                 row = srow / DDA_SCALE;
                 col += dx;
@@ -66,36 +63,32 @@ namespace junk
             const pos_point &p1,
             const pixel &color)
         {
-            /*----------------------------------------------------------------------------
-            Draw a line that is more vertical than horizontal.
-
-            Don't clip.
-
-            Assume the line has distinct start and end points (i.e. it's at least
-            two points).
-            -----------------------------------------------------------------------------*/
-            /* Loop over Y domain. */
+            // Loop over Y 
 
             long dx, scol;
             int dy, col, row, prevcol;
 
-            if (p1.y > p0.y)
+            if (p1.y > p0.y) {
                 dy = 1;
-            else
+            }
+            else {
                 dy = -1;
+            }
             dx = (p1.x - p0.x) * DDA_SCALE / abs(p1.y - p0.y);
             row = p0.y;
             prevcol = col = p0.x;
             scol = col * DDA_SCALE + DDA_SCALE / 2;
-            for (; ; ) {
+            for (;;) 
+            {
                 if (col != prevcol) 
                 {
                     drawPoint(pixels, { prevcol, row }, color);
                     prevcol = col;
                 }
                 drawPoint(pixels, { col, row }, color);
-                if (row == p1.y)
+                if (row == p1.y) {
                     break;
+                }
                 row += dy;
                 scol += dx;
                 col = scol / DDA_SCALE;

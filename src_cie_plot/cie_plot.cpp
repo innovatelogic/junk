@@ -4,7 +4,7 @@
 
 namespace junk
 {
-    namespace cie_conv
+    namespace cie_plot
     {
         CiePlot::CiePlot()
             : m_pImpl(new CiePlotImpl())

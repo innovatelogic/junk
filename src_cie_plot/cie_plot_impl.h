@@ -2,16 +2,13 @@
 
 #include "defexport.h"
 #include "common.h"
-#include "px_canvas.h"
 #include <string>
 #include <memory>
 
 namespace junk
 {
-	namespace cie_conv
+	namespace cie_plot
 	{
-        //class Canvas;
-
 		class CiePlotImpl
 		{
 			public:
@@ -19,15 +16,14 @@ namespace junk
 				~CiePlotImpl();
 
                 void Plot();
-
                 bool Save(const std::wstring &filename);
 			
             protected:
 			private:
-                const size_t SIZE_ROWS;
-                const size_t SIZE_COLS;
+                static const size_t SIZE_ROWS = 1024;
+                static const size_t SIZE_COLS = 1024;
 
-                std::unique_ptr<Canvas> m_canvas;
+                std::unique_ptr<class Canvas> m_canvas;
         };
 	}
 }

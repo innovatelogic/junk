@@ -5,17 +5,18 @@
 #include "px_draw_helper.h"
 #include <string>
 
-#pragma warning (disable : 4996)
+#if (defined(ES_WINDOWS))
+#include <windows.h>
+#pragma warning (disable : 4996) // fopen warn
+#endif
 
 namespace junk
 {
-    namespace cie_conv
+    namespace cie_plot
     {
         //----------------------------------------------------------------------------------------------
         CiePlotImpl::CiePlotImpl()
-            : SIZE_ROWS(1024)
-            , SIZE_COLS(1024)
-            , m_canvas(new Canvas(SIZE_ROWS, SIZE_COLS))
+            : m_canvas(new Canvas(SIZE_ROWS, SIZE_COLS))
         {
         }
 
@@ -33,7 +34,7 @@ namespace junk
 
                 m_canvas->PlotCIESpace();
 
-                m_canvas->DrawPlackanLocus();
+                m_canvas->DrawPlackanLocus(1500, 10000);
             }
         }
 

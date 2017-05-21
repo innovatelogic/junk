@@ -7,7 +7,7 @@
 
 namespace junk
 {
-    namespace cie_conv
+    namespace cie_plot
     {
         class CIE_EXPORT CiePlot
         {

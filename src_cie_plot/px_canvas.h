@@ -5,9 +5,9 @@
 
 namespace junk
 {
-    namespace cie_conv
+    namespace cie_plot
     {
-        class Canvas
+        class CIE_EXPORT Canvas
         {
             Canvas(const Canvas&) = delete;
             Canvas& operator =(const Canvas&) = delete;
@@ -31,14 +31,11 @@ namespace junk
 
             // CIE plot helper functions
             void DrawCIEPlotOutline();
-            void DrawPlackanLocus();
+            void DrawPlackanLocus(int t0, int t1);
             void PlotCIESpace();
 
-            // draw line. warn do not check bounds
-            void line(
-                const pos_point &p0,
-                const pos_point &p1,
-                const pixel &color);
+            // draw line. not check bounds
+            void line(const pos_point &p0, const pos_point &p1, const pixel &color);
 
         private:
             void Allocate();
@@ -47,9 +44,9 @@ namespace junk
             void FillCIE();
 
         private:
-            pixel **m_pixels;
             const size_t m_rows;
             const size_t m_cols;
+            pixel **m_pixels;
         };
     }
 }
