@@ -12,6 +12,7 @@ include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googletest/include)
 include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googlemock/include)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_SOURCE_DIR}/src_bits)
 include_directories(${CMAKE_SOURCE_DIR}/src_list)
 include_directories(${CMAKE_SOURCE_DIR}/src_arr)
 include_directories(${CMAKE_SOURCE_DIR}/src_arr/ut)
@@ -164,6 +165,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_cpp/triangle_point_2d_probe_a.cpp
 		ut/ut_cpp/ut_empty.cpp
 	)
+	set(SRC_BITS ut/ut_bits/ut_bits_sum.cpp
+					ut/ut_bits/ut_swap_no_tmp.cpp)
 
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
@@ -275,13 +278,11 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					${SRC_GRAPH}
 					${SRC_CPP}
 					${SRC_LST}
+					${SRC_BITS}
 					)
 
 	set(LIBRARIES
 		${JUNK}
-		#${ARR}
-		#${BST}
-		#${STR}
 		${GRAPH}
 		${GTEST_BOTH_LIBRARIES}
 		${GMOCK_BOTH_LIBRARIES})

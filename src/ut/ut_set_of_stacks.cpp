@@ -5,7 +5,7 @@ namespace junk
 {
     namespace set_of_stacks
     {
-        TEST(SetOfStacks, PushPop)
+        TEST(Stack, SetOfStacks_PushPop)
         {
             SetOfStacks<int> stack_set;
 
@@ -34,7 +34,7 @@ namespace junk
             EXPECT_EQ(stack_set.Size(), 0);
         }
         
-        TEST(SetOfStacks, PopAt)
+        TEST(Stack, SetOfStacks_PopAt)
         {
             SetOfStacks<int> stack_set;
 

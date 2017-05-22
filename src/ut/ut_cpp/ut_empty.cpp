@@ -4,9 +4,8 @@ namespace junk
 {
     namespace empty_test
     {
-        TEST(ATest, AEmptyTest)
+        TEST(Empty, Empty)
         {
-            int k = 0;
         }
     }
 }

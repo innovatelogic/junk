@@ -31,7 +31,7 @@ namespace junk
         the expression is const, and decltype((j)) denotes int const&.
         See also the example in §5.1.2¶18.
         */
-        TEST(CppTest, TypeTraitsIsSame)
+        TEST(Cpp, TypeTraitsIsSame)
         {
             /*int i, &j = i;
             [=]

@@ -60,7 +60,7 @@ namespace junk
             {}
         };
 
-        TEST(CppTest, ConstCall)
+        TEST(Cpp, ConstCall)
         {
             S s;
             const S &r = s;
@@ -82,7 +82,7 @@ namespace junk
 
         template <> void f(const int &i) { std::cout << 2; }
 
-        TEST(CppTest, ConstTemplateFunctionInstantiate)
+        TEST(Cpp, ConstTemplateFunctionInstantiate)
         {
             int i = 42;
             f(i);

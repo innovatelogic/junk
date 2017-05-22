@@ -10,7 +10,6 @@ namespace junk
             PartitioningString part(std::string("123"));
 
             part.generate();
-
         }
     }
 

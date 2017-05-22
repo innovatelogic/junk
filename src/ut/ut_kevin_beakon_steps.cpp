@@ -5,7 +5,7 @@ namespace junk
 {
     namespace kevin_beakon
     {
-        TEST(KevinBeakon, ShortestPath)
+        TEST(Graph, KevinBeakon_ShortestPath)
         {
             Graph<char> graph;
 

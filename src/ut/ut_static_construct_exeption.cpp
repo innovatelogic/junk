@@ -47,7 +47,7 @@ namespace junk
 
         void foo() { static B b; }
 
-        TEST(CppTest, StaticConstructException)
+        TEST(Cpp, StaticConstructException)
         {
             try {
                 foo();

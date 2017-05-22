@@ -63,7 +63,7 @@ namespace junk
             }
         };
 
-        TEST(CppTest, RValueInstantiationMove)
+        TEST(Cpp, RValueInstantiationMove)
         {
             B b1;
             B b2 = std::move(b1);

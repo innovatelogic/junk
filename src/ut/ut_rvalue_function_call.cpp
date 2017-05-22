@@ -52,7 +52,7 @@ namespace junk
         template <class T> void g(T &&x) { y(std::move(x)); }
         template <class T> void h(T &&x) { y(std::forward<T>(x)); }
 
-        TEST(CppTest, RValueFunctionCall)
+        TEST(Cpp, RValueFunctionCall)
         {
             int i = 10;
 

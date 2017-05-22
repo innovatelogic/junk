@@ -36,7 +36,7 @@ namespace junk
             };
         };
 
-        TEST(CppTest, ExplicitClassInt)
+        TEST(Cpp, ExplicitClassInt)
         {
             C c1(7);
             C c2 = 7;

@@ -6,7 +6,7 @@ namespace junk
 {
     namespace two_sum_problem
     {
-        TEST(TwoSumInArray, SumEqual)
+        TEST(Array, TwoSumInArray_SumEqual)
         {
             std::vector<int> a{ 33, 12, 54, 65, 11, 99, 2, 1, 0 };
 
@@ -18,7 +18,7 @@ namespace junk
             EXPECT_EQ(n, 99);
         }
 
-        TEST(TwoSumInArray, SumEqual_Hash)
+        TEST(Array, TwoSumInArray_SumEqual_Hash)
         {
             std::vector<int> a{ 33, 12, 54, 65, 11, 99, 2, 1, 0 };
 
@@ -29,7 +29,7 @@ namespace junk
             EXPECT_EQ(k + n, 100);
         }
 
-        TEST(TwoSumInArray, SumEqualFalse)
+        TEST(Array, TwoSumInArray_SumEqualFalse)
         {
             std::vector<int> a{ 33, 12, 54, 65, 11, 99, 2, 1, 0 };
 
@@ -38,7 +38,7 @@ namespace junk
             EXPECT_FALSE(res);
         }
 
-        TEST(TwoSumInArray, SumEqualFalse_Hash)
+        TEST(Array, TwoSumInArray_SumEqualFalse_Hash)
         {
             std::vector<int> a{ 33, 12, 54, 65, 11, 99, 2, 1, 0 };
 

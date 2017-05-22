@@ -32,7 +32,7 @@ namespace junk
             }
         };
 
-        TEST(CppTest, ListInitializer)
+        TEST(Cpp, ListInitializer)
         {
             A a[2];
             for (auto x : a) {
@@ -85,7 +85,7 @@ namespace junk
             A(std::initializer_list<int> aaa) { std::cout << "3"; }
         };
 
-        TEST(CppTest, ValueListInitializer)
+        TEST(Cpp, ValueListInitializer)
         {
             A a1;
             A a2{};

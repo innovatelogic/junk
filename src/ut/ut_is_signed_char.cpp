@@ -9,7 +9,7 @@ namespace junk
             Plain char, signed char, and unsigned char are three distinct types
         */
 
-        TEST(CppTest, IsSignedChar)
+        TEST(Cpp, IsSignedChar)
         {
             if (std::is_signed<char>::value) {
                 auto a = std::is_same<char, signed char>::value;

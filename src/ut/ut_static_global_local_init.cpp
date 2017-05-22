@@ -66,7 +66,7 @@ namespace junk
 
         void foo() { static C c; }
 
-        TEST(CppTest, StaticGlobalLocalInit)
+        TEST(Cpp, StaticGlobalLocalInit)
         {
             B b;
             foo();
@@ -101,7 +101,7 @@ namespace junk
             B createB() { return B(); }
         };
 
-        TEST(CppTest, FriendinClassDef)
+        TEST(Cpp, FriendinClassDef)
         {
             A a;
             B b = a.createB();

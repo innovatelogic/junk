@@ -63,7 +63,7 @@ namespace cpptest
     { };
 
     //----------------------------------------------------------------------------------------------
-    TEST(CppTest, VirtualClass)
+    TEST(Cpp, VirtualClass)
     {
         E e;
         C &c = e;
@@ -78,7 +78,7 @@ namespace cpptest
     }
 
     //----------------------------------------------------------------------------------------------
-    TEST(CppTest, STLset)
+    TEST(Cpp, STLset)
     {
         struct C
         {
@@ -146,7 +146,7 @@ namespace cpptest
 
         int *C::m_c = nullptr;
 
-        TEST(CppTest, ClassSize)
+        TEST(Cpp, ClassSize)
         {
             std::vector<A*> v({ new C, new B, new A });
             std::stable_sort(v.begin(), v.end(), A::compare);
@@ -193,7 +193,7 @@ namespace cpptest
 
         A B::m_c(3);
 
-        TEST(CppTest, InitOrder)
+        TEST(Cpp, InitOrder)
         {
             B b(2);
         }
@@ -207,7 +207,7 @@ namespace cpptest
             return a % 2 == b % 2;
         }
 
-        TEST(CppTest, StdUnique)
+        TEST(Cpp, StdUnique)
         {
             int a[] = { 3, 1, 4, 6, 1, 3 };
             auto b = std::begin(a);
@@ -237,7 +237,7 @@ namespace cpptest
 
         //----------------------------------------------------------------------------------------------
 
-        TEST(CppTest, ThrowAlloc)
+        TEST(Cpp, ThrowAlloc)
         {
             A *p0 = nullptr, *p1 = nullptr, *p2 = nullptr;
             try {
@@ -299,7 +299,7 @@ namespace cpptest
             X() { std::cout << "2"; }
         };
 
-        TEST(CppTest, TemplateTemplate)
+        TEST(Cpp, TemplateTemplate)
         {
             X<Y> x1;
             X<Z> x2;
@@ -324,7 +324,7 @@ namespace cpptest
             return sizeof arr;
         }
 
-        TEST(CppTest, SizeofArray)
+        TEST(Cpp, SizeofArray)
         {
             int array[10];
 
@@ -338,7 +338,7 @@ namespace cpptest
     //----------------------------------------------------------------------------------------------
     namespace comma_innit
     {
-        TEST(CppTest, CommaInitInt)
+        TEST(Cpp, CommaInitInt)
         {
             int x;
             x = (0, 1, 2, 3, 4, 5);
@@ -350,7 +350,7 @@ namespace cpptest
     //----------------------------------------------------------------------------------------------
     namespace switch_do_while
     {
-        TEST(CppTest, SwitchDoWhile)
+        TEST(Cpp, SwitchDoWhile)
         {
             int n = 3;
             int i = 0;
@@ -390,7 +390,7 @@ namespace cpptest
             return y(std::forward<T>(x));
         }
 
-        TEST(CppTest, RightLeftReference)
+        TEST(Cpp, RightLeftReference)
         {
             int i = 10;
 
@@ -436,7 +436,7 @@ namespace cpptest
             int d = 0;
         }
 
-        TEST(CppTest, CopyVector)
+        TEST(Cpp, CopyVector)
         {
             SetAAA(makeVec());
 
