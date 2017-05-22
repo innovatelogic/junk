@@ -7,8 +7,6 @@ namespace junk
     {
         TEST(Bits, SwapNoTmp)
         {
-            int c = 0 ^ 0;
-
             {
                 int a = 10;
                 int b = 20;

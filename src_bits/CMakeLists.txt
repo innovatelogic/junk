@@ -14,6 +14,7 @@ set(SOURCE
 	bits_sum.h
 	swap_no_tmp.h
 	bits_lib.h
+	tic_tac_toe.h
 	file.cpp
 )
 

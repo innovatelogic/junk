@@ -166,7 +166,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_cpp/ut_empty.cpp
 	)
 	set(SRC_BITS ut/ut_bits/ut_bits_sum.cpp
-					ut/ut_bits/ut_swap_no_tmp.cpp)
+					ut/ut_bits/ut_swap_no_tmp.cpp
+					ut/ut_bits/ut_tic_tac_toe.cpp)
 
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
