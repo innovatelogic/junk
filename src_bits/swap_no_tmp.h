@@ -19,5 +19,13 @@ namespace junk
             b = b + a;
             a = b - a;
         }
+
+        template<typename>
+        void var_swap_no_tmp_bits(int &a, int &b)
+        {
+            a = a^b;
+            b = b^a;
+            a = a^b;
+        }
     }
 }
