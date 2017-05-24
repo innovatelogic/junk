@@ -14,6 +14,7 @@ set(SOURCE
 	str.h
 	string_convert_probe_a.h
 	string_bin_frac_to_dec.h
+	string_find_first_unique_probe_a.h
 	file.cpp
 )
 

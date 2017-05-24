@@ -169,6 +169,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_bits/ut_swap_no_tmp.cpp
 					ut/ut_bits/ut_tic_tac_toe.cpp)
 
+	set(SRC_STR ut/ut_str/ut_str_find_first_unique_probe_a.cpp)
+
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
 					ut/ut_array_frequency_rand.cpp
@@ -280,6 +282,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					${SRC_CPP}
 					${SRC_LST}
 					${SRC_BITS}
+					${SRC_STR}
 					)
 
 	set(LIBRARIES
