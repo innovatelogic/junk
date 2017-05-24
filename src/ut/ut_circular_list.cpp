@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 
 //----------------------------------------------------------------------------------------------
-TEST(CircularList, TestCircular)
+TEST(List, Circular_probe_a)
 {
     // 0 1 2 3 4 5
     //     9 8 7 6 
@@ -23,7 +23,7 @@ TEST(CircularList, TestCircular)
 }
 
 //----------------------------------------------------------------------------------------------
-TEST(CircularList, TestNotCircular)
+TEST(List, NonCircular_probe_a)
 {
     ListElement<int>* array[10] = { nullptr };
     for (int i = 0; i < 10; ++i)
