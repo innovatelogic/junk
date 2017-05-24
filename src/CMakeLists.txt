@@ -154,8 +154,10 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_arr/ut_union_intersection_array_probe_a.cpp
 		ut/ut_arr/ut_remove_duplicates_probe_b.cpp
 	)
+
 	set(SRC_LST 
-		ut/ut_list/ut_list_merge_sort_probe_a.cpp)
+		ut/ut_list/ut_list_merge_sort_probe_a.cpp
+		ut/ut_list/ut_list_reverse_from_nth.cpp)
 
 	set(SRC_CPP
 		ut/ut_cpp/ut_is_derived_class.cpp

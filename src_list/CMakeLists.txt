@@ -26,6 +26,7 @@ set(SOURCE
 	list_is_palindrome.h
 	list_rearrange_by_kth_element.h
 	list_linearize.h
+	list_reverse_from_nth.h
 	lst.h
 	file.cpp
 )
