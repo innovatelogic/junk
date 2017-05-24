@@ -5,13 +5,12 @@ namespace junk
 {
     namespace dfs_tree
     {
-        TEST(DfsTree, FindMax)
+        TEST(Graph, DfsTree_FindMax)
         {
-        //         A
-        //      B C D E
-        //      F G H I
-        //      J K L M 
-
+            //         A
+            //      B C D E
+            //      F G H I
+            //      J K L M 
 
             ValueNode A(std::string("A"), 0);
 
