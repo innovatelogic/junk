@@ -5,8 +5,7 @@ namespace junk
 {
     namespace heap_chart
     {
-
-        TEST(HeapChart, Chart)
+        TEST(Heap, Chart)
         {
             Chart chart;
 
@@ -18,7 +17,6 @@ namespace junk
 
             EXPECT_EQ(chart.TopSong("Lady Gaga"), std::string("Pokerface"));
         }
-
     }
 }
 

@@ -5,7 +5,7 @@ namespace junk
 {
     namespace triangle_point_2d_probe_a
     {
-        TEST(Cpp, TrianglePoint_2d_probe)
+        TEST(Math3d, TrianglePoint_2d_probe)
         {
             const float a[2] = { 1.f, 1.f };
             const float b[2] = { 4.f, 2.f };

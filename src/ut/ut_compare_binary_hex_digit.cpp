@@ -3,8 +3,7 @@
 
 namespace junk
 {
-
-    TEST(Numbers, StrHEX_vs_Bin)
+    TEST(Bits, StrHEX_vs_Bin)
     {
         int i = numbers::str_to_int("100", 2);
 
