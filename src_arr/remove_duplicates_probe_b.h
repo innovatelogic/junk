@@ -54,7 +54,7 @@ namespace junk
             myqsort(array, 0, length);
             
             // j
-            //    i
+            //   i
             // 1 1 2 2 3 3 
             int j = 0;
             for (int i = 1; i < length;)

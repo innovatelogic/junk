@@ -8,7 +8,7 @@ namespace junk
         TEST(Array, Binary_Search_probe_a)
         {
             int arr[] = { 2, 3, 4, 10, 40 };
-            int n = sizeof(arr) / sizeof(arr[0]);
+            const int n = sizeof(arr) / sizeof(arr[0]);
 
             EXPECT_EQ(bin_search<void>(arr, 0, n, 0), -1);
             EXPECT_EQ(bin_search<void>(arr, 0, n, 2), 0);

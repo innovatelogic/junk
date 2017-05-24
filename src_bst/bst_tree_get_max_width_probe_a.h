@@ -98,7 +98,6 @@ namespace junk
                         }
                         v = new_vec;
                     }
-
                 }
 
                 return width;
