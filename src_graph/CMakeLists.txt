@@ -17,6 +17,7 @@ set(SOURCE
 	bellman_ford_probe_a.h
 	dlist_probe_a.h
 	array_2d_bfs_path_find.h
+	array_2d_dyn_bfs_path_find.h
 	file.cpp
 )
 

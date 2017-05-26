@@ -139,6 +139,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_bellman_ford_probe_a.cpp
 		ut/ut_graph/ut_dlist_probe_a.cpp
 		ut/ut_graph/ut_array_2d_bfs_path_find.cpp
+		ut/ut_graph/ut_array_2d_dyn_path_find.cpp
 	)
 
 	set(SRC_ARR
