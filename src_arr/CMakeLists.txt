@@ -28,6 +28,7 @@ set(SOURCE
 	string_permute_probe_a.h
 	union_intersection_array_probe_a.h
 	remove_duplicates_probe_b.h
+	permutate.h
 	arr.h
 	file.cpp
 )

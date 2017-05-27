@@ -27,5 +27,30 @@ namespace junk
             }
             return out.empty() ? a + b : out;
         }
+
+        template<typename>
+        std::string shortest_substring(std::vector<std::string> &strings)
+        {
+            int **array;
+            array = new int*[strings.size()];
+            for (int i = 0; i < strings.size(); i++){
+                *array[i] = new int[strings.size()];
+            }
+
+            for (int i = 0; i < strings.size(); i++)
+            {
+                for (int j = 0; j < strings.size(); j++)
+                {
+                    array[i][j] = (i != j) ? get_string_overlap(strings[i], strings[j]) : 0;
+                }
+            }
+
+
+            for (int i = 0; i < strings.size(); i++) {
+                delete [] *array[i];
+            }
+            delete[] array;
+        }
+
     }
 }

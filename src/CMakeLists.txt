@@ -53,7 +53,6 @@ set(SOURCE
 	matrix_rotation.h
 	kevin_beakon_steps.h
 	find_max_path_in_tree.h
-	permutate.h
 	stack.h
 	stack_probe_a.h
 	stack_min_track.h

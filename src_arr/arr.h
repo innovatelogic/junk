@@ -13,3 +13,4 @@
 #include "string_permute_probe_a.h"
 #include "union_intersection_array_probe_a.h"
 #include "remove_duplicates_probe_b.h"
+#include "permutate.h"
