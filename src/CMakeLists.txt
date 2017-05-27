@@ -92,7 +92,6 @@ set(SOURCE
 	telephone_numbers.h
 	telephone_numbers_nonreq.h
 	step_ladder.h
-	egg_drop.h
 	get_all_split_strings.h
 	tree_is_balanced.h
 	tree_traverse.h

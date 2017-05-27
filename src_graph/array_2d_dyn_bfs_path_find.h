@@ -61,7 +61,6 @@ namespace junk
                         iter.first = prev->second.first;
                         iter.second = prev->second.second;
                     }
-
                     return true;
                 }
                 

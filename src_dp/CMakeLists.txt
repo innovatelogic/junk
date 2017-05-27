@@ -13,6 +13,7 @@ set(SOURCE
 	defexport.h
 	fib_probe_a.h
 	coin_change_probe_a.h
+	egg_drop.h
 	dp.h
 	file.cpp
 )
