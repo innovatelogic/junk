@@ -15,6 +15,7 @@ set(SOURCE
 	string_convert_probe_a.h
 	string_bin_frac_to_dec.h
 	string_find_first_unique_probe_a.h
+	shortest_substring_problem.h
 	file.cpp
 )
 

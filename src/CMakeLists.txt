@@ -166,12 +166,15 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_cpp/ut_tcp_read_state_machine.cpp
 		ut/ut_cpp/triangle_point_2d_probe_a.cpp
 		ut/ut_cpp/ut_empty.cpp
+		
 	)
 	set(SRC_BITS ut/ut_bits/ut_bits_sum.cpp
 					ut/ut_bits/ut_swap_no_tmp.cpp
 					ut/ut_bits/ut_tic_tac_toe.cpp)
 
-	set(SRC_STR ut/ut_str/ut_str_find_first_unique_probe_a.cpp)
+	set(SRC_STR 
+	ut/ut_str/ut_str_find_first_unique_probe_a.cpp
+	ut/ut_str/ut_shortest_substring_problem.cpp)
 
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
