@@ -26,7 +26,7 @@ namespace junk
     };
 
 
-    TEST(SmartPtr, AssigmentOperatorTest)
+    TEST(Design, SmartPtr_AssigmentOperatorTest)
     {
         int *p0 = new int(0);
         int *p1 = new int(1);
