@@ -1,5 +1,6 @@
 
 #include "../junk.h"
+#include "str.h"
 #include "gtest/gtest.h"
 
 namespace junk
@@ -19,7 +20,7 @@ namespace junk
         {
             char str[] = "0123456789";
 
-            reverse(str);
+            is_unique_chars_in_string::reverse(str);
 
             EXPECT_EQ(strcmp(str, "9876543210"), 0);
         }

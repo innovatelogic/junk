@@ -4,7 +4,7 @@
 
 namespace junk
 {
-    namespace string
+    namespace is_unique_chars_in_string
     {
         // ascii symbols only
         bool is_unique_chars_in_string(const std::string &str)

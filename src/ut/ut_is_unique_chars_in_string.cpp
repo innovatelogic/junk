@@ -1,9 +1,9 @@
-#include "../junk.h"
+#include "str.h"
 #include "gtest/gtest.h"
 
 namespace junk
 {
-    namespace string
+    namespace is_unique_chars_in_string
     {
         TEST(String, is_unique_chars_in_string)
         {

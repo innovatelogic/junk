@@ -46,11 +46,8 @@ set(SOURCE
 	find_min_in_shifted_sorted_array.h
 	compare_binary_hex_digit.h
 	compare_binary_hex_digit.cpp
-	is_unique_chars_in_string.h
-	is_unique_chars_in_string.cpp
 	strings.h
 	strings.cpp
-	matrix_rotation.h
 	kevin_beakon_steps.h
 	find_max_path_in_tree.h
 	stack.h
@@ -292,6 +289,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	set(LIBRARIES
 		${JUNK}
 		${GRAPH}
+		str_lib
 		${GTEST_BOTH_LIBRARIES}
 		${GMOCK_BOTH_LIBRARIES})
 	

@@ -5,7 +5,7 @@ namespace junk
 {
     namespace animal_shelter
     {
-        TEST(AnimalShelter, PushPopAnimal)
+        TEST(Design, AnimalShelter_PushPopAnimal)
         {
             AnimalShelter shelter;
 

@@ -16,6 +16,8 @@ set(SOURCE
 	string_bin_frac_to_dec.h
 	string_find_first_unique_probe_a.h
 	shortest_substring_problem.h
+	is_unique_chars_in_string.h
+	is_unique_chars_in_string.cpp
 	file.cpp
 )
 

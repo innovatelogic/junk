@@ -8,8 +8,16 @@ namespace junk
         template<typename>
         std::string get_string_overlap(const std::string &a, const std::string &b)
         {
+            if (a == b) {
+                return a;
+            }
+
             if (a.find(b) != std::string::npos) {
                 return a;
+            }
+
+            if (b.find(a) != std::string::npos) {
+                return b;
             }
 
             std::string out;

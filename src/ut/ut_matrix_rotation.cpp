@@ -1,11 +1,11 @@
+#include "cpp.h"
 #include "gtest/gtest.h"
-#include "../junk.h"
 
 namespace junk
 {
     namespace matrix
     {
-        TEST(Matrix, RotateCW_3x3)
+        TEST(Math, Matrix_RotateCW_3x3)
         {
             {
                 const int N = 3;
@@ -33,7 +33,7 @@ namespace junk
             }
         }
 
-        TEST(Matrix, RotateCW_5x5)
+        TEST(Math, Matrix_RotateCW_5x5)
         {
             {
                 const int N = 5;

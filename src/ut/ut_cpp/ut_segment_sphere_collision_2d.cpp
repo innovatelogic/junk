@@ -6,7 +6,7 @@ namespace junk
 {
 	namespace segment_sphere_colision_2d
 	{
-        TEST(Math3D, SegmentSphereCollisionIntersection)
+        TEST(Math, SegmentSphereCollisionIntersection)
         {
             // player - player position
             // enemy - enemy position
