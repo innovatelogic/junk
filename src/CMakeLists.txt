@@ -164,9 +164,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_cpp/ut_empty.cpp
 		
 	)
-	set(SRC_BITS ut/ut_bits/ut_bits_sum.cpp
-					ut/ut_bits/ut_swap_no_tmp.cpp
-					ut/ut_bits/ut_tic_tac_toe.cpp)
 
 	set(SRC_STR 
 	ut/ut_str/ut_str_find_first_unique_probe_a.cpp
@@ -282,7 +279,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					${SRC_GRAPH}
 					${SRC_CPP}
 					${SRC_LST}
-					${SRC_BITS}
 					${SRC_STR}
 					)
 

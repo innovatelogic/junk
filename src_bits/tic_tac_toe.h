@@ -1,4 +1,5 @@
 #pragma once
+#include "defexport.h"
 #include <cmath>
 #include <assert.h>
 

@@ -13,7 +13,7 @@ namespace junk
 
         */
         template<typename>
-        void var_swap_no_tmp(int &a, int &b)
+        BITS_EXPORT void var_swap_no_tmp(int &a, int &b)
         {
             a = a - b;
             b = b + a;

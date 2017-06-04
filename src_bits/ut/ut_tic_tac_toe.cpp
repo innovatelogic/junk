@@ -1,4 +1,4 @@
-#include "bits_lib.h"
+#include "../bits_lib.h"
 #include <gtest/gtest.h>
 
 namespace junk
