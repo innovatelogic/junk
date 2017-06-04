@@ -13,6 +13,8 @@ set(SOURCE
 	swap_no_tmp.h
 	bits_lib.h
 	tic_tac_toe.h
+	binary_basic_operations.h
+	binary_basic_operations.cpp
 	file.cpp
 )
 
@@ -41,6 +43,7 @@ if (${ENABLE_TESTING})
 					ut/ut_bits_sum.cpp
 					ut/ut_swap_no_tmp.cpp
 					ut/ut_tic_tac_toe.cpp
+					ut/ut_binary_basic_operations.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})

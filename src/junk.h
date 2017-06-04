@@ -29,7 +29,6 @@
 #include "two_stack_queue.h"
 #include "stack_sort.h"
 #include "animal_shelter.h"
-#include "binary_basic_operations.h"
 #include "binary_float.h"
 #include "sort_selection_rec.h"
 #include "sort_selection.h"
