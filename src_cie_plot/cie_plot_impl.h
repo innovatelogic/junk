@@ -2,6 +2,7 @@
 
 #include "defexport.h"
 #include "common.h"
+#include "include/iplot_impl.h"
 #include <string>
 #include <memory>
 
@@ -9,14 +10,16 @@ namespace cie
 {
 	namespace cie_plot
 	{
-		class CiePlotImpl
+		class CiePlotImpl : public IPlotImpl
 		{
 			public:
                 CiePlotImpl();
-				~CiePlotImpl();
+				virtual ~CiePlotImpl();
 
-                bool Plot();
-                bool Save(const std::wstring &filename);
+                bool Plot() override;
+                bool Save(const std::wstring &filename) override;
+
+                void GaussianBlur() override;
 			
             protected:
 			private:

@@ -8,6 +8,10 @@ add_definitions(-DCIE_PLOT_LIB_COMPILE)
 
 set(CIE_PLOT ${PROJECT_NAME})
 
+set(SRC_INCLUDE
+	include/iplot_impl.h
+)
+
 set(SOURCE 
 	oembase.h
 	defexport.h
@@ -22,6 +26,7 @@ set(SOURCE
 	cie_model_helper.h
 	cie_model_helper.cpp
 	common.h
+	${SRC_INCLUDE}
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})

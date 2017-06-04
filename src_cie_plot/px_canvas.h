@@ -37,6 +37,8 @@ namespace cie
             // draw line. not check bounds
             void line(const pos_point &p0, const pos_point &p1, const pixel &color);
 
+            void GaussianBlur();
+
         private:
             void Allocate();
             void Free();
