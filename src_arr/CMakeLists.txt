@@ -66,6 +66,7 @@ if (${ENABLE_TESTING})
 					ut/ut_str_equation_analise_probe_a.cpp
 					ut/ut_histogram_max_rect_probe_a.cpp
 					ut/ut_array_min_range_vacation_selector_probe_a.cpp
+					ut/ut_array_binary_search_probe_a.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

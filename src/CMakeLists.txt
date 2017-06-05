@@ -14,8 +14,8 @@ include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googlemock/include)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 include_directories(${CMAKE_SOURCE_DIR}/src_bits)
 include_directories(${CMAKE_SOURCE_DIR}/src_list)
-include_directories(${CMAKE_SOURCE_DIR}/src_arr)
-include_directories(${CMAKE_SOURCE_DIR}/src_arr/ut)
+#include_directories(${CMAKE_SOURCE_DIR}/src_arr)
+#include_directories(${CMAKE_SOURCE_DIR}/src_arr/ut)
 include_directories(${CMAKE_SOURCE_DIR}/src_bst)
 include_directories(${CMAKE_SOURCE_DIR}/src_dp)
 include_directories(${CMAKE_SOURCE_DIR}/src_str)
@@ -156,9 +156,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_test.cpp
 					ut/ut_array_frequency_rand.cpp
 					ut/ut_array_combinations_probe_a.cpp
-					ut/ut_array_binary_search_probe_a.cpp
 					ut/ut_array_max_subarray.cpp
-					ut/ut_btree_is_subtree_probe_a.cpp
 					ut/ut_btree_all_path_sum_probe_a.cpp
 					ut/ut_linearize.cpp
 					ut/ut_circular_list.cpp
@@ -255,6 +253,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_sort_qsort_probe_c.cpp
 					ut/ut_queue_probe_a.cpp
 					ut/ut_queue_probe_b.cpp
+					ut/ut_btree_is_subtree_probe_a.cpp
 					ut/main.cpp
 					${SRC_DP}
 					${SRC_GRAPH}
