@@ -135,15 +135,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_graph/ut_array_2d_dyn_path_find.cpp
 	)
 
-	set(SRC_ARR
-		ut/ut_rev_int.cpp
-		ut/ut_str_find_substring_probe_a.cpp
-		ut/ut_array_sorted_rotation_point.cpp
-		ut/ut_str_equation_analise_probe_a.cpp
-		ut/ut_array_min_range_vacation_selector_probe_a.cpp
-		ut/ut_histogram_max_rect_probe_a.cpp
-	)
-
 	set(SRC_LST 
 		ut/ut_list/ut_list_merge_sort_probe_a.cpp
 		ut/ut_list/ut_list_reverse_from_nth.cpp)
@@ -155,7 +146,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_cpp/ut_tcp_read_state_machine.cpp
 		ut/ut_cpp/triangle_point_2d_probe_a.cpp
 		ut/ut_cpp/ut_empty.cpp
-		
 	)
 
 	set(SRC_STR 
@@ -266,7 +256,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_queue_probe_a.cpp
 					ut/ut_queue_probe_b.cpp
 					ut/main.cpp
-					${SRC_ARR}
 					${SRC_DP}
 					${SRC_GRAPH}
 					${SRC_CPP}

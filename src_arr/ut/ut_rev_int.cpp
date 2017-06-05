@@ -7,10 +7,10 @@ namespace junk
     {
         TEST(Array, ReverseInt_probe_a)
         {
-            EXPECT_EQ(reverse(1), 1);
-            EXPECT_EQ(reverse(123), 321);
-            EXPECT_EQ(reverse(100), 1);
-            EXPECT_EQ(reverse(456), 654);
+            EXPECT_EQ(reverse<void>(1), 1);
+            EXPECT_EQ(reverse<void>(123), 321);
+            EXPECT_EQ(reverse<void>(100), 1);
+            EXPECT_EQ(reverse<void>(456), 654);
         }
     }
 }

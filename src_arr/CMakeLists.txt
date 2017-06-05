@@ -55,12 +55,17 @@ if (${ENABLE_TESTING})
 
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/main.cpp
-					#ut/ut_rev_int.cpp
+					ut/ut_rev_int.cpp
 					ut/combinations_of_sum_num.cpp
 					ut/matrix_ccw.cpp
 					ut/ut_remove_duplicates_probe_b.cpp
 					ut/ut_string_permute_probe_a.cpp
 					ut/ut_union_intersection_array_probe_a.cpp
+					ut/ut_str_find_substring_probe_a.cpp
+					ut/ut_array_sorted_rotation_point.cpp
+					ut/ut_str_equation_analise_probe_a.cpp
+					ut/ut_histogram_max_rect_probe_a.cpp
+					ut/ut_array_min_range_vacation_selector_probe_a.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
