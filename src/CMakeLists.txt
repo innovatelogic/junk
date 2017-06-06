@@ -226,16 +226,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_array_reverse_inplace.cpp
 					ut/ut_is_palindrome.cpp
 					ut/ut_braces_check.cpp
-					ut/ut_bst.cpp
-					ut/ut_bst_probe_b.cpp
-					ut/ut_bst_probe_c.cpp
-					ut/ut_bst_probe_e.cpp
-					ut/ut_bst_tree_probe_d.cpp
-					ut/ut_bst_tree_find_max_distinct_path_probe_e.cpp
-					ut/ut_bst_tree_get_max_width_probe_a.cpp
-					ut/ut_bst_build_level_order_list_probe_f.cpp
-					ut/ut_bst_find_next_successor.cpp
-					ut/ut_bst_to_dlinked_list_probe_a.cpp
 					ut/ut_list_c_probe_a.cpp
 					ut/ut_list_cpp_probe_a.cpp
 					ut/ut_list_cpp_probe_b.cpp
@@ -244,7 +234,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_qsort_probe_a.cpp
 					ut/ut_qsort_probe_b.cpp
 					ut/ut_merge_sort_probe_a.cpp
-					ut/ut_bst_tree_check_bst_probe_f.cpp
 					ut/ut_subsets_str_sum_probe_a.cpp
 					ut/ut_sort_insertion_probe_b.cpp
 					ut/ut_sort_selection_probe_a.cpp
