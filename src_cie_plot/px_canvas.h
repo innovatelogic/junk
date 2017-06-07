@@ -38,12 +38,17 @@ namespace cie
             void line(const pos_point &p0, const pos_point &p1, const pixel &color);
 
             void GaussianBlur();
+            void Mask(const int *mask, size_t size, size_t samples_count);
 
         private:
             void Allocate();
             void Free();
 
             void FillCIE();
+
+            float GetAverageIntencity(size_t row, size_t col, size_t size);
+
+            void SetSample(size_t row, size_t col, const int *mask, size_t size);
 
         private:
             const size_t m_rows;

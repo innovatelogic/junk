@@ -80,5 +80,14 @@ namespace cie
         {
 
         }
+
+        //----------------------------------------------------------------------------------------------
+        void CiePlotImpl::Mask(const int *mask, size_t n, size_t sample_count)
+        {
+            if (mask && n > 0 && sample_count > 0)
+            {
+                m_canvas->Mask(mask, n, sample_count);
+            }
+        }
     }
 }

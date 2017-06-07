@@ -20,6 +20,7 @@ namespace cie
                 bool Save(const std::wstring &filename) override;
 
                 void GaussianBlur() override;
+                void Mask(const int *mask, size_t n, size_t sample_count) override;
 			
             protected:
 			private:

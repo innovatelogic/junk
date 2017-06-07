@@ -20,6 +20,8 @@ namespace cie
             bool Plot();
             bool Save(const std::wstring &path);
 
+            void Mask(const int *mask, size_t size, size_t samples_count);
+
         protected:
         private:
             //std::unique_ptr<class IPlotImpl> m_pImpl;

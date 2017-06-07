@@ -52,6 +52,7 @@ if (${ENABLE_TESTING})
 
 	add_executable( ${PROJECT_TEST_NAME}
 					ut/ut_cie_plot.cpp
+					ut/ut_mask_plot.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})

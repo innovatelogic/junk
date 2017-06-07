@@ -25,5 +25,11 @@ namespace cie
         {
             return m_pImpl->Save(path);
         }
+
+        void CiePlot::Mask(const int *mask, size_t size, size_t samples_count)
+        {
+            m_pImpl->Mask(mask, size, samples_count);
+        }
+
     }
 }

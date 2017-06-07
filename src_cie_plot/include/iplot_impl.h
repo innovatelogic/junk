@@ -16,6 +16,7 @@ namespace cie
                 virtual bool Save(const std::wstring &filename) = 0;
 
                 virtual void GaussianBlur() = 0;
+                virtual void Mask(const int *mask, size_t size, size_t sample_count) = 0;
         };
     }
 }

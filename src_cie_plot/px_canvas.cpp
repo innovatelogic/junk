@@ -221,5 +221,87 @@ namespace cie
         {
 
         }
+
+        //----------------------------------------------------------------------------------------------
+        void Canvas::Mask(const int *mask, size_t size, size_t sample_count)
+        {
+            assert(mask);
+
+            const size_t sr = m_rows / size;
+            const size_t sc = m_cols / size;
+
+            for (size_t i = 0; i < sr; i++)
+            {
+                for (size_t j = 0; j < sr; j++)
+                {
+                    const size_t row = i * size;
+                    const size_t col = j * size;
+
+                    const float intencity = GetAverageIntencity(row, col, size); // 0..1
+					const size_t sample_idx = static_cast<size_t>(sample_count * intencity);
+
+                    SetSample(row, col, mask + (sample_idx * (size * size)), size);
+                }
+            }
+        }
+
+        //----------------------------------------------------------------------------------------------
+        float Canvas::GetAverageIntencity(size_t row, size_t col, size_t size)
+        {
+            float out = 0.f;
+
+            const size_t MAX_PX_VALUE = 255 * 3;
+            size_t px_count = 0;
+
+            if (row < m_rows && col < m_cols)
+            {
+                const size_t max_row = row + size;
+                const size_t max_col = col + size;
+
+                bool out_of_bounds = false;
+                for (size_t i = row; i < max_row && !out_of_bounds; i++)
+                {
+                    for (size_t j = col; j < max_col; j++)
+                    {
+                        if (j >= m_cols) { continue; }
+                        if (i >= m_rows) { out_of_bounds = true; break; }
+
+                        out += (float)(m_pixels[i][j].r + m_pixels[i][j].g + m_pixels[i][j].b) / MAX_PX_VALUE;
+                        px_count++;
+                    }
+                }
+            }
+            return px_count > 0 ? out / px_count : 0.f;
+        }
+
+        //----------------------------------------------------------------------------------------------
+        void Canvas::SetSample(size_t row, size_t col, const int *mask, size_t size)
+        {
+            if (mask && row < m_rows && col < m_cols)
+            {
+                const size_t max_row = row + size;
+                const size_t max_col = col + size;
+
+                size_t px_count = 0;
+
+                bool out_of_bounds = false;
+                for (size_t i = row; i < max_row && !out_of_bounds; i++)
+                {
+                    for (size_t j = col; j < max_col; j++)
+                    {
+						int px_idx = px_count++;
+
+                        if (j >= m_cols) { continue; }
+                        if (i >= m_rows) { out_of_bounds = true; break; }
+
+                        const int mask_value = mask[px_idx];
+
+                        m_pixels[i][j].r = mask_value == 0 ? 0 : 255;
+                        m_pixels[i][j].g = mask_value == 0 ? 0 : 255;
+                        m_pixels[i][j].b = mask_value == 0 ? 0 : 255;
+                    }
+                }
+            }
+        }   
     }
 }
