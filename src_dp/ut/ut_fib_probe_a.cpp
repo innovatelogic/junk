@@ -1,4 +1,4 @@
-#include "dp.h"
+#include "../dp.h"
 #include <gtest/gtest.h>
 
 namespace junk

@@ -12,15 +12,14 @@ include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googletest/include)
 include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googlemock/include)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_SOURCE_DIR}/src_cpp)
 include_directories(${CMAKE_SOURCE_DIR}/src_bits)
 include_directories(${CMAKE_SOURCE_DIR}/src_list)
-#include_directories(${CMAKE_SOURCE_DIR}/src_arr)
-#include_directories(${CMAKE_SOURCE_DIR}/src_arr/ut)
+include_directories(${CMAKE_SOURCE_DIR}/src_arr)
 include_directories(${CMAKE_SOURCE_DIR}/src_bst)
 include_directories(${CMAKE_SOURCE_DIR}/src_dp)
 include_directories(${CMAKE_SOURCE_DIR}/src_str)
 include_directories(${CMAKE_SOURCE_DIR}/src_graph)
-include_directories(${CMAKE_SOURCE_DIR}/src_cpp)
 
 set(SOURCE 
 	oembase.h
@@ -122,12 +121,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	set( PROJECT_TEST_NAME unittest_${PROJECT_NAME} )
 	string( TOUPPER ${PROJECT_NAME} PROJECT_NAME_U )
 
-	set(SRC_DP
-		ut/ut_fib_probe_a.cpp
-		ut/ut_dp/ut_coin_change_probe_a.cpp
-		ut/ut_dp/ut_coin_change_dp_probe_b.cpp
-	)
-
 	set(SRC_GRAPH
 		ut/ut_bellman_ford_probe_a.cpp
 		ut/ut_graph/ut_dlist_probe_a.cpp
@@ -135,17 +128,10 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_graph/ut_array_2d_dyn_path_find.cpp
 	)
 
+
 	set(SRC_LST 
 		ut/ut_list/ut_list_merge_sort_probe_a.cpp
 		ut/ut_list/ut_list_reverse_from_nth.cpp)
-
-	#set(SRC_CPP
-	#	
-	#)
-
-	set(SRC_STR 
-	ut/ut_str/ut_str_find_first_unique_probe_a.cpp
-	ut/ut_str/ut_shortest_substring_problem.cpp)
 
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
@@ -239,11 +225,9 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_queue_probe_b.cpp
 					ut/ut_btree_is_subtree_probe_a.cpp
 					ut/main.cpp
-					${SRC_DP}
 					${SRC_GRAPH}
-					${SRC_CPP}
 					${SRC_LST}
-					${SRC_STR}
+					#${SRC_STR}
 					)
 
 	set(LIBRARIES

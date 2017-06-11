@@ -1,4 +1,4 @@
-#include "str.h"
+#include "../str.h"
 #include <gtest/gtest.h>
 
 namespace junk
