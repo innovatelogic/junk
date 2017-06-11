@@ -7,7 +7,6 @@ namespace junk
 {
     namespace binary_float
     {
-        JUNK_EXPORT std::string floatToStrBin(float value);
-        
+        BITS_EXPORT std::string floatToStrBin(float value);
     }
 }

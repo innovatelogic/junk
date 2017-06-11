@@ -18,6 +18,7 @@ set(SOURCE
 	shortest_substring_problem.h
 	is_unique_chars_in_string.h
 	is_unique_chars_in_string.cpp
+	check_braces.h
 	file.cpp
 )
 
@@ -47,6 +48,7 @@ if (${ENABLE_TESTING})
 					ut/main.cpp
 					ut/ut_str_find_first_unique_probe_a.cpp
 					ut/ut_shortest_substring_problem.cpp
+					ut/ut_braces_check.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

@@ -15,6 +15,10 @@ set(SOURCE
 	tic_tac_toe.h
 	binary_basic_operations.h
 	binary_basic_operations.cpp
+	binary_float.h
+	binary_float.cpp
+	compare_binary_hex_digit.h
+	compare_binary_hex_digit.cpp
 	file.cpp
 )
 
@@ -44,6 +48,8 @@ if (${ENABLE_TESTING})
 					ut/ut_swap_no_tmp.cpp
 					ut/ut_tic_tac_toe.cpp
 					ut/ut_binary_basic_operations.cpp
+					ut/ut_binary_float.cpp
+					ut/ut_compare_binary_hex_digit.cpp
 					ut/main.cpp )
 	
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES})

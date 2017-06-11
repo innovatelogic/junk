@@ -68,7 +68,5 @@ namespace junk
 
             MergeSortImpl<void>(array, buffer, 0, size_n - 1);
         }
-
     }
-
 }

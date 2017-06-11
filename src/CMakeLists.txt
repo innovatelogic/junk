@@ -42,8 +42,6 @@ set(SOURCE
 	heap_sort_probe_a.h
 	heap_min_probe_a.h
 	find_min_in_shifted_sorted_array.h
-	compare_binary_hex_digit.h
-	compare_binary_hex_digit.cpp
 	strings.h
 	strings.cpp
 	kevin_beakon_steps.h
@@ -57,8 +55,6 @@ set(SOURCE
 	two_stack_queue.h
 	stack_sort.h
 	animal_shelter.h
-	binary_float.h
-	binary_float.cpp
 	two_sum_in_array.h
 	hash_table.h
 	rotate_list_kth_element.h
@@ -73,7 +69,6 @@ set(SOURCE
 	tree_traverse.h
 	array_reverse_inplace.h
 	is_palindrome.h
-	check_braces.h
 	queue_probe_a.h
 	queue_probe_b.h
 	junk.h
@@ -116,7 +111,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_heap_sort_probe_a.cpp
 					ut/ut_find_min_in_shifted_sorted_array.cpp
 					ut/ut_graph_bfs_search.cpp
-					ut/ut_compare_binary_hex_digit.cpp
 					ut/ut_is_unique_chars_in_string.cpp
 					ut/ut_strings.cpp
 					ut/ut_string_convert_probe_a.cpp
@@ -140,7 +134,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_two_stack_queue.cpp
 					ut/ut_stack_sort.cpp
 					ut/ut_animal_shelter.cpp
-					ut/ut_binary_float.cpp
 					ut/ut_cpp_const_call.cpp
 					ut/ut_static_global_local_init.cpp
 					ut/ut_list_initializer.cpp
@@ -165,7 +158,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_tree_traverse.cpp
 					ut/ut_array_reverse_inplace.cpp
 					ut/ut_is_palindrome.cpp
-					ut/ut_braces_check.cpp
 					ut/ut_list_c_probe_a.cpp
 					ut/ut_list_cpp_probe_a.cpp
 					ut/ut_list_cpp_probe_b.cpp
