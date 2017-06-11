@@ -121,15 +121,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	set( PROJECT_TEST_NAME unittest_${PROJECT_NAME} )
 	string( TOUPPER ${PROJECT_NAME} PROJECT_NAME_U )
 
-	set(SRC_GRAPH
-		
-	)
-
-
-	set(SRC_LST 
-		ut/ut_list/ut_list_merge_sort_probe_a.cpp
-		ut/ut_list/ut_list_reverse_from_nth.cpp)
-
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
 					ut/ut_array_frequency_rand.cpp
@@ -222,9 +213,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_queue_probe_b.cpp
 					ut/ut_btree_is_subtree_probe_a.cpp
 					ut/main.cpp
-					${SRC_GRAPH}
-					${SRC_LST}
-					#${SRC_STR}
 					)
 
 	set(LIBRARIES
