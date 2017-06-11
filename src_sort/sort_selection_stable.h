@@ -7,6 +7,6 @@ namespace junk
 {
     namespace sort_selection_stable
     {
-        JUNK_EXPORT void SortSelectionStable(std::vector<std::pair<int, int>> &in);
+        SORT_LIB_EXPORT void SortSelectionStable(std::vector<std::pair<int, int>> &in);
     }
 }

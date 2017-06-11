@@ -8,7 +8,7 @@ namespace junk
 {
     //----------------------------------------------------------------------------------------------
     template<class T> 
-    JUNK_EXPORT void merge(std::vector<T> &arr, size_t left, size_t mid, size_t right)
+    SORT_LIB_EXPORT void merge(std::vector<T> &arr, size_t left, size_t mid, size_t right)
     {
         size_t n1 = mid - left + 1;
         size_t n2 = right - mid;
@@ -59,7 +59,7 @@ namespace junk
 
     //----------------------------------------------------------------------------------------------
     template<class T>
-    JUNK_EXPORT void merge_sort(std::vector<T> &arr, size_t l, size_t r)
+    SORT_LIB_EXPORT void merge_sort(std::vector<T> &arr, size_t l, size_t r)
     {
         if (l < r)
         {

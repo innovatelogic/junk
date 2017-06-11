@@ -7,6 +7,6 @@ namespace junk
 {
     namespace selection_sort
     {
-        JUNK_EXPORT void SelectionSort(std::vector<int> &in);
+        SORT_LIB_EXPORT void SelectionSort(std::vector<int> &in);
     }
 }

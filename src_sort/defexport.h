@@ -2,12 +2,12 @@
 
 #include "OEMBase.h"
 
-//#if (defined(ES_WINDOWS))
-//#ifdef JUNK_LIB_COMPILE
-#define JUNK_EXPORT _declspec(dllexport)
-#define EXTERN_JUNK_EXPORT   extern JUNK_EXPORT
+#if (defined(ES_WINDOWS))
+#ifdef SORT_LIB_COMPILE
+#define SORT_LIB_EXPORT _declspec(dllexport)
+#define EXTERN_SORT_LIB_EXPORT   extern JUNK_EXPORT
 
-//#else
-//#define JUNK_EXPORT
-//#endif
-//#endif
+#else
+#define SORT_LIB_EXPORT
+#endif
+#endif

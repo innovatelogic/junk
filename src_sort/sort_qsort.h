@@ -7,6 +7,6 @@ namespace junk
 {
     namespace sort_qsort
     {
-        JUNK_EXPORT void QSort(std::vector<int> &in);
+        SORT_LIB_EXPORT void QSort(std::vector<int> &in);
     }
 }

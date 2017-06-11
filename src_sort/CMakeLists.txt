@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(sort_lib)
 
 add_definitions(-DUNICODE -D_UNICODE)
-add_definitions(-DLIB_COMPILE)
+add_definitions(-DSORT_LIB_COMPILE)
 #add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
 
 set(SOURCE 
@@ -20,6 +20,17 @@ set(SOURCE
 	merge_sort_probe_a.h
 	sort_merge_probe_b.h
 	sort_merge_probe_c.h
+	swap_sort.h
+	sort_selection_rec.h
+	sort_selection_rec.cpp
+	sort_selection.h
+	sort_selection.cpp
+	sort_selection_stable.h
+	sort_selection_stable.cpp
+	sort_qsort.h
+	sort_qsort.cpp
+	sort_merge.h
+	sort_qsort_pobe_c.h
 	file.cpp
 )
 
@@ -57,9 +68,16 @@ if (${ENABLE_TESTING})
 					ut/ut_merge_sort_probe_b.cpp
 					ut/ut_merge_sort.cpp
 					ut/ut_sort_merge_probe_c.cpp
+					ut/ut_swap_sort.cpp
+					ut/ut_sort_selection_rec.cpp
+					ut/ut_sort_selection.cpp
+					ut/ut_sort_selection_stable.cpp
+					ut/ut_sort_qsort.cpp
+					ut/ut_sort_qsort_probe_c.cpp
+					ut/ut_sort_merge.cpp
 					)
 
-	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
+	target_link_libraries(${PROJECT_TEST_NAME}  ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
 
 	add_definitions(-DUSE_MOCK)
 

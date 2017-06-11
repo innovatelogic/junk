@@ -60,7 +60,7 @@ namespace junk
         }
 
         template<typename>
-        JUNK_EXPORT void MergeSort(int *array, int *buffer, size_t size_n)
+        SORT_LIB_EXPORT void MergeSort(int *array, int *buffer, size_t size_n)
         {
             if (!array || !buffer || size_n == 0) {
                 return;
