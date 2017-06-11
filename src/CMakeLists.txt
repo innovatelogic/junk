@@ -37,7 +37,6 @@ set(SOURCE
 	smart_ptr.h
 	smart_ptr_probe_a.h
 	file.cpp
-	merge_sort.h
 	heap.h
 	heap_chart.h
 	heap_sort_probe_a.h
@@ -68,14 +67,7 @@ set(SOURCE
 	sort_selection_stable.cpp
 	sort_qsort.h
 	sort_qsort.cpp
-	sort_insertion.h
-	sort_insertion_probe_b.h
 	sort_merge.h
-	merge_sort_probe_a.h
-	sort_insertion_probe_a.h
-	sort_selection_probe_a.h
-	sort_merge_probe_b.h
-	sort_merge_probe_c.h
 	two_sum_in_array.h
 	hash_table.h
 	rotate_list_kth_element.h
@@ -91,8 +83,6 @@ set(SOURCE
 	array_reverse_inplace.h
 	is_palindrome.h
 	check_braces.h
-	qsort_probe_a.h
-	qsort_probe_b.h
 	sort_qsort_pobe_c.h
 	queue_probe_a.h
 	queue_probe_b.h
@@ -133,7 +123,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_binary_tree_traverse.cpp
 					ut/ut_peak_find.cpp
 					ut/ut_swap_sort.cpp
-					ut/ut_merge_sort.cpp
 					ut/ut_heap.cpp
 					ut/ut_heap_sort_probe_a.cpp
 					ut/ut_find_min_in_shifted_sorted_array.cpp
@@ -167,7 +156,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_sort_selection.cpp
 					ut/ut_sort_selection_stable.cpp
 					ut/ut_sort_qsort.cpp
-					ut/ut_sort_insertion_probe_a.cpp
 					ut/ut_cpp_const_call.cpp
 					ut/ut_static_global_local_init.cpp
 					ut/ut_list_initializer.cpp
@@ -179,7 +167,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_static_construct_exeption.cpp
 					ut/ut_type_traits_is_same.cpp
 					ut/ut_rvalue_function_call.cpp
-					ut/ut_sort_insertion.cpp
 					ut/ut_sort_merge.cpp
 					ut/ut_hash_table.cpp
 					ut/ut_heap_chart.cpp
@@ -200,14 +187,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_list_cpp_probe_b.cpp
 					ut/ut_list_cpp_probe_c.cpp
 					ut/ut_heap_min_probe_a.cpp
-					ut/ut_qsort_probe_a.cpp
-					ut/ut_qsort_probe_b.cpp
-					ut/ut_merge_sort_probe_a.cpp
 					ut/ut_subsets_str_sum_probe_a.cpp
-					ut/ut_sort_insertion_probe_b.cpp
-					ut/ut_sort_selection_probe_a.cpp
-					ut/ut_merge_sort_probe_b.cpp
-					ut/ut_sort_merge_probe_c.cpp
 					ut/ut_sort_qsort_probe_c.cpp
 					ut/ut_queue_probe_a.cpp
 					ut/ut_queue_probe_b.cpp
