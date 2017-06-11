@@ -1,4 +1,4 @@
-#include "cpp.h"
+#include "../cpp.h"
 #include <type_traits>
 #include <gtest/gtest.h>
 

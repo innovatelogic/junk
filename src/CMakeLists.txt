@@ -139,14 +139,9 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 		ut/ut_list/ut_list_merge_sort_probe_a.cpp
 		ut/ut_list/ut_list_reverse_from_nth.cpp)
 
-	set(SRC_CPP
-		ut/ut_cpp/ut_is_derived_class.cpp
-		ut/ut_cpp/ut_threadpool_probe_a.cpp
-		ut/ut_cpp/ut_segment_sphere_collision_2d.cpp
-		ut/ut_cpp/ut_tcp_read_state_machine.cpp
-		ut/ut_cpp/triangle_point_2d_probe_a.cpp
-		ut/ut_cpp/ut_empty.cpp
-	)
+	#set(SRC_CPP
+	#	
+	#)
 
 	set(SRC_STR 
 	ut/ut_str/ut_str_find_first_unique_probe_a.cpp
