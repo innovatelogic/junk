@@ -1,4 +1,4 @@
-#include "graph.h"
+#include "../graph.h"
 #include <gtest/gtest.h>
 
 namespace junk
