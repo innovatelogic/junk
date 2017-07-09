@@ -50,8 +50,6 @@ set(SOURCE
 	stack_probe_a.h
 	stack_min_track.h
 	set_of_stacks.h
-	hanoi_tower.h
-	hanoi_tower.cpp
 	two_stack_queue.h
 	stack_sort.h
 	animal_shelter.h
@@ -130,7 +128,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_stack_probe_a.cpp
 					ut/ut_stack_min_track.cpp
 					ut/ut_set_of_stacks.cpp
-					ut/ut_hanoi_tower.cpp
 					ut/ut_two_stack_queue.cpp
 					ut/ut_stack_sort.cpp
 					ut/ut_animal_shelter.cpp

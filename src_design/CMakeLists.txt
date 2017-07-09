@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(design_lib)
 
 add_definitions(-DUNICODE -D_UNICODE)
-add_definitions(-DHEAP_LIB_COMPILE)
+add_definitions(-DDESIGN_LIB_COMPILE)
 #add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
 
 include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googletest/include)
@@ -13,6 +13,8 @@ set(SOURCE
 	oembase.h
 	defexport.h
 	design_lib.h
+	hanoi_tower.h
+	hanoi_tower.cpp
 	file.cpp
 )
 
@@ -38,9 +40,10 @@ if (${ENABLE_TESTING})
 
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/main.cpp
+					ut/ut_hanoi_tower.cpp
 					)
 
-	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
+	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
 
 	add_definitions(-DUSE_MOCK)
 

@@ -1,11 +1,11 @@
-#include "junk.h"
+#include "../hanoi_tower.h"
 #include <gtest/gtest.h>
 
 namespace junk
 {
     namespace hanoi_tower
     {
-        TEST(HanoiTower, Arrange)
+        TEST(Design, HanoiTower_Arrange)
         {
             const int n = 3;
             Tower towers[3] = {1, 2, 3};

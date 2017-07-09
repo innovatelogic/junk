@@ -21,7 +21,6 @@
 #include "stack_probe_a.h"
 #include "stack_min_track.h"
 #include "set_of_stacks.h"
-#include "hanoi_tower.h"
 #include "two_stack_queue.h"
 #include "stack_sort.h"
 #include "animal_shelter.h"

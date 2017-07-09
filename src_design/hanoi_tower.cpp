@@ -4,7 +4,6 @@ namespace junk
 {
     namespace hanoi_tower
     {
-
         void MoveTopTo(Tower &from, Tower &to)
         {
             int top = from.top();

@@ -6,7 +6,7 @@ namespace junk
 {
     namespace hanoi_tower
     {
-        class JUNK_EXPORT Tower
+        class DESIGN_EXPORT Tower
         {
         public:
             Tower(int index)
@@ -44,7 +44,7 @@ namespace junk
             int m_index;
         };
 
-        JUNK_EXPORT void MoveTopTo(Tower &from, Tower &to);
-        JUNK_EXPORT void MoveDiscs(int n, Tower &tower1, Tower &tower2, Tower &tower3);
+        DESIGN_EXPORT void MoveTopTo(Tower &from, Tower &to);
+        DESIGN_EXPORT void MoveDiscs(int n, Tower &tower1, Tower &tower2, Tower &tower3);
     }
 }
