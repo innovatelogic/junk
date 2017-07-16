@@ -1,4 +1,4 @@
-#include "junk.h"
+#include "../animal_shelter.h"
 #include <gtest/gtest.h>
 
 namespace junk

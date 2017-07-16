@@ -7,7 +7,7 @@ namespace junk
 {
     namespace animal_shelter
     {
-        class JUNK_EXPORT Animal
+        class DESIGN_EXPORT Animal
         {
         public:
             Animal()
@@ -24,21 +24,21 @@ namespace junk
             int m_order;
         };
 
-        class JUNK_EXPORT Cat : public Animal
+        class DESIGN_EXPORT Cat : public Animal
         {
         public:
             Cat()
             {}
         };
 
-        class JUNK_EXPORT Dog : public Animal
+        class DESIGN_EXPORT Dog : public Animal
         {
         public:
             Dog()
             {}
         };
 
-        class JUNK_EXPORT AnimalShelter
+        class DESIGN_EXPORT AnimalShelter
         {
         public:
             AnimalShelter()

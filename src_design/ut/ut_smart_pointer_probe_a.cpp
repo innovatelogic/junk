@@ -2,7 +2,7 @@
 #include <iostream>
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
-#include "../junk.h"
+#include "../smart_ptr_probe_a.h"
 #include <memory.h>
 
 using ::testing::AtLeast;

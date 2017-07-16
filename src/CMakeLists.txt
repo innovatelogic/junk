@@ -34,8 +34,6 @@ set(SOURCE
 	inner_template_class.ipp	
 	permutations_array.h
 	permutate_probe_a.h
-	smart_ptr.h
-	smart_ptr_probe_a.h
 	file.cpp
 	heap.h
 	heap_chart.h
@@ -52,7 +50,6 @@ set(SOURCE
 	set_of_stacks.h
 	two_stack_queue.h
 	stack_sort.h
-	animal_shelter.h
 	two_sum_in_array.h
 	hash_table.h
 	rotate_list_kth_element.h
@@ -114,8 +111,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_string_convert_probe_a.cpp
 					ut/ut_string_bin_frac_to_dec.cpp
 					ut/ut_matrix_rotation.cpp
-					ut/ut_smart_ptr.cpp
-					ut/ut_smart_pointer_probe_a.cpp
 					ut/ut_kevin_beakon_steps.cpp
 					ut/ut_find_max_path_in_tree.cpp
 					ut/ut_list_find_duplicates.cpp
@@ -130,7 +125,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_set_of_stacks.cpp
 					ut/ut_two_stack_queue.cpp
 					ut/ut_stack_sort.cpp
-					ut/ut_animal_shelter.cpp
 					ut/ut_cpp_const_call.cpp
 					ut/ut_static_global_local_init.cpp
 					ut/ut_list_initializer.cpp

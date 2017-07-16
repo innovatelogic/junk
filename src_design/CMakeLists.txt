@@ -15,6 +15,9 @@ set(SOURCE
 	design_lib.h
 	hanoi_tower.h
 	hanoi_tower.cpp
+	animal_shelter.h
+	smart_ptr.h
+	smart_ptr_probe_a.h
 	file.cpp
 )
 
@@ -41,7 +44,11 @@ if (${ENABLE_TESTING})
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/main.cpp
 					ut/ut_hanoi_tower.cpp
+					ut/ut_animal_shelter.cpp
+					ut/ut_smart_ptr.cpp
+					ut/ut_smart_pointer_probe_a.cpp
 					)
+
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
 

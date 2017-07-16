@@ -9,7 +9,7 @@ namespace junk
     //----------------------------------------------------------------------------------------------
 
     template <class T>
-    struct JUNK_EXPORT SmartPtrCtrlBlock
+    struct DESIGN_EXPORT SmartPtrCtrlBlock
     {
         T *ptr;
         int counter;
@@ -28,7 +28,7 @@ namespace junk
     //----------------------------------------------------------------------------------------------
 
     template <class T, class T_CTRL = SmartPtrCtrlBlock<T> >
-    class JUNK_EXPORT SmartPtr
+    class DESIGN_EXPORT SmartPtr
     {
     public:
         SmartPtr(T *ptr)
