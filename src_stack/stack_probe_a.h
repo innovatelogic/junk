@@ -1,11 +1,13 @@
 #pragma once
 
+#include "defexport.h"
+
 namespace junk
 {
     namespace stack_probe_a
     {
         template<typename T>
-        struct Node
+        struct STACK_EXPORT Node
         {
             Node(T &value) : value(value), next(nullptr) {}
             T value;
@@ -13,7 +15,7 @@ namespace junk
         };
 
         template<typename T>
-        class Stack
+        class STACK_EXPORT Stack
         {
         public:
             Stack() : m_head(nullptr) {}

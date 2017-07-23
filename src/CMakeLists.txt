@@ -44,10 +44,6 @@ set(SOURCE
 	strings.cpp
 	kevin_beakon_steps.h
 	find_max_path_in_tree.h
-	stack.h
-	stack_probe_a.h
-	stack_min_track.h
-	set_of_stacks.h
 	two_stack_queue.h
 	stack_sort.h
 	two_sum_in_array.h
@@ -119,12 +115,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_list_circular_find_start_loop.cpp
 					ut/ut_permutate_str.cpp
 					ut/ut_permutate_probe_a.cpp
-					ut/ut_stack.cpp
-					ut/ut_stack_probe_a.cpp
-					ut/ut_stack_min_track.cpp
-					ut/ut_set_of_stacks.cpp
-					ut/ut_two_stack_queue.cpp
-					ut/ut_stack_sort.cpp
 					ut/ut_cpp_const_call.cpp
 					ut/ut_static_global_local_init.cpp
 					ut/ut_list_initializer.cpp

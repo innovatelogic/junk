@@ -9,7 +9,7 @@ namespace junk
     namespace two_stack_queue
     {
         template <class T>
-        class JUNK_EXPORT MyQueue
+        class STACK_EXPORT MyQueue
         {
         public:
             MyQueue()

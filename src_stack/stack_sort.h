@@ -7,7 +7,7 @@ namespace junk
     namespace stack_sort
     {
         template<class T_CONT>
-        JUNK_EXPORT void stack_sort(T_CONT &stack)
+        STACK_EXPORT void stack_sort(T_CONT &stack)
         {
             if (!stack.empty())
             {

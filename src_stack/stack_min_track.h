@@ -3,13 +3,14 @@
 
 #include "defexport.h"
 #include "stack.h"
+#include <assert.h>
 
 namespace junk
 {
     namespace stack_min_track
     {
         template<typename T_VAL>
-        class JUNK_EXPORT StackMin : private stack::Stack<T_VAL>
+        class STACK_EXPORT StackMin : private stack::Stack<T_VAL>
         {
         public:
             StackMin()

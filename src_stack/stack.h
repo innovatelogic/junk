@@ -2,12 +2,14 @@
 
 #include "defexport.h"
 #include <vector>
+#include <assert.h>
+
 namespace junk
 {
     namespace stack
     {
         template<class T>
-        struct JUNK_EXPORT StackNode
+        struct STACK_EXPORT StackNode
         {
             T value;
             StackNode *next;
@@ -20,7 +22,7 @@ namespace junk
         };
 
         template<class T_VAL, class T_Node = StackNode<T_VAL> >
-        class JUNK_EXPORT Stack
+        class STACK_EXPORT Stack
         {
         public:
             typedef typename T_Node node_type;
