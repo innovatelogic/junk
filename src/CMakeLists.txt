@@ -29,7 +29,6 @@ set(SOURCE
 	btree_is_subtree_probe_a.h
 	btree_all_path_sum_probe_a.h
 	custom_stack.h
-	circular_list.h
     inner_template_class.h
 	inner_template_class.ipp	
 	permutations_array.h
@@ -94,7 +93,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_array_max_subarray.cpp
 					ut/ut_btree_all_path_sum_probe_a.cpp
 					ut/ut_linearize.cpp
-					ut/ut_circular_list.cpp
 					ut/ut_dijkstra_probe_a.cpp
 					ut/ut_binary_tree_traverse.cpp
 					ut/ut_peak_find.cpp

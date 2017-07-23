@@ -28,6 +28,7 @@ set(SOURCE
 	list_linearize.h
 	list_reverse_from_nth.h
 	lst.h
+	circular_list.h
 	file.cpp
 )
 
@@ -57,6 +58,7 @@ if (${ENABLE_TESTING})
 					ut/main.cpp
 					ut/ut_list_merge_sort_probe_a.cpp
 					ut/ut_list_reverse_from_nth.cpp
+					ut/ut_circular_list.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
