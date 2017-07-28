@@ -18,6 +18,7 @@ set(SOURCE
 	stack_min_track.h
 	set_of_stacks.h
 	two_stack_queue.h
+	stack_sort.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})

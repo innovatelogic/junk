@@ -1,5 +1,8 @@
 #pragma once
 
+#include <string>
+#include <vector>
+
 namespace junk
 {
 	namespace array_combinations_probe_a
