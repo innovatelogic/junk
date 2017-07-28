@@ -30,6 +30,8 @@ set(SOURCE
 	remove_duplicates_probe_b.h
 	permutate.h
 	array_combinations_probe_a.h
+	array_frequency_rand.h
+	array_reverse_inplace.h
 	arr.h
 	file.cpp
 )
@@ -69,7 +71,10 @@ if (${ENABLE_TESTING})
 					ut/ut_array_min_range_vacation_selector_probe_a.cpp
 					ut/ut_array_binary_search_probe_a.cpp
 					ut/ut_array_combinations_probe_a.cpp
+					ut/ut_array_frequency_rand.cpp
+					ut/ut_array_reverse_inplace.cpp
 					)
+
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
 

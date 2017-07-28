@@ -15,3 +15,5 @@
 #include "remove_duplicates_probe_b.h"
 #include "permutate.h"
 #include "array_combinations_probe_a.h"
+#include "array_frequency_rand.h"
+#include "array_reverse_inplace.h"

@@ -24,7 +24,6 @@ include_directories(${CMAKE_SOURCE_DIR}/src_graph)
 set(SOURCE 
 	oembase.h
 	defexport.h
-	array_frequency_rand.h
 	btree_is_subtree_probe_a.h
 	btree_all_path_sum_probe_a.h
 	custom_stack.h
@@ -42,8 +41,6 @@ set(SOURCE
 	strings.cpp
 	kevin_beakon_steps.h
 	find_max_path_in_tree.h
-	two_stack_queue.h
-	stack_sort.h
 	two_sum_in_array.h
 	hash_table.h
 	rotate_list_kth_element.h
@@ -56,7 +53,6 @@ set(SOURCE
 	get_all_split_strings.h
 	tree_is_balanced.h
 	tree_traverse.h
-	array_reverse_inplace.h
 	is_palindrome.h
 	queue_probe_a.h
 	queue_probe_b.h
@@ -87,7 +83,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
-					ut/ut_array_frequency_rand.cpp
 					ut/ut_array_max_subarray.cpp
 					ut/ut_btree_all_path_sum_probe_a.cpp
 					ut/ut_linearize.cpp
@@ -133,7 +128,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_get_all_split_strings.cpp
 					ut/ut_tree_is_balanced.cpp
 					ut/ut_tree_traverse.cpp
-					ut/ut_array_reverse_inplace.cpp
 					ut/ut_is_palindrome.cpp
 					ut/ut_list_c_probe_a.cpp
 					ut/ut_list_cpp_probe_a.cpp

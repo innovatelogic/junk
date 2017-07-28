@@ -1,6 +1,5 @@
 #pragma once
 
-#include "array_frequency_rand.h"
 #include "array_combinations_probe_a.h"
 #include "btree_is_subtree_probe_a.h"
 #include "btree_all_path_sum_probe_a.h"
@@ -26,7 +25,6 @@
 #include "get_all_split_strings.h"
 #include "tree_is_balanced.h"
 #include "tree_traverse.h"
-#include "array_reverse_inplace.h"
 #include "is_palindrome.h"
 #include "bst_tree_probe_a.h"
 #include "bst_tree_probe_b.h"
