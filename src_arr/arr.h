@@ -14,3 +14,4 @@
 #include "union_intersection_array_probe_a.h"
 #include "remove_duplicates_probe_b.h"
 #include "permutate.h"
+#include "array_combinations_probe_a.h"

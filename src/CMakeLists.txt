@@ -25,7 +25,6 @@ set(SOURCE
 	oembase.h
 	defexport.h
 	array_frequency_rand.h
-	array_combinations_probe_a.h
 	btree_is_subtree_probe_a.h
 	btree_all_path_sum_probe_a.h
 	custom_stack.h
@@ -89,7 +88,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
 					ut/ut_array_frequency_rand.cpp
-					ut/ut_array_combinations_probe_a.cpp
 					ut/ut_array_max_subarray.cpp
 					ut/ut_btree_all_path_sum_probe_a.cpp
 					ut/ut_linearize.cpp

@@ -29,6 +29,7 @@ set(SOURCE
 	union_intersection_array_probe_a.h
 	remove_duplicates_probe_b.h
 	permutate.h
+	array_combinations_probe_a.h
 	arr.h
 	file.cpp
 )
@@ -67,6 +68,7 @@ if (${ENABLE_TESTING})
 					ut/ut_histogram_max_rect_probe_a.cpp
 					ut/ut_array_min_range_vacation_selector_probe_a.cpp
 					ut/ut_array_binary_search_probe_a.cpp
+					ut/ut_array_combinations_probe_a.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

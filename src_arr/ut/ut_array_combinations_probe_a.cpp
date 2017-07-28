@@ -1,5 +1,5 @@
 
-#include "junk.h"
+#include "arr.h"
 #include <gtest/gtest.h>
 
 namespace junk
@@ -11,7 +11,7 @@ namespace junk
             return std::find(c.begin(), c.end(), str) != c.end();
         }
 
-        TEST(Combinations, StringCombinations_probe_a)
+        TEST(Array, StringCombinations_probe_a)
         {
             std::vector<std::string> out;
             
