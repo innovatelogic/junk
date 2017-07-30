@@ -16,9 +16,10 @@ set(SOURCE
 	segment_sphere_collision_2d.h
 	tcp_read_state_machine.h
 	triangle_point_2d.h
-	matrix_rotation.h
 	cpp.h
 	file.cpp
+	inner_template_class.h
+	inner_template_class.ipp
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -52,6 +53,14 @@ if (${ENABLE_TESTING})
 					ut/ut_tcp_read_state_machine.cpp
 					ut/ut_type_traits_is_same.cpp
 					ut/ut_empty.cpp
+					ut/ut_cpp_const_call.cpp
+					ut/ut_explicit_class_int.cpp
+					ut/ut_is_signed_char.cpp
+					ut/ut_numeric_limits_0xf.cpp
+					ut/ut_static_global_local_init.cpp
+					ut/ut_rvalue_instantiate.cpp
+					ut/ut_static_construct_exeption.cpp
+					ut/ut_rvalue_function_call.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

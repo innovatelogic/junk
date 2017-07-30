@@ -12,8 +12,12 @@ include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googlemock/include)
 set(SOURCE 
 	oembase.h
 	defexport.h
-	heap_lib.h
 	file.cpp
+	heap_lib.h
+	heap.h
+	heap_chart.h
+	heap_sort_probe_a.h
+	heap_min_probe_a.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -38,6 +42,10 @@ if (${ENABLE_TESTING})
 
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/main.cpp
+					ut/ut_heap.cpp
+					ut/ut_heap_chart.cpp
+					ut/ut_heap_sort_probe_a.cpp
+					ut/ut_heap_min_probe_a.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

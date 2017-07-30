@@ -6,8 +6,6 @@ add_definitions(-DUNICODE -D_UNICODE)
 add_definitions(-DLIB_COMPILE)
 #add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
 
-set( GRAPH ${PROJECT_NAME} )
-
 set(SOURCE 
 	oembase.h
 	defexport.h
@@ -45,6 +43,7 @@ if (${ENABLE_TESTING})
 					ut/ut_fib_probe_a.cpp
 					ut/ut_coin_change_probe_a.cpp
 					ut/ut_coin_change_dp_probe_b.cpp
+					ut/ut_egg_drop.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

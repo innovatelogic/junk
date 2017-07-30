@@ -18,3 +18,8 @@
 #include "array_frequency_rand.h"
 #include "array_reverse_inplace.h"
 #include "find_min_in_shifted_sorted_array.h"
+#include "is_palindrome.h"
+#include "two_sum_in_array.h"
+#include "peak_finding.h"
+#include "permutations_array.h"
+#include "permutate_probe_a.h"

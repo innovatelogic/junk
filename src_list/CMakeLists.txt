@@ -11,6 +11,7 @@ set( LIST ${PROJECT_NAME} )
 set(SOURCE 
 	oembase.h
 	defexport.h
+	file.cpp
 	list_merge_sort_probe_a.h
 	find_list_nth_from_end.h
 	custom_list.h
@@ -29,7 +30,7 @@ set(SOURCE
 	list_reverse_from_nth.h
 	lst.h
 	circular_list.h
-	file.cpp
+	rotate_list_kth_element.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -58,7 +59,18 @@ if (${ENABLE_TESTING})
 					ut/main.cpp
 					ut/ut_list_merge_sort_probe_a.cpp
 					ut/ut_list_reverse_from_nth.cpp
+					ut/ut_list_find_duplicates.cpp
+					ut/ut_list_to_int.cpp
+					ut/ut_list_is_palindrome.cpp
+					ut/ut_list_circular_find_start_loop.cpp
+					ut/ut_list_initializer.cpp
+					ut/ut_list_c_probe_a.cpp
+					ut/ut_list_cpp_probe_a.cpp
+					ut/ut_list_cpp_probe_b.cpp
+					ut/ut_list_cpp_probe_c.cpp
 					ut/ut_circular_list.cpp
+					ut/ut_rotate_list_kth_element.cpp
+					ut/ut_linearize.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

@@ -6,3 +6,4 @@
 #include "dlist_probe_a.h"
 #include "array_2d_bfs_path_find.h"
 #include "array_2d_dyn_bfs_path_find.h"
+#include "kevin_beakon_steps.h"

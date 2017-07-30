@@ -11,6 +11,7 @@ set( GRAPH ${PROJECT_NAME} )
 set(SOURCE 
 	oembase.h
 	defexport.h
+	file.cpp
 	graph.h
 	bfs_search_probe_a.h
 	dijkstra_probe_a.h
@@ -18,7 +19,7 @@ set(SOURCE
 	dlist_probe_a.h
 	array_2d_bfs_path_find.h
 	array_2d_dyn_bfs_path_find.h
-	file.cpp
+	kevin_beakon_steps.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -30,8 +31,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 					LIBRARY_OUTPUT_DIRECTORY_DEBUG ${G_BIN_DIR}
 					RUNTIME_OUTPUT_DIRECTORY_RELEASE ${G_BIN_DIR}
 					LIBRARY_OUTPUT_DIRECTORY_RELEASE ${G_BIN_DIR}
-					)			
-
+					)
 
 #-------------------------------------------------------------------------------		
 # setup testing
@@ -50,6 +50,9 @@ if (${ENABLE_TESTING})
 					ut/ut_dlist_probe_a.cpp
 					ut/ut_array_2d_bfs_path_find.cpp
 					ut/ut_array_2d_dyn_path_find.cpp
+					ut/ut_dijkstra_probe_a.cpp
+					ut/ut_graph_bfs_search.cpp
+					ut/ut_kevin_beakon_steps.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

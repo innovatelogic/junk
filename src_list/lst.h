@@ -15,3 +15,4 @@
 #include "list_rearrange_by_kth_element.h"
 #include "list_reverse_from_nth.h"
 #include "circular_list.h"
+#include "rotate_list_kth_element.h"

@@ -16,6 +16,7 @@ set( ARR ${PROJECT_NAME} )
 set(SOURCE 
 	oembase.h
 	defexport.h
+	file.cpp
 	bin_search_probe_a.h
 	max_subarray_probe_a.h
 	rev_int_probe_a.h
@@ -34,7 +35,11 @@ set(SOURCE
 	array_reverse_inplace.h
 	find_min_in_shifted_sorted_array.h
 	arr.h
-	file.cpp
+	is_palindrome.h
+	two_sum_in_array.h
+	peak_finding.h
+	permutations_array.h
+	permutate_probe_a.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -75,6 +80,13 @@ if (${ENABLE_TESTING})
 					ut/ut_array_frequency_rand.cpp
 					ut/ut_array_reverse_inplace.cpp
 					ut/ut_find_min_in_shifted_sorted_array.cpp
+					ut/ut_is_palindrome.cpp
+					ut/ut_two_sum_in_array.cpp
+					ut/ut_array_max_subarray.cpp
+					ut/ut_peak_find.cpp
+					ut/ut_permutate_probe_a.cpp
+					ut/ut_partitions_of_set.cpp
+					ut/ut_permutate_str.cpp
 					)
 
 

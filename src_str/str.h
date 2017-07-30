@@ -8,3 +8,5 @@
 #include "check_braces.h"
 #include "strings.h"
 #include "get_all_split_strings.h"
+#include "combinations.h"
+#include "subsets_str_sum_probe_a.h"
