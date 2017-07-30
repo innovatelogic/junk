@@ -35,12 +35,11 @@
 #endif
 
 #if (defined(ES_WINDOWS))
-#ifdef COMMON_LIB_COMPILE
-#define COMMON_BASE_EXPORT _declspec(dllexport)
-#define EXTERN_COMMON_BASE_EXPORT   extern COMMON_BASE_EXPORT
-
+#ifdef LIB_COMPILE
+#define __STR_EXPORT _declspec(dllexport)
+#define EXTERN_STR_EXPORT   extern __STR_EXPORT
 #else
-#define COMMON_BASE_EXPORT
+#define __STR_EXPORT _declspec(dllimport)
 #endif
 #endif
 

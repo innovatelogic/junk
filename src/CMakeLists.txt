@@ -24,8 +24,6 @@ include_directories(${CMAKE_SOURCE_DIR}/src_graph)
 set(SOURCE 
 	oembase.h
 	defexport.h
-	btree_is_subtree_probe_a.h
-	btree_all_path_sum_probe_a.h
 	custom_stack.h
     inner_template_class.h
 	inner_template_class.ipp	
@@ -37,8 +35,6 @@ set(SOURCE
 	heap_sort_probe_a.h
 	heap_min_probe_a.h
 	find_min_in_shifted_sorted_array.h
-	strings.h
-	strings.cpp
 	kevin_beakon_steps.h
 	find_max_path_in_tree.h
 	two_sum_in_array.h
@@ -51,8 +47,6 @@ set(SOURCE
 	telephone_numbers_nonreq.h
 	step_ladder.h
 	get_all_split_strings.h
-	tree_is_balanced.h
-	tree_traverse.h
 	is_palindrome.h
 	queue_probe_a.h
 	queue_probe_b.h
@@ -84,17 +78,14 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/ut_test.cpp
 					ut/ut_array_max_subarray.cpp
-					ut/ut_btree_all_path_sum_probe_a.cpp
 					ut/ut_linearize.cpp
 					ut/ut_dijkstra_probe_a.cpp
-					ut/ut_binary_tree_traverse.cpp
 					ut/ut_peak_find.cpp
 					ut/ut_heap.cpp
 					ut/ut_heap_sort_probe_a.cpp
 					ut/ut_find_min_in_shifted_sorted_array.cpp
 					ut/ut_graph_bfs_search.cpp
 					ut/ut_is_unique_chars_in_string.cpp
-					ut/ut_strings.cpp
 					ut/ut_string_convert_probe_a.cpp
 					ut/ut_string_bin_frac_to_dec.cpp
 					ut/ut_matrix_rotation.cpp
@@ -115,7 +106,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_two_sum_in_array.cpp
 					ut/ut_numeric_limits_0xf.cpp
 					ut/ut_static_construct_exeption.cpp
-					ut/ut_type_traits_is_same.cpp
 					ut/ut_rvalue_function_call.cpp
 					ut/ut_hash_table.cpp
 					ut/ut_heap_chart.cpp
@@ -126,8 +116,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_egg_drop.cpp
 					ut/ut_step_ladder.cpp
 					ut/ut_get_all_split_strings.cpp
-					ut/ut_tree_is_balanced.cpp
-					ut/ut_tree_traverse.cpp
 					ut/ut_is_palindrome.cpp
 					ut/ut_list_c_probe_a.cpp
 					ut/ut_list_cpp_probe_a.cpp
@@ -137,7 +125,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_subsets_str_sum_probe_a.cpp
 					ut/ut_queue_probe_a.cpp
 					ut/ut_queue_probe_b.cpp
-					ut/ut_btree_is_subtree_probe_a.cpp
 					ut/main.cpp
 					)
 

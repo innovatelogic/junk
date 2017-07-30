@@ -13,6 +13,11 @@ set(SOURCE
 	defexport.h
 	trees.h
 	file.cpp
+	binary_tree.h
+	tree_is_balanced.h
+	tree_traverse.h
+	btree_is_subtree_probe_a.h
+	btree_all_path_sum_probe_a.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -39,6 +44,11 @@ if (${ENABLE_TESTING})
 	
 	add_executable( ${PROJECT_TEST_NAME} 
 					ut/main.cpp
+					ut/ut_tree_is_balanced.cpp
+					ut/ut_binary_tree_traverse.cpp
+					ut/ut_tree_traverse.cpp
+					ut/ut_btree_all_path_sum_probe_a.cpp
+					ut/ut_btree_is_subtree_probe_a.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

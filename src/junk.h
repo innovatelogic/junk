@@ -1,14 +1,10 @@
 #pragma once
 
 #include "array_combinations_probe_a.h"
-#include "btree_is_subtree_probe_a.h"
-#include "btree_all_path_sum_probe_a.h"
 #include "inner_template_class.h"
 #include "permutations_array.h"
 #include "permutate_probe_a.h"
-#include "binary_tree.h"
 #include "peak_finding.h"
-#include "strings.h"
 #include "find_min_in_shifted_sorted_array.h"
 #include "kevin_beakon_steps.h"
 #include "find_max_path_in_tree.h"
@@ -23,8 +19,6 @@
 #include "telephone_numbers_nonreq.h"
 #include "step_ladder.h"
 #include "get_all_split_strings.h"
-#include "tree_is_balanced.h"
-#include "tree_traverse.h"
 #include "is_palindrome.h"
 #include "bst_tree_probe_a.h"
 #include "bst_tree_probe_b.h"

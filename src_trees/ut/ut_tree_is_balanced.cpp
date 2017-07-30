@@ -1,11 +1,11 @@
-#include "junk.h"
+#include "../trees.h"
 #include <gtest/gtest.h>
 
 namespace junk
 {
     namespace tree_is_balanced
     {
-        TEST(BTree, IsBalanced_StatusFalse)
+        TEST(Trees, IsBalanced_StatusFalse)
         {
             Node *root = new Node();
             root->left = new Node();
@@ -23,7 +23,7 @@ namespace junk
             delete root;
         }
 
-        TEST(BTree, IsBalanced_StatusTrue)
+        TEST(Trees, IsBalanced_StatusTrue)
         {
             Node *root = new Node();
             root->left = new Node();

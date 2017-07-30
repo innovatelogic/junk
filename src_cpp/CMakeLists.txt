@@ -50,6 +50,7 @@ if (${ENABLE_TESTING})
 					ut/ut_threadpool_probe_a.cpp
 					ut/ut_segment_sphere_collision_2d.cpp
 					ut/ut_tcp_read_state_machine.cpp
+					ut/ut_type_traits_is_same.cpp
 					ut/ut_empty.cpp
 					)
 
