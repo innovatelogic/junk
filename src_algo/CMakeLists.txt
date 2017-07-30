@@ -42,9 +42,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 #if (${ENABLE_TESTING})
 	include_directories(${CMAKE_SOURCE_DIR}/utils/googletest/googletest/include)
 
-	#enable_testing()
-
-	set( PROJECT_TEST_NAME Tests_${PROJECT_NAME} )
+	set( PROJECT_TEST_NAME unittest_${PROJECT_NAME} )
 	string( TOUPPER ${PROJECT_NAME} PROJECT_NAME_U )
 
 	add_executable( ${PROJECT_TEST_NAME} 

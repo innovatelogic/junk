@@ -18,7 +18,19 @@ TEST(TestMath, DummySubstractTwoDigit)
     int i = 1 - 2;
 	EXPECT_EQ(i, -1);
 }
+//----------------------------------------------------------------------------------------------
+TEST(TestMath, DummyAddTwoDigit2)
+{
+	int i = 1 + 2;
+	EXPECT_EQ(i, 3);
+}
 
+//----------------------------------------------------------------------------------------------
+TEST(TestMath, DummySubstractTwoDigit3)
+{
+    int i = 1 - 2;
+	EXPECT_EQ(i, -1);
+}
 namespace cpptest
 {
     class A
