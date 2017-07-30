@@ -18,6 +18,7 @@ set(SOURCE
 	tree_traverse.h
 	btree_is_subtree_probe_a.h
 	btree_all_path_sum_probe_a.h
+	find_max_path_in_tree.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -49,6 +50,7 @@ if (${ENABLE_TESTING})
 					ut/ut_tree_traverse.cpp
 					ut/ut_btree_all_path_sum_probe_a.cpp
 					ut/ut_btree_is_subtree_probe_a.cpp
+					ut/ut_find_max_path_in_tree.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

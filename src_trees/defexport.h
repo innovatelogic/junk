@@ -4,8 +4,8 @@
 
 #if (defined(ES_WINDOWS))
 #ifdef TREES_LIB_COMPILE
-#define DESIGN_EXPORT _declspec(dllexport)
-#define EXTERN_DESIGN_EXPORT   extern JUNK_EXPORT
+#define TREES_EXPORT _declspec(dllexport)
+#define EXTERN_TREES_EXPORT   extern JUNK_EXPORT
 #else
 #define DESIGN_EXPORT
 #endif

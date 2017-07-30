@@ -32,6 +32,7 @@ set(SOURCE
 	array_combinations_probe_a.h
 	array_frequency_rand.h
 	array_reverse_inplace.h
+	find_min_in_shifted_sorted_array.h
 	arr.h
 	file.cpp
 )
@@ -73,6 +74,7 @@ if (${ENABLE_TESTING})
 					ut/ut_array_combinations_probe_a.cpp
 					ut/ut_array_frequency_rand.cpp
 					ut/ut_array_reverse_inplace.cpp
+					ut/ut_find_min_in_shifted_sorted_array.cpp
 					)
 
 

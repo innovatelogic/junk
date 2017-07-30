@@ -17,3 +17,4 @@
 #include "array_combinations_probe_a.h"
 #include "array_frequency_rand.h"
 #include "array_reverse_inplace.h"
+#include "find_min_in_shifted_sorted_array.h"

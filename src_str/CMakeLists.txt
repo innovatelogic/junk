@@ -11,6 +11,7 @@ set( STR ${PROJECT_NAME} )
 set(SOURCE 
 	oembase.h
 	defexport.h
+	file.cpp
 	str.h
 	string_convert_probe_a.h
 	string_bin_frac_to_dec.h
@@ -21,7 +22,7 @@ set(SOURCE
 	check_braces.h
 	strings.h
 	strings.cpp
-	file.cpp
+	get_all_split_strings.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -52,6 +53,7 @@ if (${ENABLE_TESTING})
 					ut/ut_shortest_substring_problem.cpp
 					ut/ut_braces_check.cpp
 					ut/ut_strings.cpp
+					ut/ut_get_all_split_strings.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

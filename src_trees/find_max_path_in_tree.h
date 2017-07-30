@@ -1,12 +1,13 @@
 #include "defexport.h"
 #include <vector>
 #include <string>
+#include <list>
 
 namespace junk
 {
     namespace dfs_tree
     {
-        struct JUNK_EXPORT ValueNode
+        struct TREES_EXPORT ValueNode
         {
             std::string *name;
             size_t value;
@@ -27,7 +28,7 @@ namespace junk
         };
 
         template<class T = ValueNode>
-        class JUNK_EXPORT TreeDFS
+        class TREES_EXPORT TreeDFS
         {
         public:
             TreeDFS(T *root)

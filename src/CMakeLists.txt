@@ -24,7 +24,6 @@ include_directories(${CMAKE_SOURCE_DIR}/src_graph)
 set(SOURCE 
 	oembase.h
 	defexport.h
-	custom_stack.h
     inner_template_class.h
 	inner_template_class.ipp	
 	permutations_array.h
@@ -34,9 +33,7 @@ set(SOURCE
 	heap_chart.h
 	heap_sort_probe_a.h
 	heap_min_probe_a.h
-	find_min_in_shifted_sorted_array.h
 	kevin_beakon_steps.h
-	find_max_path_in_tree.h
 	two_sum_in_array.h
 	hash_table.h
 	rotate_list_kth_element.h
@@ -46,7 +43,6 @@ set(SOURCE
 	telephone_numbers.h
 	telephone_numbers_nonreq.h
 	step_ladder.h
-	get_all_split_strings.h
 	is_palindrome.h
 	queue_probe_a.h
 	queue_probe_b.h
@@ -83,14 +79,12 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_peak_find.cpp
 					ut/ut_heap.cpp
 					ut/ut_heap_sort_probe_a.cpp
-					ut/ut_find_min_in_shifted_sorted_array.cpp
 					ut/ut_graph_bfs_search.cpp
 					ut/ut_is_unique_chars_in_string.cpp
 					ut/ut_string_convert_probe_a.cpp
 					ut/ut_string_bin_frac_to_dec.cpp
 					ut/ut_matrix_rotation.cpp
 					ut/ut_kevin_beakon_steps.cpp
-					ut/ut_find_max_path_in_tree.cpp
 					ut/ut_list_find_duplicates.cpp
 					ut/ut_list_to_int.cpp
 					ut/ut_list_is_palindrome.cpp
@@ -115,7 +109,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_telephone_number.cpp
 					ut/ut_egg_drop.cpp
 					ut/ut_step_ladder.cpp
-					ut/ut_get_all_split_strings.cpp
 					ut/ut_is_palindrome.cpp
 					ut/ut_list_c_probe_a.cpp
 					ut/ut_list_cpp_probe_a.cpp

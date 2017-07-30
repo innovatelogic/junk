@@ -19,6 +19,7 @@ set(SOURCE
 	set_of_stacks.h
 	two_stack_queue.h
 	stack_sort.h
+	custom_stack.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})

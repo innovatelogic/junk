@@ -3,7 +3,7 @@
 #include "defexport.h"
 
 template<class T>
-class JUNK_EXPORT StackElement
+class STACK_EXPORT StackElement
 {
 public:
     StackElement(const T &data)
@@ -27,7 +27,7 @@ private:
 //
 //----------------------------------------------------------------------------------------------
 template<class T>
-class JUNK_EXPORT Stack
+class STACK_EXPORT Stack
 {
 public:
     Stack()
