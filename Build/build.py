@@ -75,7 +75,7 @@ def main():
 		elif args.goal == 'tools_build':
 			print("begin")
 			junk_deps.generate()
-			#junk_deps.build('Debug')
+			junk_deps.build('Debug')
 			junk_deps.build('Release')
 			junk.generate()
 			junk.build('Debug')
