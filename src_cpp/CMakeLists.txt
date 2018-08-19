@@ -20,6 +20,7 @@ set(SOURCE
 	file.cpp
 	inner_template_class.h
 	inner_template_class.ipp
+	class_inheritance.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -61,6 +62,7 @@ if (${ENABLE_TESTING})
 					ut/ut_rvalue_instantiate.cpp
 					ut/ut_static_construct_exeption.cpp
 					ut/ut_rvalue_function_call.cpp
+					ut/ut_class_inheritance.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
