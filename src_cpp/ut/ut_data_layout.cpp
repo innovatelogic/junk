@@ -266,6 +266,39 @@ namespace junk
 			ptr->method1();
 			ptr->method2(100);
 
+			//delete ptr;
+		}
+
+		//----------------------------------------------------------------------------------
+		struct AA
+		{
+			AA()
+			{
+				std::cout << *(int**)this << std::endl;
+				foo(); // Invalid call
+			}
+
+			virtual ~AA() {}
+
+			virtual void foo() {}
+		};
+
+		struct BB : public AA
+		{
+			BB()
+			{
+				std::cout << *(int**)this << std::endl;
+				foo(); // Invalid call
+			}
+
+			~BB() {}
+
+			void foo() override {}
+		};
+
+		TEST(DataLayout, Test8)
+		{
+			AA *ptr = new BB();
 			delete ptr;
 		}
     }
