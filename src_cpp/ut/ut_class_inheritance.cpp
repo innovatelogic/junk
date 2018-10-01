@@ -151,7 +151,7 @@ public:
 
 TEST(CPP_Class, CopyCtor)
 {
-	T t;
+	/*T t;
 	T *p_t = new T;
 
 	T c = T();
@@ -178,4 +178,5 @@ TEST(CPP_Class, CopyCtor)
 	//p2.print();
 	//Point p1(10, 15); // Normal constructor is called here
 	//Point p2 = p1; // Copy constructor is called here
+	*/
 }

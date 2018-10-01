@@ -229,7 +229,7 @@ namespace junk
 
 		TEST(DataLayout, Test7)
 		{
-			DerivedC *ptr = new DerivedC;
+		/*	DerivedC *ptr = new DerivedC;
 
 			int* vptr = *(int**)ptr;
 
@@ -267,6 +267,7 @@ namespace junk
 			ptr->method2(100);
 
 			//delete ptr;
+			*/
 		}
 
 		//----------------------------------------------------------------------------------
@@ -275,12 +276,18 @@ namespace junk
 			AA()
 			{
 				std::cout << *(int**)this << std::endl;
-				foo(); // Invalid call
+				//foo(); // Invalid call
 			}
 
-			virtual ~AA() {}
+			/*virtual*/ ~AA()
+			{
+				std::cout << *(int**)this << std::endl;
+			//	foo(); // Invalid call
+			}
 
-			virtual void foo() {}
+			//virtual void foo()
+			//{
+			//}
 		};
 
 		struct BB : public AA
@@ -288,18 +295,24 @@ namespace junk
 			BB()
 			{
 				std::cout << *(int**)this << std::endl;
-				foo(); // Invalid call
+				//foo(); // Invalid call
 			}
 
-			~BB() {}
+			~BB() 
+			{
+				std::cout << *(int**)this << std::endl;
+				//foo(); // Invalid call
+			}
 
-			void foo() override {}
+			//void foo() override {}
 		};
 
 		TEST(DataLayout, Test8)
 		{
 			AA *ptr = new BB();
 			delete ptr;
+
+			//BB a;
 		}
     }
 }
