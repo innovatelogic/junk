@@ -3,6 +3,7 @@
 .pyc
 *.log
 /junk_out_x64
+/build
 
 #tmp
 .tmp
