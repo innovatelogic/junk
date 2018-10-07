@@ -1,0 +1,8 @@
+# ignorede files
+.vscode/*
+*.log
+/junk_out_x64
+
+#tmp
+.tmp
+
