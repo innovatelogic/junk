@@ -84,8 +84,8 @@ namespace junk
 
             if (*str && with)
             {
-                int len_with = strlen(with);
-                int str_len = strlen(*str);
+                size_t len_with = strlen(with);
+                size_t str_len = strlen(*str);
 
                 int count = 0;
                 for (int i = 0; i < str_len; ++i) {

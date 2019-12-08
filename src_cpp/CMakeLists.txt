@@ -63,6 +63,7 @@ if (${ENABLE_TESTING})
 					ut/ut_static_construct_exeption.cpp
 					ut/ut_rvalue_function_call.cpp
 					ut/ut_class_inheritance.cpp
+					ut/ut_data_layout.cpp
 					)
 
 	target_link_libraries(${PROJECT_TEST_NAME} ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})

@@ -1,0 +1,13 @@
+# ignorede files
+.vscode/*
+.pyc
+*.log
+/junk_out_x64
+/build
+
+#tmp
+.tmp
+
+Build/scripts/__init__.pyc
+Build/scripts/cmake.pyc
+Build/scripts/res_dep.pyc

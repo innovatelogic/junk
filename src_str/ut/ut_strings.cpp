@@ -39,7 +39,7 @@ namespace junk
             {
                 char *str = "This is test string";
 
-                int len = strlen(str);
+                size_t len = strlen(str);
                 char *str2 = new char[len + 1]; // +1 null terminator
                 strncpy_s(str2, len + 1, str, len);
 
