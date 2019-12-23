@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <type_traits>
+#include <atomic>
 
 namespace junk
 {
@@ -52,5 +53,19 @@ namespace junk
                 EXPECT_FALSE(e);
             }();*/
         }
+
+		TEST(Cpp, Atomic_Exchange_Weak)
+		{
+			bool expected = false;
+
+			std::atomic<bool> b = ATOMIC_VAR_INIT(true);
+
+			bool res;
+			do {
+				res = b.compare_exchange_weak(expected, true);
+			}
+			while (!res /*&& !expected*/);
+
+		}
     }
 }
