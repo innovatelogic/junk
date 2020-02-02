@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cassert>
 #include <vector>
+#include <algorithm>
 #include <map>
 
 // cl /EHsc mycode.cpp
@@ -37,14 +38,14 @@ istream& operator >> (istream& is, Query& q)
 
         std::string n;
         int stop_count;
-        in >> q.bus >> stop_count;
+        cin >> q.bus >> stop_count;
 
         q.stops.resize(stop_count);
 
         int i = 0;
         while (stop_count)
         {
-            in >>q.stops[i];
+            cin >> q.stops[i];
 
             ++i;
             --stop_count;
@@ -65,40 +66,92 @@ istream& operator >> (istream& is, Query& q)
         q.type = QueryType::AllBuses;
     }
 
-  return is;
+    return is;
 }
 
 struct BusesForStopResponse
 {
-  // ÐÐ°Ð¿Ð¾Ð»Ð½Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»ÑÐ¼Ð¸ ÑÑ‚Ñƒ ÑÑ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€Ñƒ
+    t_order_busstops t_ordered;
 };
 
 ostream& operator << (ostream& os, const BusesForStopResponse& r)
 {
-  // Ð ÐµÐ°Ð»Ð¸Ð·ÑƒÐ¹Ñ‚Ðµ ÑÑ‚Ñƒ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ
-  return os;
+    if (r.t_ordered.empty())
+    {
+        std::cout << "No stop" << std::endl;
+    }
+    else
+    {
+        for (const auto &i : r.t_ordered)
+        {
+            std::cout << i << " ";
+        }
+        std::cout << std::endl;
+    }
+    return os;
 }
 
 struct StopsForBusResponse 
 {
-  // ÐÐ°Ð¿Ð¾Ð»Ð½Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»ÑÐ¼Ð¸ ÑÑ‚Ñƒ ÑÑ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€Ñƒ
+    std::vector<std::pair<std::string, std::vector<std::string>>> stop_table;
 };
 
 ostream& operator << (ostream& os, const StopsForBusResponse& r) 
 {
-  // Ð ÐµÐ°Ð»Ð¸Ð·ÑƒÐ¹Ñ‚Ðµ ÑÑ‚Ñƒ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ
-  return os;
+    if (r.stop_table.empty())
+    {
+        os << "No bus" << std::endl;
+    }
+    else
+    {
+        for (const auto &it : r.stop_table)
+        {
+            os << "Stop " << it.first << ": ";
+
+            if (it.second.empty())
+            {
+                os << "no interchange";
+            }
+            else
+            {
+                for (const auto &it_bus : it.second)
+                {
+                    os << it_bus << " ";
+                }
+            }
+            os << std::endl;
+        }
+    }
+
+    return os;
 }
 
 struct AllBusesResponse 
 {
-  // ÐÐ°Ð¿Ð¾Ð»Ð½Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»ÑÐ¼Ð¸ ÑÑ‚Ñƒ ÑÑ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€Ñƒ
+    t_busstops busstops;
 };
 
 ostream& operator << (ostream& os, const AllBusesResponse& r) 
 {
-  // Ð ÐµÐ°Ð»Ð¸Ð·ÑƒÐ¹Ñ‚Ðµ ÑÑ‚Ñƒ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ
-  return os;
+    if (r.busstops.empty())
+    {
+        os << "No buses" << std::endl;
+    }
+    else
+    {
+        for (auto iter : r.busstops)
+        {
+            os << "Bus " << iter.first << ": ";
+
+            for (const auto &it_bus : iter.second)
+            {
+                os << it_bus << " ";
+            }
+
+            os << std::endl;
+        }
+    }
+    return os;
 }
 
 class BusManager
@@ -106,22 +159,57 @@ class BusManager
 public:
     void AddBus(const string& bus, const vector<string>& stops) 
     {
-    // Ð ÐµÐ°Ð»Ð¸Ð·ÑƒÐ¹Ñ‚Ðµ ÑÑ‚Ð¾Ñ‚ Ð¼ÐµÑ‚Ð¾Ð´
+        const size_t stop_count = stops.size();
+
+        busstops[bus] = stops;
+        t_ordered.push_back(bus);
     }
 
     BusesForStopResponse GetBusesForStop(const string& stop) const 
     {
-    // Ð ÐµÐ°Ð»Ð¸Ð·ÑƒÐ¹Ñ‚Ðµ ÑÑ‚Ð¾Ñ‚ Ð¼ÐµÑ‚Ð¾Ð´
+        std::vector<std::string> res;
+
+        for (const auto &iter : t_ordered)
+        {
+            const auto iter_find = std::find(begin(busstops.at(iter)), end(busstops.at(iter)), stop);
+            if (iter_find != busstops.at(iter).end())
+            {
+                res.push_back(iter);
+            }
+        }
+        return {res};
     }
 
     StopsForBusResponse GetStopsForBus(const string& bus) const 
     {
-    // Ð ÐµÐ°Ð»Ð¸Ð·ÑƒÐ¹Ñ‚Ðµ ÑÑ‚Ð¾Ñ‚ Ð¼ÐµÑ‚Ð¾Ð´
+        std::vector<std::pair<std::string, std::vector<std::string>>> stop_table;
+
+        if (busstops.count(bus) == 0){
+            return {};
+        }
+
+        for (const auto &stop : busstops.at(bus))
+        {
+            stop_table.push_back(std::make_pair(stop, std::vector<std::string>()));
+
+            for (const auto &bus2 : t_ordered)
+            {
+                if (bus2 != bus)
+                {
+                    if (std::find(begin(busstops.at(bus2)), end(busstops.at(bus2)), stop) != busstops.at(bus2).end())
+                    {
+                        stop_table[stop_table.size() - 1].second.push_back(bus2);
+                    }
+                }
+            }
+        }
+
+        return {stop_table};
     }
 
     AllBusesResponse GetAllBuses() const 
     {
-    // Ð ÐµÐ°Ð»Ð¸Ð·ÑƒÐ¹Ñ‚Ðµ ÑÑ‚Ð¾Ñ‚ Ð¼ÐµÑ‚Ð¾Ð´
+       return {busstops};
     }
 
     t_busstops busstops;
@@ -138,21 +226,23 @@ int main()
   cin >> query_count;
 
   BusManager bm;
-  for (int i = 0; i < query_count; ++i) {
+  for (int i = 0; i < query_count; ++i) 
+  {
     cin >> q;
-    switch (q.type) {
+    switch (q.type) 
+    {
     case QueryType::NewBus:
-      bm.AddBus(q.bus, q.stops);
-      break;
+        bm.AddBus(q.bus, q.stops);
+        break;
     case QueryType::BusesForStop:
-      cout << bm.GetBusesForStop(q.stop) << endl;
-      break;
+        cout << bm.GetBusesForStop(q.stop) << endl;
+        break;
     case QueryType::StopsForBus:
-      cout << bm.GetStopsForBus(q.bus) << endl;
-      break;
+        cout << bm.GetStopsForBus(q.bus) << endl;
+        break;
     case QueryType::AllBuses:
-      cout << bm.GetAllBuses() << endl;
-      break;
+        cout << bm.GetAllBuses() << endl;
+        break;
     }
   }
 
