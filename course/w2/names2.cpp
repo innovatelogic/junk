@@ -2,100 +2,51 @@
 #include <map>
 #include <string>
 #include <vector>
-#include <algorithm>
-
-struct name_change
-{
-    std::string first_name;
-    std::string last_name;
-};
+#include <initializer_list>
 
 class Person
 {
 public:
+
     Person()
-    : m_birth_year(0)
-    {
-
-    }
-
-    Person(const std::string &first, const std::string &second, int year)
-    {
-        m_name_change[year].first_name = first;
-        m_name_change[year].last_name = second;
-
-        m_name_changes_sorted.push_back({year, {first, second}});
-
-        sort();
-
-        m_birth_year = year;
-    }
+    {}
 
     void ChangeFirstName(int year, const std::string& first_name)
     {
-        if (year >= m_birth_year) 
-        {
-            auto iter_find = std::lower_bound(std::begin(m_name_changes_sorted), std::end(m_name_changes_sorted), year,
-                                        [](const auto &lhs, int y) { return lhs.first < y; });
-
-            if (iter_find == std::end(m_name_changes_sorted) || iter_find->first != year)
-            {
-                m_name_changes_sorted.push_back({year, {first_name, ""}});
-                sort();
-            }
-            else
-            {
-                iter_find->second.first_name = first_name;
-            }
-
-            m_name_change[year].first_name = first_name;
-        }
+        m_first_name_change[year] = first_name;
     }
     
     void ChangeLastName(int year, const std::string& last_name)
     {
-        if (year >= m_birth_year)
-        {
-            auto iter_find = std::lower_bound(std::begin(m_name_changes_sorted), std::end(m_name_changes_sorted), year,
-                                       [](const auto &lhs, int y) { return lhs.first < y; });
+        m_second_name_change[year] = last_name;
+    }
 
-            if (iter_find == std::end(m_name_changes_sorted) || iter_find->first != year)
-            {
-                m_name_changes_sorted.push_back({year, {"", last_name}});
-                sort();
-            }
-            else
-            {
-                iter_find->second.last_name = last_name;
-            }
+    std::string GetName(const std::map<int, std::string> &cont, int year) const
+    {
+        std::string out;
 
-            m_name_change[year].last_name = last_name;
+        if (cont.empty()){
+            return out;
         }
+
+        auto low = cont.upper_bound(year);
+        if (low != cont.begin()){
+            low = std::prev(low);
+        }
+
+        if (low->first <= year){
+            out = low->second;
+        }
+
+        return out;
     }
 
     std::string GetFullName(int year) const
     {
         std::string out;
 
-        std::string first_name;
-        std::string last_name;
-
-        for (const auto &it : m_name_change)
-        {
-            if (it.first <= year)
-            {
-                if (!it.second.first_name.empty()){
-                    first_name = it.second.first_name;
-                }
-
-                if (!it.second.last_name.empty()){
-                    last_name = it.second.last_name;
-                }
-            }
-            else{
-                break;
-            }
-        }
+        std::string first_name = GetName(m_first_name_change, year);
+        std::string last_name = GetName(m_second_name_change, year);
 
         if (first_name.empty() && last_name.empty()){
            out = "Incognito";
@@ -113,121 +64,39 @@ public:
         return out;
     }
 
-    std::string GetFullNameWithHistory(int year) const
-    {
-        std::string out;
-
-        std::string first_name;
-        std::string last_name;
-
-        std::vector<std::string> h_first_name, h_last_name;
-
-
-        if (!m_name_changes_sorted.empty())
-        {
-            auto low = std::lower_bound(std::begin(m_name_changes_sorted), std::end(m_name_changes_sorted), year,
-                                        [](const auto &lhs, int y) { return lhs.first < y; });
-
-            if (low == std::end(m_name_changes_sorted)) {
-                low = std::prev(low);
-            }
-
-            do
-            {
-                if (first_name.empty()){
-                    first_name = low->second.first_name;
-                }
-
-                if (last_name.empty()){
-                    last_name = low->second.last_name;
-                }
-
-
-                if (!first_name.empty() && !last_name.empty()){
-                    break;
-                }
-                low = std::prev(low);
-            } while (low != std::begin(m_name_changes_sorted));
-
-            if (first_name.empty()){
-                first_name = low->second.first_name;
-            }
-
-            if (last_name.empty()){
-                last_name = low->second.last_name;
-            }
-        }
-
-        if (first_name.empty() && last_name.empty()){
-           out = "No person";
-        }
-        else if (first_name.empty() && !last_name.empty())
-        {
-            std::string h_l = print_history(h_last_name);
-            out = last_name + (!h_l.empty() ? " " + h_l : "") + " with unknown first name";
-        }
-        else if (!first_name.empty() && last_name.empty())
-        {
-            std::string h_f = print_history(h_first_name);
-            out = first_name + (!h_f.empty() ? " " + h_f : "") + " with unknown last name";
-        }
-        else {
-            std::string h_l = print_history(h_last_name);
-            std::string h_f = print_history(h_first_name);
-
-            out = first_name + (!h_f.empty() ? (" " + h_f + " ") : " ")  + last_name + (!h_l.empty() ? " " + h_l : "");
-        }
-
-        return out;
-    }
-
 private:
-    std::string print_history(const std::vector<std::string> &h) const
-    {
-        std::string out;
-
-        const size_t sz = h.size() - 1;
-        const size_t last = sz - 1;
-        for (int i = last; i >= 0; --i)
-        {
-            out += h[i] + (i != 0 ? ", " : "");
-        }
-
-        return !out.empty() ? (std::string("(") + out + ")") : "";
-    }
-protected:
-    void sort()
-    {
-        std::sort(std::begin(m_name_changes_sorted), std::end(m_name_changes_sorted),
-        [](const auto &lhs, const auto &rhs)
-        {
-            return lhs.first < rhs.first;
-        });
-    }
-private:
-    std::map<int, name_change> m_name_change;
-    std::vector<std::pair<int, name_change>> m_name_changes_sorted;
-    int m_birth_year;
+    std::map<int, std::string> m_first_name_change;
+    std::map<int, std::string> m_second_name_change;
 };
-/*
+
+
 int main()
 {
+    //    Incognito
+    //    Polina with unknown last name
+    //    Polina Sergeeva
+    //    Polina Sergeeva
+    //    Appolinaria Sergeeva
+    //    Polina Volkova
+    //    Appolinaria Volkova
+
     Person person;
-  
+
     person.ChangeFirstName(1965, "Polina");
     person.ChangeLastName(1967, "Sergeeva");
+
     for (int year : {1900, 1965, 1990}) {
-    std::cout << person.GetFullName(year) << std::endl;
+        std::cout << person.GetFullName(year) << std::endl;
     }
 
     person.ChangeFirstName(1970, "Appolinaria");
     for (int year : {1969, 1970}) {
-    std::cout << person.GetFullName(year) << std::endl;
+        std::cout << person.GetFullName(year) << std::endl;
     }
 
     person.ChangeLastName(1968, "Volkova");
     for (int year : {1969, 1970}) {
-    std::cout << person.GetFullName(year) << std::endl;
+        std::cout << person.GetFullName(year) << std::endl;
     }
     return 0;
-}*/
+}
