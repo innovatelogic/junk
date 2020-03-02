@@ -23,6 +23,7 @@ set(SOURCE
 	queue_probe_a.h
 	queue_probe_b.h
 	matrix_rotation.h
+	equation.cpp
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE})
@@ -53,6 +54,7 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
 					ut/ut_step_ladder.cpp
 					ut/ut_queue_probe_a.cpp
 					ut/ut_queue_probe_b.cpp
+					ut/ut_equation.cpp
 					ut/main.cpp
 					)
 
