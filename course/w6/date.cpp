@@ -20,3 +20,28 @@ Date::Date(int year, int month, int day)
         throw std::invalid_argument("Day value is invalid: " + std::to_string(day));
     }
 }
+
+std::ostream& operator<<(std::ostream &stream, const Date &d)
+{
+    stream << std::setfill('0');
+    stream << std::setw(4) << d.year;
+    stream << '-';
+    stream << std::setw(2) << d.month;
+    stream << '-';
+    stream << std::setw(2) << d.day;
+
+    return stream;
+}
+
+bool operator<(const Date& lhs, const Date& rhs)
+{
+    if (lhs.year == rhs.year)
+    {
+        if (lhs.month == rhs.month)
+        {
+            return lhs.day < rhs.day;
+        }
+        return lhs.month < rhs.month;
+    }
+    return lhs.year < rhs.year;
+}

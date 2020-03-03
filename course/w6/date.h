@@ -12,3 +12,7 @@ public:
     int month = 0;
     int day = 0;
 };
+
+std::ostream& operator<<(std::ostream &stream, const Date &d);
+
+bool operator<(const Date& lhs, const Date& rhs);
