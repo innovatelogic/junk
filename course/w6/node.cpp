@@ -4,6 +4,10 @@
 //----------------------------------------------------------------------------------------------
 bool DateComparisonNode::Evaluate(const Date &date_left, const std::string &event) const
 {
+    if (date_left.day == -1 && date_left.month == -1 && date_left.year == -1){
+        return true;
+    }
+
     switch (m_cmp)
     {
     case Comparison::Less:{
@@ -41,30 +45,37 @@ bool EventComparisonNode::Evaluate(const Date &data, const std::string &event_le
 {
     //std::cout << "[EventComparisonNode::Evaluate]: " << m_event << std::endl;
 
+    if (event_left.empty()){
+        return true;
+    }
+
     switch (m_cmp)
     {
     case Comparison::Less:{
-        return event_left < m_event;
+        return event_left.compare(m_event) < 0;
     }break;
     
     case Comparison::LessOrEqual:{
-        return event_left <= m_event;
+        return event_left.compare(m_event) <= 0;
     }
 
     case Comparison::Greater:{
-        return event_left > m_event;
+        return event_left.compare(m_event) > 0;
     }
 
     case Comparison::GreaterOrEqual:{
-        return event_left >= m_event;
+        return event_left.compare(m_event) >= 0;
     }
 
     case Comparison::Equal:{
-        return m_event == event_left;
+        return m_event.compare(event_left) == 0 ? true : false;
     }break;
     
     case Comparison::NotEqual:
-        return m_event != event_left;
+        //std::cout << "[EventComparisonNode::Evaluate]: " << m_event << " " << event_left << " " << 
+        //m_event.compare(event_left) << " " << m_event.size() << " " << event_left.size() << std::endl;
+        
+        return m_event.compare(event_left) == 0 ? false : true;
         break;
     
     default:

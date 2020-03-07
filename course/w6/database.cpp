@@ -100,6 +100,46 @@ std::deque<std::string> Database::FindIf(const std::function<bool(const Date& da
 }
 
 //----------------------------------------------------------------------------------------------
+int Database::RemoveIf(const std::function<bool(const Date& date, const std::string &event)> &predicate)
+{
+    int counter = 0;
+
+    for (auto it = m_events.begin(); it != m_events.end();)
+    {
+        if (predicate(it->first, ""))
+        {
+            auto last = std::stable_partition(it->second.second.begin(), it->second.second.end(),
+                            [&](const std::string &ev)
+                            {
+                                Date d;
+                                d.day = d.month = d.year = -1;
+                                return !predicate(d, ev);
+                            });
+
+            for (auto i = last; i != it->second.second.end(); ++i){
+                it->second.first.erase(*i);
+                ++counter;
+            }
+
+            it->second.second.erase(last, it->second.second.end());
+
+            if (it->second.second.empty()){
+                m_events.erase(it++);
+            }
+            else
+            {
+                ++it;
+            }
+        }
+        else{
+            ++it;
+        }
+    }
+
+    return counter;
+}
+
+//----------------------------------------------------------------------------------------------
 void Database::Print(std::ostream& ss) const
 {
     for (const auto &i : m_events)
@@ -109,6 +149,32 @@ void Database::Print(std::ostream& ss) const
             ss << i.first << ' ' << e << std::endl;
         }
     }
+}
+
+//----------------------------------------------------------------------------------------------
+std::string Database::Last(const Date &date) const
+{
+    std::string out;
+
+    if (m_events.empty() || date < m_events.begin()->first){
+        return "No entries";
+    }
+
+    auto iter_find = m_events.lower_bound(date);
+
+    std::ostringstream ss;
+    if (iter_find != m_events.end())
+    {
+        ss << iter_find->first << " " << *(iter_find->second.second.rbegin());
+    }
+    else
+    {
+        ss << m_events.rbegin()->first << " " << *(m_events.rbegin()->second.second.rbegin());
+    }
+
+    out = ss.str();
+ 
+    return out;
 }
 
 //----------------------------------------------------------------------------------------------

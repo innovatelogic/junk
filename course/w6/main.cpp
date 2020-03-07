@@ -8,13 +8,18 @@ using namespace std;
 
 // cl /EHsc main.cpp database.cpp date.cpp condition_parser.cpp token.cpp node.cpp -o out/course
 
+string trim(string& str)
+{
+    size_t first = str.find_first_not_of(' ');
+    size_t last = str.find_last_not_of(' ');
+    return str.substr(first, (last - first + 1));
+}
+
 //----------------------------------------------------------------------------------------------
 std::string ParseEvent(istream& is)
 {
-    std::string event;
-    is >> event;
-
-    return event;
+    std::string event(std::istreambuf_iterator<char>(is), {});
+    return trim(event);
 }
 
 void TestAll();
@@ -45,12 +50,12 @@ int main()
         } 
         else if (command == "Del") 
         {
-           /* auto condition = ParseCondition(is);
+            auto condition = ParseCondition(is);
             auto predicate = [condition](const Date& date, const string& event) {
                 return condition->Evaluate(date, event);
             };
             int count = db.RemoveIf(predicate);
-            cout << "Removed " << count << " entries" << endl;*/
+            cout << "Removed " << count << " entries" << endl;
         } 
         else if (command == "Find")
         {
@@ -67,11 +72,11 @@ int main()
         } 
         else if (command == "Last") 
         {
-          /*  try {
+            try {
                 cout << db.Last(ParseDate(is)) << endl;
             } catch (invalid_argument&) {
                 cout << "No entries" << endl;
-            }*/
+            }
         } 
         else if (command.empty()) {
             continue;

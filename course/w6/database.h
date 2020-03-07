@@ -23,8 +23,11 @@ public:
     std::set<std::string> Find(const Date& date) const;
 
     std::deque<std::string> FindIf(const std::function<bool(const Date& date, const std::string &event)> &predicate);
+    int RemoveIf(const std::function<bool(const Date& date, const std::string &event)> &predicate);
 
     void Print(std::ostream& stream) const;
+
+    std::string Last(const Date &date) const;
 
 private:
     std::map<Date, std::pair<std::set<std::string>, std::vector<std::string>>> m_events;
