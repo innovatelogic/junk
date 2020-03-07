@@ -1,3 +1,5 @@
+#include "database.h"
+
 #include <iostream>
 #include <map>
 #include <string>
@@ -12,7 +14,65 @@
 
 // cl /EHsc mycode.cpp
 
+//----------------------------------------------------------------------------------------------
+void Database::Add(const Date &date, const std::string &event)
+{
+    m_events[date].insert(event);
+}
 
+//----------------------------------------------------------------------------------------------
+bool Database::DeleteEvent(const Date& date, const std::string& event)
+{
+    bool res = false;
+
+    if (m_events.count(date) >= 1)
+    {
+        if (m_events[date].count(event))
+        {
+            m_events[date].erase(event);
+            res = true;
+        }
+    }
+    return res;
+}
+
+//----------------------------------------------------------------------------------------------
+int Database::DeleteDate(const Date& date)
+{
+    int out = 0;
+
+    if (m_events.count(date) >= 1)
+    {
+        out = m_events[date].size();
+        m_events.erase(date);
+    }
+    return out;
+}
+
+//----------------------------------------------------------------------------------------------
+std::set<std::string> Database::Find(const Date& date) const
+{
+    if (m_events.count(date) >= 1)
+    {
+        return m_events.at(date);
+    }
+    return {};
+}
+
+//----------------------------------------------------------------------------------------------
+void Database::Print(std::ostream& ss) const
+{
+    for (const auto &i : m_events)
+    {
+        for (const auto &e : i.second)
+        {
+            ss << i.first << ' ' << e << std::endl;
+        }
+    }
+}
+
+
+#if 0
 
 void check_date_input_div(std::istream &stream)
 {
@@ -35,7 +95,7 @@ bool is_number(const std::string& s)
         s.end(), [](unsigned char c) { return !(std::isdigit(c)); }) == s.end();
 }
 
-
+/*
 Date parseDate(std::string &date)
 {
     std::istringstream date_stream(date);
@@ -62,7 +122,7 @@ Date parseDate(std::string &date)
 
     return Date(year, month, day);
 }
-/*std::istream& operator>>(std::istream &stream, Date &d)
+std::istream& operator>>(std::istream &stream, Date &d)
 {
     int year;
     int month;
@@ -156,86 +216,6 @@ Date parseDate(std::string &date)
     //std::cout << year << " " << month << " " << day << std::endl;
 
     return stream;
-}*/
-
-class Database 
-{
-public:
-    void AddEvent(const Date& date, const std::string &event)
-    {
-         m_events[date].insert(event);
-    }
-
-    bool DeleteEvent(const Date& date, const std::string& event)
-    {
-        bool res = false;
-
-        if (m_events.count(date) >= 1)
-        {
-            if (m_events[date].count(event))
-            {
-                m_events[date].erase(event);
-                res = true;
-            }
-        }
-        return res;
-    }
-
-    int DeleteDate(const Date& date)
-    {
-        int out = 0;
-
-        if (m_events.count(date) >= 1)
-        {
-            out = m_events[date].size();
-            m_events.erase(date);
-        }
-        return out;
-    }
-
-    std::set<std::string> Find(const Date& date) const
-    {
-        if (m_events.count(date) >= 1)
-        {
-            return m_events.at(date);
-        }
-        return {};
-    }
-
-    void Print() const
-    {
-        for (const auto &i : m_events)
-        {
-            for (const auto &e : i.second)
-            {
-                std::cout << i.first << ' ' << e << std::endl;
-            }
-        }
-    }
-
-private:
-    std::map<Date, std::set<std::string>> m_events;
-};
-
-Date read_date(std::stringstream &ss, std::string &s_date)
-{
-    Date date;
-
-    //std::stringstream ss_date(s_date);
-
-    try {
-        date = parseDate(s_date);
-    }
-    catch (const std::invalid_argument& e) {
-
-       /* std::string exp = e.what();
-        if (exp == "Wrong date format:") {
-            throw std::invalid_argument(std::string(e.what()) + ' ' + s_date);
-        }*/
-        throw;
-    }
-
-    return date;
 }
 
 int main()
@@ -326,4 +306,6 @@ int main()
     }
 
     return 0;
-}
+}*/
+
+#endif

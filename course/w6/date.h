@@ -1,3 +1,8 @@
+#pragma once
+
+#include <sstream>
+#include <istream>
+
 class Date
 {
 public:
@@ -16,3 +21,6 @@ public:
 std::ostream& operator<<(std::ostream &stream, const Date &d);
 
 bool operator<(const Date& lhs, const Date& rhs);
+bool operator==(const Date& lhs, const Date& rhs);
+
+Date ParseDate(std::istream& is);

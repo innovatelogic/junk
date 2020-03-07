@@ -1,9 +1,16 @@
 #pragma once
 
+#include "date.h"
+
+#include <string>
+#include <map>
+#include <set>
+#include <iostream>
+
 class Database 
 {
 public:
-    void AddEvent(const Date& date, const std::string &event);
+    void Add(const Date& date, const std::string &event);
 
     bool DeleteEvent(const Date& date, const std::string& event);
 
@@ -11,7 +18,7 @@ public:
 
     std::set<std::string> Find(const Date& date) const;
 
-    void Print() const;
+    void Print(std::ostream& stream) const;
 
 private:
     std::map<Date, std::set<std::string>> m_events;

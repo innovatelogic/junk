@@ -4,7 +4,8 @@
 #include <vector>
 using namespace std;
 
-enum class TokenType {
+enum class TokenType
+{
   DATE,
   EVENT,
   COLUMN,
@@ -14,9 +15,10 @@ enum class TokenType {
   PAREN_RIGHT,
 };
 
-struct Token {
+struct Token 
+{
   const string value;
   const TokenType type;
 };
 
-vector<Token> Tokenize(istream& cl);
+vector<Token> Tokenize(std::istream& cl);
