@@ -11,13 +11,31 @@
 #include <istream>
 #include <algorithm>
 #include <cctype>
+#include <utility>
 
 // cl /EHsc mycode.cpp
 
 //----------------------------------------------------------------------------------------------
 void Database::Add(const Date &date, const std::string &event)
 {
-    m_events[date].insert(event);
+    auto iter_find = m_events.find(date);
+
+    if (iter_find == m_events.end())
+    {
+        std::pair<std::set<std::string>, std::vector<std::string>> p;
+        p.first.insert(event);
+        p.second.push_back(event);
+        m_events[date] = p;
+    }
+    else
+    {
+        std::pair<std::set<std::string>, std::vector<std::string>> &ref_pair = iter_find->second;
+        if (ref_pair.first.count(event) == 0)
+        {
+            ref_pair.first.insert(event);
+            ref_pair.second.push_back(event);
+        }
+    }
 }
 
 //----------------------------------------------------------------------------------------------
@@ -25,14 +43,14 @@ bool Database::DeleteEvent(const Date& date, const std::string& event)
 {
     bool res = false;
 
-    if (m_events.count(date) >= 1)
+    /*if (m_events.count(date) >= 1)
     {
         if (m_events[date].count(event))
         {
             m_events[date].erase(event);
             res = true;
         }
-    }
+    }*/
     return res;
 }
 
@@ -43,7 +61,7 @@ int Database::DeleteDate(const Date& date)
 
     if (m_events.count(date) >= 1)
     {
-        out = m_events[date].size();
+        out = m_events[date].first.size();
         m_events.erase(date);
     }
     return out;
@@ -54,9 +72,31 @@ std::set<std::string> Database::Find(const Date& date) const
 {
     if (m_events.count(date) >= 1)
     {
-        return m_events.at(date);
+        return m_events.at(date).first;
     }
     return {};
+}
+
+//----------------------------------------------------------------------------------------------
+std::deque<std::string> Database::FindIf(const std::function<bool(const Date& date, const std::string &event)> &predicate)
+{
+    std::deque<std::string> out;
+
+    for (const auto &i : m_events)
+    {
+        for (const auto &e : i.second.first)
+        {
+            if (predicate(i.first, e))
+            {
+                std::ostringstream ss;
+
+                ss << i.first << " " << e;
+                out.push_back(ss.str());
+            }
+        }
+    }
+
+    return out;
 }
 
 //----------------------------------------------------------------------------------------------
@@ -64,14 +104,14 @@ void Database::Print(std::ostream& ss) const
 {
     for (const auto &i : m_events)
     {
-        for (const auto &e : i.second)
+        for (const auto &e : i.second.first)
         {
             ss << i.first << ' ' << e << std::endl;
         }
     }
 }
 
-
+//----------------------------------------------------------------------------------------------
 #if 0
 
 void check_date_input_div(std::istream &stream)

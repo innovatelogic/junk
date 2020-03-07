@@ -6,6 +6,8 @@
 
 using namespace std;
 
+// cl /EHsc main.cpp database.cpp date.cpp condition_parser.cpp token.cpp node.cpp -o out/course
+
 //----------------------------------------------------------------------------------------------
 std::string ParseEvent(istream& is)
 {

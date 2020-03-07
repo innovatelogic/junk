@@ -23,7 +23,7 @@ enum class LogicalOperation : size_t
 class Node
 {
 public:
-    virtual bool Evaluate(const Date &date, const std::string &event) const = 0; //{ return true; }
+    virtual bool Evaluate(const Date &date, const std::string &event) const = 0;
 };
 
 //----------------------------------------------------------------------------------------------
