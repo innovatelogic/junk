@@ -2,6 +2,7 @@
 
 #include "date.h"
 #include <string>
+#include <memory>
 
 enum class Comparison : size_t
 {
@@ -37,7 +38,7 @@ public:
 class DateComparisonNode : public Node
 {
 public:
-    DateComparisonNode(Comparison &cmp, const Date &date)
+    DateComparisonNode(Comparison cmp, const Date &date)
     : m_cmp(cmp)
     , m_date(date)
     {}
@@ -53,7 +54,7 @@ private:
 class EventComparisonNode : public Node
 {
 public:
-    EventComparisonNode(Comparison &cmp, const std::string &event)
+    EventComparisonNode(Comparison cmp, const std::string &event)
     : m_cmp(cmp)
     , m_event(event)
     {}

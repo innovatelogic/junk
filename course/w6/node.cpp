@@ -4,9 +4,9 @@
 //----------------------------------------------------------------------------------------------
 bool DateComparisonNode::Evaluate(const Date &date_left, const std::string &event) const
 {
-    if (date_left.day == -1 && date_left.month == -1 && date_left.year == -1){
-        return true;
-    }
+    //if (date_left.day == -1 && date_left.month == -1 && date_left.year == -1){
+    //    return true;
+    //}
 
     switch (m_cmp)
     {
@@ -45,9 +45,9 @@ bool EventComparisonNode::Evaluate(const Date &data, const std::string &event_le
 {
     //std::cout << "[EventComparisonNode::Evaluate]: " << m_event << std::endl;
 
-    if (event_left.empty()){
-        return true;
-    }
+    //if (event_left.empty()){
+    //    return true;
+    //}
 
     switch (m_cmp)
     {

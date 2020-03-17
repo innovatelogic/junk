@@ -39,52 +39,13 @@ void Database::Add(const Date &date, const std::string &event)
 }
 
 //----------------------------------------------------------------------------------------------
-bool Database::DeleteEvent(const Date& date, const std::string& event)
-{
-    bool res = false;
-
-    /*if (m_events.count(date) >= 1)
-    {
-        if (m_events[date].count(event))
-        {
-            m_events[date].erase(event);
-            res = true;
-        }
-    }*/
-    return res;
-}
-
-//----------------------------------------------------------------------------------------------
-int Database::DeleteDate(const Date& date)
-{
-    int out = 0;
-
-    if (m_events.count(date) >= 1)
-    {
-        out = m_events[date].first.size();
-        m_events.erase(date);
-    }
-    return out;
-}
-
-//----------------------------------------------------------------------------------------------
-std::set<std::string> Database::Find(const Date& date) const
-{
-    if (m_events.count(date) >= 1)
-    {
-        return m_events.at(date).first;
-    }
-    return {};
-}
-
-//----------------------------------------------------------------------------------------------
-std::deque<std::string> Database::FindIf(const std::function<bool(const Date& date, const std::string &event)> &predicate)
+std::deque<std::string> Database::FindIf(std::function<bool(Date, string)> predicate) const
 {
     std::deque<std::string> out;
 
     for (const auto &i : m_events)
     {
-        for (const auto &e : i.second.first)
+        for (const auto &e : i.second.second)
         {
             if (predicate(i.first, e))
             {
@@ -100,40 +61,46 @@ std::deque<std::string> Database::FindIf(const std::function<bool(const Date& da
 }
 
 //----------------------------------------------------------------------------------------------
-int Database::RemoveIf(const std::function<bool(const Date& date, const std::string &event)> &predicate)
+int Database::RemoveIf(std::function<bool(Date, string)> predicate)
 {
     int counter = 0;
 
     for (auto it = m_events.begin(); it != m_events.end();)
     {
-        if (predicate(it->first, ""))
-        {
-            auto last = std::stable_partition(it->second.second.begin(), it->second.second.end(),
-                            [&](const std::string &ev)
-                            {
-                                Date d;
-                                d.day = d.month = d.year = -1;
-                                return !predicate(d, ev);
-                            });
+       // if (predicate(it->first, ""))
 
-            for (auto i = last; i != it->second.second.end(); ++i){
-                it->second.first.erase(*i);
-                ++counter;
-            }
+        //std::cout << "[0]" << std::endl;
+        auto last = std::stable_partition(it->second.second.begin(), it->second.second.end(),
+                        [&](const std::string &ev)
+                        {
+                            return !predicate(it->first, ev);
+                        });
 
-            it->second.second.erase(last, it->second.second.end());
+        //for (auto i = it->second.second.begin(); i != it->second.second.end(); ++i){
+        //    std::cout << *i << ' ';
+        //}
+        //std::cout << std::endl;
 
-            if (it->second.second.empty()){
-                m_events.erase(it++);
-            }
-            else
-            {
-                ++it;
-            }
+        for (auto i = last; i != it->second.second.end(); ++i){
+            it->second.first.erase(*i);
+            ++counter;
         }
-        else{
+
+        it->second.second.erase(last, it->second.second.end());
+
+        //for (auto i = it->second.second.begin(); i != it->second.second.end(); ++i){
+        //    std::cout << *i << ' ';
+        // }
+        //std::cout << std::endl;
+
+        if (it->second.second.empty()){
+            m_events.erase(it++);
+        }
+        else
+        {
             ++it;
         }
+       
     }
 
     return counter;
@@ -144,7 +111,7 @@ void Database::Print(std::ostream& ss) const
 {
     for (const auto &i : m_events)
     {
-        for (const auto &e : i.second.first)
+        for (const auto &e : i.second.second)
         {
             ss << i.first << ' ' << e << std::endl;
         }
@@ -156,25 +123,23 @@ std::string Database::Last(const Date &date) const
 {
     std::string out;
 
-    if (m_events.empty() || date < m_events.begin()->first){
+    if (m_events.empty()){
         return "No entries";
     }
 
-    auto iter_find = m_events.lower_bound(date);
+    auto iter_find = m_events.upper_bound(date);
+
+    if (iter_find == m_events.begin()){
+        return "No entries";
+    }
+
+    --iter_find;
 
     std::ostringstream ss;
-    if (iter_find != m_events.end())
-    {
-        ss << iter_find->first << " " << *(iter_find->second.second.rbegin());
-    }
-    else
-    {
-        ss << m_events.rbegin()->first << " " << *(m_events.rbegin()->second.second.rbegin());
-    }
 
-    out = ss.str();
+    ss << iter_find->first << " " << *(iter_find->second.second.rbegin());
  
-    return out;
+    return ss.str();
 }
 
 //----------------------------------------------------------------------------------------------

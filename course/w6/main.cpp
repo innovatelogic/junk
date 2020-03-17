@@ -18,8 +18,12 @@ string trim(string& str)
 //----------------------------------------------------------------------------------------------
 std::string ParseEvent(istream& is)
 {
-    std::string event(std::istreambuf_iterator<char>(is), {});
-    return trim(event);
+    while (isspace(is.peek())) {
+        is.ignore();
+    }
+    std::string event;
+    getline(is, event);
+    return event;
 }
 
 void TestAll();

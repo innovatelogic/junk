@@ -10,20 +10,16 @@
 #include <functional>
 #include <deque>
 
+using namespace std;
 
 class Database 
 {
 public:
     void Add(const Date& date, const std::string &event);
 
-    bool DeleteEvent(const Date& date, const std::string& event);
+    std::deque<std::string> FindIf(std::function<bool(Date, string)>) const;
 
-    int DeleteDate(const Date& date);
-
-    std::set<std::string> Find(const Date& date) const;
-
-    std::deque<std::string> FindIf(const std::function<bool(const Date& date, const std::string &event)> &predicate);
-    int RemoveIf(const std::function<bool(const Date& date, const std::string &event)> &predicate);
+    int RemoveIf(std::function<bool(Date date, string event)> predicate);
 
     void Print(std::ostream& stream) const;
 

@@ -94,10 +94,10 @@ void TestParseCondition()
 
     std::cout << "end" << std::endl;
 }
-
+/*
 
 int main()
 {
   TestParseCondition();
   return 0;
-}
+}*/

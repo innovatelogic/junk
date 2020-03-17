@@ -8,12 +8,13 @@ using namespace std;
 class Person
 {
 public:
-    Person(const std::string &name)
+    Person(const std::string &name, const std::string &title)
     : name(name)
+    , title(title)
     {}
 
     std::string Name() const { return name; }
-    virtual std::string Title() const = 0;
+    std::string Title() const { return title; }
 
     std::string Info() const { return Title() + ": " + Name(); }
 
@@ -23,7 +24,8 @@ public:
     }
 
 private:
-    std::string name;
+    const std::string name;
+    const std::string title;
 };
 
 class Student : public Person
@@ -31,11 +33,9 @@ class Student : public Person
 public:
 
     Student(const string &name, const string &favouriteSong)
-    : Person(name)
+    : Person(name, "Student")
     , FavouriteSong(favouriteSong)
     {}
-
-    std::string Title() const override { return "Student"; }
 
     void Learn() const {
         cout << Info() << " learns" << endl;
@@ -52,7 +52,7 @@ public:
     }
 
 public:
-    string FavouriteSong;
+    const string FavouriteSong;
 };
 
 
@@ -60,11 +60,9 @@ class Teacher : public Person
 {
 public:
     Teacher(const string &name, const string &subject)
-    : Person(name)
+    : Person(name, "Teacher")
     , Subject(subject)
     {}
-
-    std::string Title() const override { return "Teacher"; }
 
     void Teach() const 
     {
@@ -72,40 +70,38 @@ public:
     }
 
 public:
-    string Subject;
+    const string Subject;
 };
 
 
 class Policeman : public Person {
 public:
     Policeman(const string &name) 
-    : Person(name)
+    : Person(name, "Policeman")
     {}
 
-    std::string Title() const override { return "Policeman"; }
-
-    void Check(const std::shared_ptr<Person> &person) const
+    void Check(const Person &person) const
     {
-        std::string title = person->Title();
-        cout << Info() << " checks " << title << ". " << title << "'s name is: " << person->Name() << endl;
+        std::string title = person.Title();
+        cout << Info() << " checks " << title << ". " << title << "'s name is: " << person.Name() << endl;
     }
 };
 
 
-void VisitPlaces(const std::shared_ptr<Person> &person, const vector<string> &places) {
+void VisitPlaces(const Person &person, const vector<string> &places) {
     for (const auto &p : places) {
-        person->Walk(p);
+        person.Walk(p);
     }
 }
 
 int main() 
 {
-    std::shared_ptr<Teacher> t = std::make_shared<Teacher>("Jim", "Math");
-    std::shared_ptr<Student> s = std::make_shared<Student>("Ann", "We will rock you");
-    std::shared_ptr<Policeman> p = std::make_shared<Policeman>("Bob");
+    Teacher t("Jim", "Math");
+    Student s("Ann", "We will rock you");
+    Policeman p("Bob");
 
     VisitPlaces(t, {"Moscow", "London"});
-    p->Check(s);
+    p.Check(s);
     VisitPlaces(s, {"Moscow", "London"});
     return 0;
 }

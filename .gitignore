@@ -2,6 +2,8 @@
 .vscode/*
 .pyc
 *.log
+*.exe
+*.obj
 /junk_out_x64
 /build
 
