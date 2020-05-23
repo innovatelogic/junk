@@ -72,7 +72,11 @@
         "xlocmes": "cpp",
         "xthread": "cpp",
         "cctype": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "array": "cpp",
+        "unordered_set": "cpp",
+        "string_view": "cpp",
+        "resumable": "cpp"
     },
     "cmake.configureOnOpen": false
 }

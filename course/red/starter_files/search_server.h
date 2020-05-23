@@ -9,6 +9,9 @@
 #include <string>
 #include <unordered_map>
 #include <iostream>
+#include <mutex>
+#include <future>
+#include <atomic>
 
 using namespace std;
 /*
@@ -33,11 +36,31 @@ struct EqualString
 {
   bool operator() (const string_view &lhs, const string_view &rhs) const
   {
-
     //std::cout << "compare: " << std::string(lhs) << " - " << std::string(rhs) << " = " << (std::string(lhs) == std::string(rhs) ? "1" : "0") << std::endl;
-
     return lhs == rhs;
   }
+};
+
+template <typename T>
+class Synchronized {
+public:
+  explicit Synchronized(T initial = T())
+    : value(move(initial))
+  {
+  }
+
+  struct Access {
+    T& ref_to_value;
+    lock_guard<mutex> guard;
+  };
+
+  Access GetAccess() {
+    return {value, lock_guard(m)};
+  }
+
+private:
+  T value;
+  mutex m;
 };
 
 class InvertedIndex 
@@ -64,15 +87,15 @@ class SearchServer
 {
 public:
   SearchServer();
+  ~SearchServer();
+
   explicit SearchServer(istream& document_input);
   void UpdateDocumentBase(istream& document_input);
   void AddQueriesStream(istream& query_input, ostream& search_results_output);
 
 private:
-  void reset();
+  Synchronized<InvertedIndex> index;
+  std::vector<std::future<void>> joints;
 
-private:
-  InvertedIndex index;
-
-  //std::vector<std::pair<int, int>> docid_count;
+  std::atomic<bool> first_time_call;
 };
