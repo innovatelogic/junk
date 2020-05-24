@@ -12,6 +12,7 @@
 #include <mutex>
 #include <future>
 #include <atomic>
+#include <deque>
 
 using namespace std;
 /*
@@ -66,32 +67,32 @@ private:
 class InvertedIndex 
 {
 public:
-  InvertedIndex()
-  {
-    docs.reserve(50000);
-  }
-
+  InvertedIndex() = default;
+  InvertedIndex(istream &document_input);
   void Add(string &document);
   const std::vector<size_t>& Lookup(const string_view& word) const;
 
+  size_t size() const { return docs.size(); }
   const string& GetDocument(size_t id) const {
     return docs[id];
   }
 
 private:
   std::unordered_map<std::string_view, std::vector<size_t>> index; // , HashString, EqualString
-  vector<string> docs;
+  deque<string> docs;
 };
 
 class SearchServer 
 {
 public:
-  SearchServer();
+  SearchServer() = default;
   ~SearchServer();
 
   explicit SearchServer(istream& document_input);
   void UpdateDocumentBase(istream& document_input);
   void AddQueriesStream(istream& query_input, ostream& search_results_output);
+
+  Synchronized<InvertedIndex>& _index() { return index; }
 
 private:
   Synchronized<InvertedIndex> index;
