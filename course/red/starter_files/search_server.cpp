@@ -38,32 +38,7 @@ void UpdateIndex(istream& document_input, SearchServer &self)
 
 void SearchServer::UpdateDocumentBase(istream& document_input) 
 {
-  auto access = index.GetAccess();
-
-  //if (access.ref_to_value.size() == 0)
-  {
-    first_time_call = false;
-    InvertedIndex new_index(document_input);
-
-    access.ref_to_value = std::move(new_index);
-  /*}
-  else
-  {
-    joints.push_back(std::async([&] 
-    {
-      InvertedIndex new_index;
-
-      for (std::string current_document; getline(document_input, current_document); )
-      {
-        new_index.Add(current_document);
-      }
-      
-      {
-        std::swap(index.GetAccess().ref_to_value, new_index);
-      }
-    }));\*/
-  }
-
+    joints.push_back(std::async(UpdateIndex, std::ref(document_input), std::ref(*this)));
 }
 
 struct Node { 
@@ -140,8 +115,7 @@ void ProcessQueue(istream& query_input, ostream& search_results_output, SearchSe
 
 void SearchServer::AddQueriesStream(istream& query_input, ostream& search_results_output)
 {
-
-  ProcessQueue(query_input, search_results_output, *this);
+    joints.push_back(std::async(ProcessQueue, std::ref(query_input), std::ref(search_results_output), std::ref(*this)));
 }
 
 InvertedIndex::InvertedIndex(istream &document_input) 
