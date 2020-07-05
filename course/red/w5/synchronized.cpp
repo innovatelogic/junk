@@ -57,7 +57,7 @@ private:
   T value;
   std::mutex data_mutex;
 };
-/*
+
 void TestConcurrentUpdate() 
 {
   Synchronized<string> common_string;
@@ -132,4 +132,4 @@ int main()
   TestRunner tr;
   RUN_TEST(tr, TestConcurrentUpdate);
   RUN_TEST(tr, TestProducerConsumer);
-}*/
+}
