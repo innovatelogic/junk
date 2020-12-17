@@ -76,7 +76,9 @@
         "array": "cpp",
         "unordered_set": "cpp",
         "string_view": "cpp",
-        "resumable": "cpp"
+        "resumable": "cpp",
+        "optional": "cpp",
+        "xxatomic": "cpp"
     },
     "cmake.configureOnOpen": false
 }
