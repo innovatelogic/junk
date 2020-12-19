@@ -4,7 +4,8 @@
 #include <string>
 
 // Интерфейс, представляющий книгу
-class IBook {
+class IBook 
+{
 public:
   virtual ~IBook() = default;
 
@@ -17,7 +18,8 @@ public:
 };
 
 // Интерфейс, позволяющий распаковывать книги
-class IBooksUnpacker {
+class IBooksUnpacker 
+{
 public:
   virtual ~IBooksUnpacker() = default;
 
