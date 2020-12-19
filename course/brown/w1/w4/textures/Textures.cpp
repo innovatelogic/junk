@@ -4,7 +4,8 @@
 
 using namespace std;
 
-class Texture : public ITexture {
+class Texture : public ITexture 
+{
 public:
   Texture(Image image) : image_(move(image)) {
     for (const auto& line : image_) {
@@ -12,7 +13,8 @@ public:
     }
   }
 
-  Size GetSize() const override {
+  Size GetSize() const override 
+  {
     auto width = static_cast<int>(image_.empty() ? 0 : image_[0].size());
     auto height = static_cast<int>(image_.size());
     return {width, height};
@@ -26,13 +28,14 @@ private:
   Image image_;
 };
 
-std::unique_ptr<ITexture> MakeTextureSolid(Size size, char pixel) {
+std::unique_ptr<ITexture> MakeTextureSolid(Size size, char pixel) 
+{
   Image image(size.height, string(size.width, pixel));
   return make_unique<Texture>(move(image));
 }
 
-std::unique_ptr<ITexture> MakeTextureCheckers(Size size, char pixel1,
-                                              char pixel2) {
+std::unique_ptr<ITexture> MakeTextureCheckers(Size size, char pixel1, char pixel2) 
+                                              {
   Image image(size.height, string(size.width, pixel1));
 
   for (int i = 0; i < size.height; ++i) {
