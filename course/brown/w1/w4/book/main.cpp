@@ -6,6 +6,7 @@
 #include <numeric>
 #include <random>
 #include <sstream>
+#include <unordered_map>
 
 using namespace std;
 
@@ -15,7 +16,8 @@ using namespace std;
 // убедиться, что из кэша выгружаются в первую очередь наименее используемые
 // элементы. Собственно, тестирующая система курсеры имеет как раз более
 // продвинутую реализацию.
-class Book : public IBook {
+class Book : public IBook 
+{
 public:
   Book(
       string name,
@@ -29,7 +31,8 @@ public:
     memory_used_by_books_ += content_.size();
   }
 
-  ~Book() {
+  ~Book() 
+  {
     memory_used_by_books_ -= content_.size();
   }
 
@@ -52,9 +55,11 @@ private:
 // обращений к методу UnpackBook(). Для тестирования своей программы вы можете
 // написать другую реализацию. Собственно, тестирующая система курсеры имеет как
 // раз более продвинутую реализацию.
-class BooksUnpacker : public IBooksUnpacker {
+class BooksUnpacker : public IBooksUnpacker 
+{
 public:
-  unique_ptr<IBook> UnpackBook(const string& book_name) override {
+  unique_ptr<IBook> UnpackBook(const string& book_name) override 
+  {
     ++unpacked_books_count_;
     return make_unique<Book>(
       book_name,
@@ -78,7 +83,8 @@ private:
   atomic<int> unpacked_books_count_ = 0;
 };
 
-struct Library {
+struct Library 
+{
   vector<string> book_names;
   unordered_map<string, unique_ptr<IBook>> content;
   size_t size_in_bytes = 0;
@@ -86,7 +92,8 @@ struct Library {
   explicit Library(vector<string> a_book_names, IBooksUnpacker& unpacker)
     : book_names(std::move(a_book_names))
   {
-    for (const auto& book_name : book_names) {
+    for (const auto& book_name : book_names)
+     {
       auto& book_content = content[book_name];
       book_content = unpacker.UnpackBook(book_name);
       size_in_bytes += book_content->GetContent().size();
@@ -95,7 +102,8 @@ struct Library {
 };
 
 
-void TestUnpacker(const Library& lib) {
+void TestUnpacker(const Library& lib) 
+{
   BooksUnpacker unpacker;
   for (const auto& book_name : lib.book_names) {
     auto book = unpacker.UnpackBook(book_name);
@@ -104,13 +112,15 @@ void TestUnpacker(const Library& lib) {
 }
 
 
-void TestMaxMemory(const Library& lib) {
+void TestMaxMemory(const Library& lib) 
+{
   auto unpacker = make_shared<BooksUnpacker>();
   ICache::Settings settings;
   settings.max_memory = lib.size_in_bytes / 2;
   auto cache = MakeCache(unpacker, settings);
 
-  for (const auto& [name, book] : lib.content) {
+  for (const auto& [name, book] : lib.content)
+  {
     cache->GetBook(name);
     ASSERT(unpacker->GetMemoryUsedByBooks() <= settings.max_memory);
   }
@@ -132,6 +142,52 @@ void TestCaching(const Library& lib) {
   cache->GetBook(lib.book_names[0]);
   cache->GetBook(lib.book_names[0]);
   ASSERT_EQUAL(unpacker->GetUnpackedBooksCount(), 1);
+}
+
+
+void TestCaching2(const Library& lib)
+ {
+
+   std::string  names[] = { "Sherlock Holmes",
+      "Don Quixote",
+      "Harry Potter",
+      "A Tale of Two Cities"};
+
+const std::string content = "Dummy content of the book ";
+
+  auto unpacker = make_shared<BooksUnpacker>();
+
+
+  ICache::Settings settings;
+  settings.max_memory = content.size() + names[0].size();// + 
+                        //content.size() + names[1].size() + 
+                       // content.size() + names[2].size();// + names[1].size() + names[2].size();
+
+  auto cache = MakeCache(unpacker, settings);
+
+
+  cache->GetBook(lib.book_names[0]);
+
+
+  
+
+  //ASSERT_EQUAL(unpacker->GetMemoryUsedByBooks(), content.size() + names[0].size());
+
+  cache->GetBook(lib.book_names[1]);
+  
+  
+  //ASSERT_EQUAL(unpacker->GetMemoryUsedByBooks(), content.size() + names[0].size() + 
+  //                                               content.size() + names[1].size());
+  cache->GetBook(lib.book_names[2]);
+
+  cache->GetBook(lib.book_names[3]);
+  
+  //ASSERT_EQUAL(unpacker->GetMemoryUsedByBooks(), content.size() + names[0].size() + 
+  //                                               content.size() + names[1].size() +
+  //                                               content.size() + names[2].size());
+
+  //cache->GetBook(lib.book_names[10]);
+
 }
 
 
@@ -197,7 +253,8 @@ int main() {
       "Alice in Wonderland",
       "Dream of the Red Chamber",
       "And Then There Were None",
-      "The Hobbit"
+      "The Hobbit",
+      //"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
     },
     unpacker
   );
@@ -205,9 +262,14 @@ int main() {
 #define RUN_CACHE_TEST(tr, f) tr.RunTest([&lib] { f(lib); }, #f)
 
   TestRunner tr;
+  
+  
+ RUN_CACHE_TEST(tr, TestCaching2);
+
   RUN_CACHE_TEST(tr, TestUnpacker);
   RUN_CACHE_TEST(tr, TestMaxMemory);
   RUN_CACHE_TEST(tr, TestCaching);
+ 
   RUN_CACHE_TEST(tr, TestSmallCache);
   RUN_CACHE_TEST(tr, TestAsync);
 
