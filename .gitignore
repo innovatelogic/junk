@@ -4,6 +4,7 @@
 *.log
 *.exe
 *.obj
+*.out
 /junk_out_x64
 /build
 
