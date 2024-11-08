@@ -1,103 +1,199 @@
-cmake_minimum_required(VERSION 3.2)
-cmake_policy(SET CMP0054 OLD)
+cmake_minimum_required(VERSION 3.3...3.5 FATAL_ERROR)
 
-include(ExternalProject)
+#include(config/cmake/modules/Findclang.cmake)
+#include(config/cmake/modules/platform.cmake)
+#include(config/cmake/modules/colours.cmake)
 
-#get_filename_component(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/build/cmake" REALPATH)
-#include(macros)
-#include(${CMAKE_CURRENT_SOURCE_DIR}/Build/cmake/macros.cmake)
+set( LIB_VERSION_MAJOR 0 )
+set( LIB_VERSION_MINOR 1 )
+set( LIB_VERSION_PATCH 0 )
 
-include(CheckCXXCompilerFlag)
+enable_testing()
+
+project(junk VERSION "${LIB_VERSION_MAJOR}.${LIB_VERSION_MINOR}.${LIB_VERSION_PATCH}")
+
+#set(CMAKE_C_COMPILER "/opt/homebrew/opt/llvm/bin/clang")
+#set(CMAKE_CXX_COMPILER "/opt/homebrew/opt/llvm/bin/clang++")
+
+#set(CMAKE_OSX_ARCHITECTURES "arm64")
+#set(LLVM_DIR "/opt/homebrew/opt/llvm/lib/cmake/llvm")
+#set(Clang_DIR "/opt/homebrew/opt/llvm/lib/cmake/clang")
+
+find_package(LLVM REQUIRED CONFIG)
+find_package(Clang REQUIRED CONFIG)
+
+if (LLVM_FOUND)
+    include_directories(${LLVM_INCLUDE_DIRS})
+    add_definitions(${LLVM_DEFINITIONS})
+    llvm_map_components_to_libnames(llvm_libs support core irreader)
+    # Link your target to llvm_libs as needed
+endif()
+
+#SET(CMAKE_C_COMPILER ${LLVM_INSTALL_PREFIX}/bin/clang)
+
+set(PROJECT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+
+foreach(path IN LISTS CMAKE_MODULE_PATH)
+    message("Before Path: ${path}")
+endforeach()
+
+#set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${PROJECT_DIR}/src_cpp/config/cmake/modules/")
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/config/cmake/modules/)
+
+foreach(path IN LISTS CMAKE_MODULE_PATH)
+    message("After Path: ${path}")
+endforeach()
+
+#include(${CMAKE_CURRENT_SOURCE_DIR}/src_cpp/config/cmake/macros.cmake)
+
+set(ENABLE_TESTING TRUE)
 
 enable_language(C)
 enable_language(CXX)
 
-CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
-CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
 
-if(COMPILER_SUPPORTS_CXX11)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-elseif(COMPILER_SUPPORTS_CXX0X)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-else()
-    message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+set(CMAKE_MACOSX_RPATH 1)
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}")
+
+message(STATUS "${BoldCyan}PROJECT:${ColourReset} ${PROJECT_NAME}")
+message(STATUS "CMAKE_SYSTEM_PROCESSOR: " ${CMAKE_SYSTEM_PROCESSOR})
+
+include(ProcessorCount)
+ProcessorCount(N_PROC)
+
+message("number of processors: "  ${N_PROC})
+
+if(NOT N EQUAL 0)
+    MATH(EXPR N_BUILD_PROC "${N_PROC}/2")
+
+  set(CTEST_BUILD_FLAGS -j${N_BUILD_PROC})
+  set(ctest_test_args ${ctest_test_args} PARALLEL_LEVEL ${N_BUILD_PROC})
+  set(CMAKE_MAKE_PROGRAM "${CMAKE_MAKE_PROGRAM} -j ${N_BUILD_PROC}")  
+endif()
+message("cmake make program" ${CMAKE_MAKE_PROGRAM})
+
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR
+    "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    set(warnings "-Wall -Wextra -Werror")
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+    set(warnings "/W4 /EHa /MP /wd4996") #/WX
+    set(add_debug_flags "/ZI /Od /fp:fast" CACHE STRING "" FORCE)
+    set(add_release_flags "/Zi /Ox /Ob2 /Oi /Ot /Oy /GT /fp:fast" CACHE STRING "" FORCE)
+
+    # avx compile time var
+    if("${AVX}" STREQUAL "1")
+        string(APPEND add_release_flags "/arch:AVX")
+    elseif("${AVX}" STREQUAL "2")
+        string(APPEND add_release_flags " /arch:AVX2")
+    elseif("${AVX}" STREQUAL "3")
+        string(APPEND add_release_flags " /arch:AVX2") # because msvc doesn't support avx 512 at the moment
+    endif()    
+    
+    set(add_debug_linker_flags "/LTCG /DEBUG:FASTLINK /OPT:NOLBR")
+    set(add_release_linker_flags "/LTCG /DEBUG:FASTLINK /OPT:NOLBR /OPT:REF") # /DEBUG:FULL for outside companies builds
 endif()
 
-SET(CMAKE_CONFIGURATION_TYPES Debug;Release
-    CACHE STRING "Semicolon separated list of supported configuration types"
-    FORCE)
+if (NOT CONFIGURED_ONCE)
+    set(CMAKE_CXX_FLAGS "${warnings}"
+        CACHE STRING "Flags used by the compiler during all build types." FORCE)
+    set(CMAKE_C_FLAGS "${warnings}"
+        CACHE STRING "Flags used by the compiler during all build types." FORCE)
+
+    SET(CMAKE_SHARED_LINKER_FLAGS_RELEASE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} ${add_release_linker_flags}"
+        CACHE STRING "Flags used by the linker during Release build type." FORCE)
+    SET(CMAKE_SHARED_LINKER_FLAGS_DEBUG "${CMAKE_SHARED_LINKER_FLAGS_DEBUG} ${add_debug_linker_flags}"
+        CACHE STRING "Flags used by the linker during Debug build type." FORCE)
+    set(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS_RELEASE} ${add_release_flags}"
+        CACHE STRING "Flags used by the compiler during Release build type." FORCE)
+    set(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} ${add_debug_flags}"
+        CACHE STRING "Flags used by the compiler during Debug build type." FORCE)
+endif()
+
+message(STATUS "CMAKE_CXX_COMPILER_ID:" ${CMAKE_CXX_COMPILER_ID})
+message(STATUS "CMAKE_GENERATOR_PLATFORM:" ${CMAKE_GENERATOR_PLATFORM})
+message(STATUS "CMAKE_SYSTEM_NAME:" ${CMAKE_SYSTEM_NAME})
 
 add_definitions(-DUNICODE -D_UNICODE)
 
-set(COMMON_SDK_DIR ${CMAKE_SOURCE_DIR}/common/SDK)
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR};${CMAKE_SOURCE_DIR}/build/cmake)
-
-set(PRJOUTDIR ${CMAKE_INSTALL_PREFIX}/bin/${CMAKE_BUILD_TYPE})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PRJOUTDIR})
-
-if (NOT CMAKE_DEBUG_POSTFIX)
-	set(CMAKE_DEBUG_POSTFIX _d)
+if(NOT APPLE)
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-project("${G_CMAKE_TARGET}_${G_GENERATOR_TOKEN}_${G_PROCESSOR_ARCH}") 
-
-if (MSVC)
-  #enable full optimization instead of the cmake default /O2
-  string( REGEX REPLACE "/O2" "/Ox" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}" )
-
-  # Enable intrinsic functions, favor speed and string pooling function level linking.
-  set( CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Oi /Ot /GF /Gy" )
-
-  # Eliminate unreferenced functions and data and enable COMDAT folding
-  set( CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} /OPT:REF /OPT:ICF /DEBUG" )
-  set( CMAKE_SHARED_LINKER_FLAGS_RELEASE  "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} /OPT:REF /OPT:ICF /DEBUG" )
-       
-  # Fix for errors in Visual Studio 2012
-  # "c1xx : fatal error C1027: Inconsistent values for /Ym between creation
-  # and use of precompiled header"
-  # http://www.ogre3d.org/forums/viewtopic.php?f=2&t=60015
-  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zm282" )
-
-  add_definitions(
-        -Zi # Always generate debug information.
-        -MP # Enable parallel builds
-    	#-WX # Enable warnings as errors
-        /d2Zi+ # Put local variables and inline functions into the PDB
-    )
-    add_definitions(-D_VARIADIC_MAX=10)
+if(CMAKE_COMPILER_IS_GNUCC)
+  set(CMAKE_INCLUDE_SYSTEM_FLAG_C "-isystem")
 endif()
 
-set (CMAKE_PREFIX_PATH ${G_INSTALL_DIR})
-set (G_BIN_DIR ${CMAKE_INSTALL_PREFIX})
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
 
-MESSAGE( STATUS "CMAKE_COMMAND: " ${CMAKE_CURRENT_SOURCE_DIR} )
-MESSAGE( STATUS "CMAKE_BINARY_DIR:" ${CMAKE_BINARY_DIR} )
-MESSAGE( STATUS "EXECUTABLE_OUTPUT_PATH:" ${EXECUTABLE_OUTPUT_PATH} )
-MESSAGE( STATUS "CMAKE_COMMAND:" ${CMAKE_COMMAND} )
+set(CMAKE_CXX_STANDARD 20)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -Wall -ldl -std=c++20") # -Ofast 
+set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS}") #
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}")
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+#set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+#set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Ofast -w -Wall -Wno-sign-compare -flax-vector-conversions -fpermissive -msse4.1 -Wno-unused-parameter -Wno-sign-compare -Wno-unused-function -Wno-unused-variable -Wno-error=unused-variable -Wno-error=unused-parameter -Wno-error=sign-compare -Wno-error=pointer-sign")
+#set(CMAKE_CXX_LINK_EXECUTABLE "{$CMAKE_CXX_LINK_EXECUTABLE} -R")
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(G_BIN_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/bin)
+set(G_LIB_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/lib)
+
+message( STATUS "CMAKE_CURRENT_SOURCE_DIR: " ${CMAKE_CURRENT_SOURCE_DIR})
+message( STATUS "EXECUTABLE_OUTPUT_PATH:" ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+message( STATUS "CMAKE_COMMAND:" ${CMAKE_COMMAND} )
+message( STATUS "CMAKE_BUILD_TYPE:" ${CMAKE_BUILD_TYPE} )
+message( STATUS "CMAKE_CXX_FLAGS_RELEASE:" ${CMAKE_CXX_FLAGS_RELEASE}) 
 message( STATUS "CMAKE_SOURCE_DIR:" ${CMAKE_SOURCE_DIR})
-MESSAGE( STATUS "CMAKE_TARGET:" ${G_CMAKE_TARGET})
-MESSAGE( STATUS "GENERATOR_TOKEN:" ${G_GENERATOR_TOKEN})
-MESSAGE( STATUS "PROCESSOR_ARCH:" ${G_PROCESSOR_ARCH})
-MESSAGE( STATUS "CMAKE_INSTALL_PREFIX:" ${CMAKE_INSTALL_PREFIX})
-MESSAGE( STATUS "CMAKE_PREFIX_PATH:" ${CMAKE_PREFIX_PATH})
+message( STATUS "CMAKE_BINARY_DIR:" ${CMAKE_BINARY_DIR})
+message( STATUS "PROJECT_DIR:" ${PROJECT_DIR})
+message( STATUS "${BoldCyan}CMAKE_INSTALL_PREFIX:${ColourReset}" ${CMAKE_INSTALL_PREFIX})
+message( STATUS "CMAKE_PREFIX_PATH:" ${CMAKE_PREFIX_PATH})
 message( STATUS "G_BIN_DIR: " ${G_BIN_DIR})
+message( STATUS "COMPILER: " ${CMAKE_CXX_COMPILER_ID})
+message( STATUS "CMAKE_MODULE_PATH:" ${CMAKE_MODULE_PATH})
 
-set(TARGET_FILENAME target_${G_CMAKE_TARGET}.cmake)
+file(MAKE_DIRECTORY ${G_BIN_DIR})
+file(MAKE_DIRECTORY ${G_LIB_DIR})
 
-find_file(TARGET_INCLUDE
-	${TARGET_FILENAME}
-    ${CMAKE_SOURCE_DIR}
-    NO_DEFAULT_PATH)
-	
-if (TARGET_INCLUDE)
-    message( STATUS "Found target include cmake: " ${TARGET_FILENAME} )
-    include( ${TARGET_INCLUDE} )
-else()
-	#message(FATAL_ERROR "No target file:" ${TARGET_FILENAME})
-endif()
+set(BUILD_INCLUDE_DIR ${G_BIN_DIR}/../include/)
+file(MAKE_DIRECTORY ${BUILD_INCLUDE_DIR})
 
-set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/../bin" CACHE PATH "Installation directory for executables")
-set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/../lib" CACHE PATH "Installation directory for libraries")
-set(INSTALL_INC_DIR "${CMAKE_INSTALL_PREFIX}/../include" CACHE PATH "Installation directory for headers")
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+set(PATH_CORE_UT_DATA ${CMAKE_CURRENT_SOURCE_DIR}/testdata/)
+set(PATH_CORE_UT_OUT ${G_BIN_DIR}/../core_tests_out/)
+file(MAKE_DIRECTORY ${PATH_CORE_UT_OUT})
+
+#configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src_cpp/config/headers/ut_core_config.h.in" "${BUILD_INCLUDE_DIR}/ut_core_config.h")
+
+set(CMAKE_EXTRA_INCLUDES ${G_BIN_DIR}/../include/)
+
+include_directories(${PROJECT_SOURCE_DIR}/base)
+
+# UT section
+find_package(GTest REQUIRED)
+#find_package(benchmark REQUIRED)
+
+message( STATUS "GTEST_ROOT:" ${GTEST_ROOT})
+message( STATUS "GTEST_LIBRARIES:" ${GTEST_LIBRARIES})
+
+#message(STATUS "benchmark_INCLUDE_DIRS: ${benchmark_INCLUDE_DIRS}")
+#message(STATUS "benchmark_LIBRARIES: ${benchmark_LIBRARIES}")
+
+set(GTEST_INCLUDE_DIRS ${GTEST_PATH}/include)
+
+set(ADD_CXX_FLAGS_DEBUG "-DDEBUG -g")
+set(ADD_CXX_FLAGS_REL "-DRELEASE -DNDEBUG")
+
+#SET (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${ADD_CXX_FLAGS_DEBUG}" CACHE STRING "cxx d compile flags" FORCE)
+#SET (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${ADD_CXX_FLAGS_REL}" CACHE STRING "cxx r compile flags" FORCE)
+
+add_subdirectory(test_cases)

@@ -5,6 +5,7 @@
 *.exe
 *.obj
 *.out
+.DS_Store
 /junk_out_x64
 /build
 
@@ -14,3 +15,5 @@
 Build/scripts/__init__.pyc
 Build/scripts/cmake.pyc
 Build/scripts/res_dep.pyc
+
+**/__pycache__/*

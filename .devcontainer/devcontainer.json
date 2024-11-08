@@ -1,0 +1,35 @@
+// .devcontainer/devcontainer.json
+{
+    "name": "Ubuntu 22.04 Dev Container",
+    //"image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04",
+  
+    //"build":{
+    //  "dockerfile": "Dockerfile"
+    //},
+
+    "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  "postCreateCommand": "clang --version && llvm-config --version && git --version",
+
+  "remoteUser": "vscode",
+  "features": {
+  },
+
+  "customizations":
+  {
+      "vscode":
+      {
+        "extensions": [
+          "ms-vscode.cpptools",
+          "ms-vscode.cmake-tools",
+          "ms-vscode.lldb",
+          "llvm-vscode-extensions.vscode-llvm",
+          "ms-python.python",
+          "ms-vscode.code-lldb",
+          "vadimcn.vscode-lldb"
+        ]
+    }
+  }
+}
