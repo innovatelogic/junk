@@ -1,11 +1,6 @@
 // .devcontainer/devcontainer.json
 {
     "name": "Ubuntu 22.04 Dev Container",
-    //"image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04",
-  
-    //"build":{
-    //  "dockerfile": "Dockerfile"
-    //},
 
     "build": {
     "dockerfile": "Dockerfile"
@@ -23,13 +18,25 @@
       {
         "extensions": [
           "ms-vscode.cpptools",
+          "ms-vscode.cpptools-extension-pack",
           "ms-vscode.cmake-tools",
           "ms-vscode.lldb",
           "llvm-vscode-extensions.vscode-llvm",
           "ms-python.python",
           "ms-vscode.code-lldb",
-          "vadimcn.vscode-lldb"
-        ]
+          "vadimcn.vscode-lldb",
+          "ms-azuretools.vscode-docker"
+        ],
+        "settings":{
+          "python.testing.unittestEnabled": false,
+          "python.testing.pytestEnabled": true,
+          "python.testing.pytestArgs": [
+              "test_cases/",
+              "--disable-warnings",
+              "--rootdir=/workspaces/junk"
+          ],  // The "." specifies the root directory
+          "python.testing.autoTestDiscoverOnSaveEnabled": true
+        }
     }
   }
 }

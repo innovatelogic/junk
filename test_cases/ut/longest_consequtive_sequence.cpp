@@ -9,7 +9,8 @@
 namespace junk
 {
 
-static int longest_conecutive_sequence_merge(const std::vector<int>& nums) {
+static int longest_conecutive_sequence_merge(const std::vector<int>& nums)
+ {
     if (nums.empty()) {
         return 0;
     }
@@ -119,28 +120,64 @@ int longest_streak_fixed(const std::vector<int> &nums)
     return max_len;
 }
 
+int longest_streak_memtest_2(const std::vector<int> &nums)
+{
+    if (nums.empty()){
+        return 0;
+    }
+
+    int max_len = 1;
+
+    std::set<int> num_seq(std::begin(nums), std::end(nums));
+
+    for (auto n : num_seq)
+    {
+        if (num_seq.count(n - 1) == 0)
+        {
+            int len = 1;
+            int next_n = n + 1;
+            while (num_seq.count(next_n) > 0){
+                ++len;
+                ++next_n;
+            }
+
+            max_len = std::max(max_len, len);
+        }
+    }
+
+    return max_len;
+}
+
 TEST(LongestConsecutiveSequence, Test1)
 {
+    const auto N = 4;
     std::vector<int> nums = {100, 4, 200, 1, 3, 2};
-    EXPECT_EQ(longest_streak_fixed(nums), 4);
+    EXPECT_EQ(longest_streak_fixed(nums), N);
+    EXPECT_EQ(longest_streak_memtest_2(nums), N);
 }
 
 TEST(LongestConsecutiveSequence, Test2)
 {
+    const auto N = 2;
     std::vector<int> nums = {0, -1};
-    EXPECT_EQ(longest_streak_fixed(nums), 2);
+    EXPECT_EQ(longest_streak_fixed(nums), N);
+    EXPECT_EQ(longest_streak_memtest_2(nums), N);
 }
 
 TEST(LongestConsecutiveSequence, Test3)
 {
+    const auto N = 5;
     std::vector<int> nums = {1, 3, 5, 2, 4};
-    EXPECT_EQ(longest_streak_fixed(nums), 5);
+    EXPECT_EQ(longest_streak_fixed(nums), N);
+    EXPECT_EQ(longest_streak_memtest_2(nums), N);
 }
 
 TEST(LongestConsecutiveSequence, Test4)
 {
+    const auto N = 3;
     std::vector<int> nums = {1, 0, -1};
-    EXPECT_EQ(longest_streak_fixed(nums), 3);
+    EXPECT_EQ(longest_streak_fixed(nums), N);
+    EXPECT_EQ(longest_streak_memtest_2(nums), N);
 }
 
 }
