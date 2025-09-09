@@ -34,7 +34,7 @@ RUN apt-get update -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN apt update && apt install -y python3 python3-pip
-RUN pip3 install pytest
+RUN pip3 install pytest sympy matplotlib
 
 ARG USERNAME=vscode
 RUN id -u ${USERNAME} &>/dev/null || useradd -m ${USERNAME}
