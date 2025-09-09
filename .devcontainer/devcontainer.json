@@ -8,10 +8,17 @@
 
   "postCreateCommand": "clang --version && llvm-config --version && git --version",
 
-  "remoteUser": "vscode",
   "features": {
   },
-
+  "runArgs": ["--privileged"],
+  "postStartCommand": "sysctl -w kernel.yama.ptrace_scope=0",
+  "remoteUser": "root",
+  "remoteEnv": {
+     "SSH_AUTH_SOCK": "/root/.ssh/agent.sock"
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
+  ],
   "customizations":
   {
       "vscode":
