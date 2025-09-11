@@ -35,8 +35,6 @@ void reverse_words(std::string &str)
     //                           continue scaning to find end of the word
     //                           reverse[word_start, end_word]
     //                           continue scanning from word end
-
-
     // ____aaa___bbb____
 
     size_t scan_pos = 0;
@@ -91,6 +89,83 @@ TEST(ReverseWords, Test)
         std::string in{""};
         std::string eq{""};
         reverse_words(in);
+        EXPECT_EQ(in, eq);
+    }
+}
+
+void reverse_impl_2(std::string &str, size_t start, size_t end)
+{
+    while(start < end){
+        std::swap(str[start], str[end]);
+        ++start;
+        --end;
+    }
+}
+
+void reverse_words_2(std::string &str)
+{
+    if (str.empty()){
+        return;
+    }
+
+    reverse_impl_2(str, 0, str.size() - 1);
+
+
+    size_t curr = 0;
+
+    while (curr < str.size())
+    {
+        if (str[curr] != ' ')
+        {
+            size_t word_end = curr;
+
+            while (word_end < str.size())
+            {
+                if (str[word_end] == ' ') {
+                    break;
+                }
+
+                ++word_end;
+            }
+
+            reverse_impl_2(str, curr, word_end - 1);
+
+            curr = word_end;
+        }
+        else{
+            ++curr;
+        }
+
+    }
+}
+
+TEST(ReverseWords, Test2)
+{
+    {
+        std::string in{" abc def ghk "};
+        std::string eq{" ghk def abc "};
+        reverse_words_2(in);
+        EXPECT_EQ(in, eq);
+    }
+
+    {
+        std::string in{"a b c"};
+        std::string eq{"c b a"};
+        reverse_words_2(in);
+        EXPECT_EQ(in, eq);
+    }
+
+    {
+        std::string in{"    "};
+        std::string eq{"    "};
+        reverse_words_2(in);
+        EXPECT_EQ(in, eq);
+    }
+
+    {
+        std::string in{""};
+        std::string eq{""};
+        reverse_words_2(in);
         EXPECT_EQ(in, eq);
     }
 }

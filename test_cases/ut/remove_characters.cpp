@@ -57,4 +57,63 @@ TEST(Remove_chars, Test1)
 }
 
 
+//-------------------------------------------------------
+std::string remove_chars_2(std::string &str, const std::string &to_remove)
+{
+    std::unordered_set<char> hash_to_rm;
+    for (size_t i = 0; i < to_remove.size(); ++i){
+        hash_to_rm.insert(to_remove[i]);
+    }
+    // tow pointer pattern
+    // dst - current write position
+    // curr - string iterator
+    // dst is always less or equal 
+    
+    // curr - fast pointer
+    // dest - slow pointer
+    // [dest - curr] - sliding window range
+    // 0 .... [dest - curr] ... N
+    // invariant:
+    // dst and curr point to first element 
+    // for each symbol:
+    //      read str[curr] to tmp
+    //      if tmp is not marked to delete:
+    //          revrite str[dst] with tmp
+
+    size_t dst = 0;
+    size_t curr = 0;
+    while (curr < str.size())
+    {
+        auto tmp = str[curr];  // save curr symbol to temp variable
+        if (hash_to_rm.count(tmp) == 0){
+            str[dst++] = tmp; // pack symbol to array's begin. Invariant preserves becouse dst <= curr and str[curr] is stored and can be revritten 
+        }
+        curr++;
+    }
+
+    if (dst != curr){
+        str.resize(dst);
+    }
+
+    return str;
+}
+
+TEST(Remove_chars, Test2)
+{
+    {
+        auto str = std::string("tetter");
+        EXPECT_EQ(remove_chars_2(str, std::string("te")), "r");
+    }
+
+    {
+        auto str = std::string("tetter");
+        EXPECT_EQ(remove_chars_2(str, std::string("ter")), "");
+    }
+
+    {
+        auto str = std::string("tetter");
+        EXPECT_EQ(remove_chars_2(str, std::string("")), "tetter");
+    }
+}
+
 }

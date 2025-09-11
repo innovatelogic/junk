@@ -91,4 +91,54 @@ TEST(Find_first_non_repetetive, Test1)
 
 }
 
+//----------------------------------------------------------------
+std::pair<bool, char> find_firs_non_repetetive_3(const std::string &str)
+{
+    std::pair<bool, char> out{false, '\0'};
+
+    std::unordered_map<char, std::pair<size_t, size_t>> hash_symbol_count_pos;
+
+
+    for (size_t i = 0; i < str.size(); ++i){
+        if (hash_symbol_count_pos.count(str[i]) == 0) {
+            hash_symbol_count_pos[str[i]] = {1, i};
+        }
+        else{
+            auto &p = hash_symbol_count_pos[str[i]];
+            p.first++;
+        }
+    }
+
+    auto max_pos = std::numeric_limits<size_t>::max();
+    for (auto it = hash_symbol_count_pos.begin(); it != hash_symbol_count_pos.end(); ++it)
+    {
+        if (it->second.first == 1 && it->second.second < max_pos){
+            max_pos = it->second.second;
+        }
+    }
+
+    if (max_pos != std::numeric_limits<size_t>::max()) {
+        out = {true, str[max_pos]};
+    }
+
+    return out;
+}
+
+
+TEST(Find_first_non_repetetive, Test2)
+{
+    {
+        auto eq = std::pair<bool, char>{true, 'r'};
+        EXPECT_EQ(find_firs_non_repetetive_3("tetter"), eq);
+    }
+
+     {
+        auto eq = std::pair<bool, char>{false, '\0'};
+        EXPECT_EQ(find_firs_non_repetetive_3("tertter"), eq);
+    }
+
+}
+
+
+
 }
