@@ -139,6 +139,47 @@ TEST(Find_first_non_repetetive, Test2)
 
 }
 
+std::pair<bool, char> find_first_not_repettetive_4(const std::string &str)
+{
+    std::unordered_map<char, std::pair<size_t, size_t>> hash_count_pos;
+
+    for (size_t i = 0; i < str.size(); ++i) {
+
+        auto [it, inserted] = hash_count_pos.try_emplace(str[i], 1, i);
+
+        if (!inserted){
+            it->second.first++;
+        }
+    }
+
+    std::cout << "str=" << str << std::endl;
+    const auto MAX = std::numeric_limits<size_t>::max();
+    auto min_pos = MAX;
+    for (const auto& [ch, data] : hash_count_pos) {
+        if (data.first == 1 && data.second < min_pos){
+            min_pos = data.second;
+            std::cout << "[" << ch << "] count=" << data.first << ": pos=" << data.second << std::endl;
+        }
+    }
+
+    if (min_pos != MAX) {
+        return {true, str[min_pos]};
+    }
+    return {false, '\0'};
+}
+
+TEST(Find_first_non_repetetive, Test4)
+{
+    {
+        auto eq = std::pair<bool, char>{true, 'r'};
+        EXPECT_EQ(find_first_not_repettetive_4("tetter"), eq);
+    }
+
+     {
+        auto eq = std::pair<bool, char>{false, '\0'};
+        EXPECT_EQ(find_first_not_repettetive_4("tertter"), eq);
+    }
+}
 
 
 }
