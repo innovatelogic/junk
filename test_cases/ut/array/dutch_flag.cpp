@@ -94,7 +94,7 @@ bool validate_partitioning(const std::vector<int> &arr, const std::vector<int> &
 
 TEST(Partitioning, Test1)
 {
-    /*{
+    {
         std::vector<int> in{0, 1, 2, 0, 2, 1, 1};
 
         auto orig = in;
@@ -103,7 +103,7 @@ TEST(Partitioning, Test1)
 
         EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
         EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
-    }*/
+    }
 
 
     {
