@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
+#include <exception>
 
 namespace junk
 {
@@ -121,7 +122,272 @@ TEST(Partitioning, Test1)
         EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
         EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
     }
+}
 
+//  3 2 1 0
+
+// 3 3 3 0
+
+// 0 0 5 0
+
+
+size_t partitioning_2(std::vector<int> &arr, size_t partition_idx)
+{
+    auto pivot = arr[partition_idx];
+
+    size_t smaller = 0;
+    size_t equal = 0;
+    size_t larger = arr.size();
+
+    while (equal < larger)
+    {
+        if (arr[equal] < pivot) {
+            std::swap(arr[equal++], arr[smaller++]);
+        }
+        else if (arr[equal] > pivot){
+            std::swap(arr[--larger], arr[equal]);
+        }
+        else if (arr[equal] == pivot){
+            ++equal;
+        }
+    }
+
+    return smaller;
+}
+
+TEST(Partitioning, Test2)
+{
+    {
+        std::vector<int> in{3, 3, 3, 3, 0};
+
+        auto orig = in;
+        auto orig_pivot = 3;
+        auto new_pivot = partitioning_2(in, orig_pivot);
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+
+
+    {
+        std::vector<int> in{0, 1, 2, 0, 2, 1, 1};
+
+        auto orig = in;
+        auto orig_pivot = 2;
+        auto new_pivot = partitioning_2(in, orig_pivot);
+
+        for (auto v : in){
+            std::cout << v << ",";
+        }
+        std::cout << "\n";
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+    
+    {
+        std::vector<int> in{0, 0, 0, 3, 0};
+
+        auto orig = in;
+        auto orig_pivot = 3;
+        auto new_pivot = partitioning_2(in, orig_pivot);
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+}
+
+size_t partitioning_3(std::vector<int> &arr, size_t partition_idx)
+{
+    auto pivot = arr[partition_idx];
+
+    size_t equal = 0;
+    size_t smaller = 0;
+    size_t larger = arr.size();
+
+    while (equal < larger)
+    {
+        if (arr[equal] < pivot){
+            std::swap(arr[smaller++], arr[equal++]);
+        }
+        else if (arr[equal] == pivot) {
+            ++equal;
+        }
+        else {
+            std::swap(arr[equal], arr[--larger]);
+        }
+    }
+    return smaller;
+}
+
+
+TEST(Partitioning, Test3)
+{
+   /* {
+        std::vector<int> in{3, 3, 3, 3, 0};
+
+        auto orig = in;
+        auto orig_pivot = 3;
+        auto new_pivot = partitioning_3(in, orig_pivot);
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }*/
+ 
+{
+        std::vector<int> in{0, 1, 2, 0, 2, 1, 1};
+
+        auto orig = in;
+        auto orig_pivot = 2;
+        auto new_pivot = partitioning_2(in, orig_pivot);
+
+        std::cout << "new pivot=" << new_pivot << ", val=" << in[new_pivot] << std::endl;
+        std::cout << "orig pivot=" << orig_pivot << ", val=" << orig[orig_pivot] << std::endl;
+        
+        for (auto v : in){
+            std::cout << v << ",";
+        }
+        std::cout << "\n";
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+    {
+        std::vector<int> in{0, 1, 2, 0, 2, 1, 1};
+
+        auto orig = in;
+        auto orig_pivot = 2;
+        auto new_pivot = partitioning_3(in, orig_pivot);
+
+        std::cout << "new pivot=" << new_pivot << ", val=" << in[new_pivot] << std::endl;
+        std::cout << "orig pivot=" << orig_pivot << ", val=" << orig[orig_pivot] << std::endl;
+        
+        for (auto v : in){
+            std::cout << v << ",";
+        }
+        std::cout << "\n";
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+   
+   {
+        std::vector<int> in{0, 0, 0, 3, 0};
+
+        auto orig = in;
+        auto orig_pivot = 3;
+        auto new_pivot = partitioning_3(in, orig_pivot);
+
+        std::cout << "new pivot=" << new_pivot << ", val=" << in[new_pivot] << std::endl;
+        std::cout << "orig pivot=" << orig_pivot << ", val=" << orig[orig_pivot] << std::endl;
+        
+        for (auto v : in){
+            std::cout << v << ",";
+        }
+        std::cout << "\n";
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+}
+
+size_t partitioning_4(std::vector<int> &arr, size_t partition_idx)
+{
+    if (partition_idx >= arr.size()){
+        throw std::exception();
+    }
+
+
+    int pivot = arr[partition_idx];
+    size_t equal = 0;
+    size_t smaller = 0;
+    size_t larger = arr.size();
+
+    while (equal < larger)
+    {
+        if (arr[equal] < pivot){
+            std::swap(arr[equal++], arr[smaller++]);
+        }
+        else if (arr[equal] == pivot)
+        {
+            equal++;
+        }
+        else{
+            std::swap(arr[equal], arr[--larger]);
+        }
+    }
+
+    return smaller;
+}
+
+TEST(Partitioning, Test4)
+{
+    {
+        std::vector<int> in{3, 3, 3, 3, 0};
+
+        auto orig = in;
+        auto orig_pivot = 3;
+        auto new_pivot = partitioning_4(in, orig_pivot);
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+ 
+    {
+        std::vector<int> in{0, 1, 2, 0, 2, 1, 1};
+
+        auto orig = in;
+        auto orig_pivot = 2;
+        auto new_pivot = partitioning_4(in, orig_pivot);
+
+        std::cout << "new pivot=" << new_pivot << ", val=" << in[new_pivot] << std::endl;
+        std::cout << "orig pivot=" << orig_pivot << ", val=" << orig[orig_pivot] << std::endl;
+        
+        for (auto v : in){
+            std::cout << v << ",";
+        }
+        std::cout << "\n";
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+    {
+        std::vector<int> in{0, 1, 2, 0, 2, 1, 1};
+
+        auto orig = in;
+        auto orig_pivot = 2;
+        auto new_pivot = partitioning_4(in, orig_pivot);
+
+        std::cout << "new pivot=" << new_pivot << ", val=" << in[new_pivot] << std::endl;
+        std::cout << "orig pivot=" << orig_pivot << ", val=" << orig[orig_pivot] << std::endl;
+        
+        for (auto v : in){
+            std::cout << v << ",";
+        }
+        std::cout << "\n";
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+   
+   {
+        std::vector<int> in{0, 0, 0, 3, 0};
+
+        auto orig = in;
+        auto orig_pivot = 3;
+        auto new_pivot = partitioning_4(in, orig_pivot);
+
+        std::cout << "new pivot=" << new_pivot << ", val=" << in[new_pivot] << std::endl;
+        std::cout << "orig pivot=" << orig_pivot << ", val=" << orig[orig_pivot] << std::endl;
+        
+        for (auto v : in){
+            std::cout << v << ",";
+        }
+        std::cout << "\n";
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
 }
 
 }

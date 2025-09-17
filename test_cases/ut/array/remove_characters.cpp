@@ -116,4 +116,42 @@ TEST(Remove_chars, Test2)
     }
 }
 
+
+std::string remove_chars_17_09_25(std::string &str, const std::string &to_remove)
+{
+    std::unordered_set<char> hash_to_rm;
+    for (auto c : to_remove){
+        hash_to_rm.insert(c);
+    }
+
+    int last = 0;
+    for (int i = 0; i < str.size(); ++i)
+    {
+        if (hash_to_rm.count(str[i]) == 0){
+            str[last++] = str[i];
+        }
+    }
+
+    str.resize(last);
+
+    return str;
+}
+
+TEST(Remove_chars, Test_17_09_25)
+{
+    {
+        auto str = std::string("tetter");
+        EXPECT_EQ(remove_chars_17_09_25(str, std::string("te")), "r");
+    }
+
+    {
+        auto str = std::string("tetter");
+        EXPECT_EQ(remove_chars_17_09_25(str, std::string("ter")), "");
+    }
+
+    {
+        auto str = std::string("tetter");
+        EXPECT_EQ(remove_chars_17_09_25(str, std::string("")), "tetter");
+    }
+}
 }
