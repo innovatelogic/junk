@@ -1,11 +1,7 @@
-FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04
+FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu-24.04
 
 # Install clang, llvm, git, and gtest
 RUN apt-get update -y && \
-    apt-get install -y software-properties-common && \
-    add-apt-repository -y ppa:deadsnakes/ppa && \
-    add-apt-repository -y ppa:ubuntugis/ppa -y && \
-    apt-get update -y && \
     apt-get install -y --no-install-recommends \
         clang \
         libclang-dev \
@@ -18,12 +14,12 @@ RUN apt-get update -y && \
         libbenchmark-dev \
         build-essential \
         libopencv-dev \
-        python3.10 \
-        python3.10-dev \
-        python3.10-venv \
+        python3 \
+        python3-dev \
+        python3-venv \
         python3-pip \
-        python3.9-distutils \
         python3-numpy \
+        libgnutls28-dev \
         libboost-all-dev && \
     # Build and install gtest
     cd /usr/src/gtest && \
@@ -34,7 +30,12 @@ RUN apt-get update -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN apt update && apt install -y python3 python3-pip
-RUN pip3 install pytest sympy matplotlib
+RUN pip3 install --break-system-packages pytest sympy matplotlib ninja
+
+# Build script
+COPY build-seastar.sh ./build-seastar.sh
+RUN chmod +x ./build-seastar.sh
+RUN sudo ./build-seastar.sh
 
 ARG USERNAME=vscode
 RUN id -u ${USERNAME} &>/dev/null || useradd -m ${USERNAME}

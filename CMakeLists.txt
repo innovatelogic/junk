@@ -128,9 +128,9 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -Wall -ldl -std=c++20") # -Ofast 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -Wall -ldl -std=c++23") # -Ofast 
 set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS}") #
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
@@ -180,6 +180,7 @@ include_directories(${PROJECT_SOURCE_DIR}/base)
 
 # UT section
 find_package(GTest REQUIRED)
+find_package(Seastar REQUIRED)
 #find_package(benchmark REQUIRED)
 
 message( STATUS "GTEST_ROOT:" ${GTEST_ROOT})
@@ -197,3 +198,4 @@ set(ADD_CXX_FLAGS_REL "-DRELEASE -DNDEBUG")
 #SET (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${ADD_CXX_FLAGS_REL}" CACHE STRING "cxx r compile flags" FORCE)
 
 add_subdirectory(test_cases)
+add_subdirectory(demo_seastar)

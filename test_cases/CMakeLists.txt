@@ -110,6 +110,7 @@ target_link_libraries(${PROJECT_NAME}
 #${GeographicLib_LIBRARIES}
 #${onnxruntime_LIBRARIES}
 ${Boost_LIBRARIES}
+Seastar::seastar
 LLVM
 pthread
 dl
