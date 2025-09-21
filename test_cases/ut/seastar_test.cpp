@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 
 #include <seastar/core/app-template.hh>
+#include <seastar/core/coroutine.hh>
+#include <seastar/core/sleep.hh>
 #include <iostream>
 
 namespace junk {
