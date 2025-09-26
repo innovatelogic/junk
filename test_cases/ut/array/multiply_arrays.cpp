@@ -19,9 +19,7 @@ std::vector<int> mult_arrays(std::vector<int> &arr1, std::vector<int> &arr2)
     {
         for (int j = arr1.size() - 1; j >= 0; --j)
         {
-            std::cout << ">> i=" << i << ", j=" << j << " k=" << k << std::endl;
             out[i + j + 1] += arr2[i] * arr1[j];
-
             out[i + j] += out[i + j + 1] / 10;
             out[i + j + 1] %= 10;
         }
@@ -44,6 +42,13 @@ std::vector<int> mult_arrays(std::vector<int> &arr1, std::vector<int> &arr2)
 
 TEST(MultArray, Test_240925)
 {
+    {
+        std::vector<int> a1{1};
+        std::vector<int> a2{1};
+        const std::vector<int> eq{1};
+        EXPECT_EQ(mult_arrays(a1, a2), eq);
+    }
+
     {
         std::vector<int> a1{1, 0, 1};
         std::vector<int> a2{2, 2};
