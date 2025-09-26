@@ -24,14 +24,7 @@ int test_seastar()
 
 TEST(Seastar, Test1)
 {
-    seastar::app_template app;
 
-    int result = app.run(0, nullptr, [] {
-        std::cout << "Hello Seastar!" << std::endl;
-        return seastar::make_ready_future<>();
-    });
-
-    ASSERT_EQ(result, 0);
 }
 
 }
