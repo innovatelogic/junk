@@ -8,6 +8,6 @@ sudo ./install-dependencies.sh
 
 sudo ./configure.py --mode=release
 
-ninja -C build/release -j$(( $(nproc) / 2 ))
+ninja -C build/release -j2
 
 sudo ninja -C build/release install
