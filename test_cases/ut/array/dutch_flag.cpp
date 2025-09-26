@@ -495,4 +495,110 @@ TEST(Partitioning, Test_240925)
     }
 }
 
+
+size_t ductch_flag_problem_260925(std::vector<int> &arr, size_t idx_partition)
+{
+    if (idx_partition >= arr.size()){
+        throw std::runtime_error("invalid argument");
+    }
+
+    size_t elem = 0;
+    size_t smaller = 0;
+    size_t larger = arr.size();
+
+    int pivot = arr[idx_partition];
+
+
+    while (elem < larger)
+    {
+        if (arr[elem] < pivot)
+        {
+            std::swap(arr[smaller++], arr[elem++]);
+        }
+        else if (arr[elem] == pivot)
+        {
+            elem++;
+        }
+        else
+        {
+            --larger;
+            std::swap(arr[larger], arr[elem]);
+        }
+    }
+
+    return smaller;
+}
+
+
+TEST(DutchFlag, Test_260925)
+{
+    {
+        std::vector<int> in{3, 3, 3, 3, 0};
+
+        auto orig = in;
+        auto orig_pivot = 3;
+        auto new_pivot = ductch_flag_problem_260925(in, orig_pivot);
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+ 
+    {
+        std::vector<int> in{0, 1, 2, 0, 2, 1, 1};
+
+        auto orig = in;
+        auto orig_pivot = 2;
+        auto new_pivot = ductch_flag_problem_260925(in, orig_pivot);
+
+        std::cout << "new pivot=" << new_pivot << ", val=" << in[new_pivot] << std::endl;
+        std::cout << "orig pivot=" << orig_pivot << ", val=" << orig[orig_pivot] << std::endl;
+        
+        for (auto v : in){
+            std::cout << v << ",";
+        }
+        std::cout << "\n";
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+    {
+        std::vector<int> in{0, 1, 2, 0, 2, 1, 1};
+
+        auto orig = in;
+        auto orig_pivot = 2;
+        auto new_pivot = ductch_flag_problem_260925(in, orig_pivot);
+
+        std::cout << "new pivot=" << new_pivot << ", val=" << in[new_pivot] << std::endl;
+        std::cout << "orig pivot=" << orig_pivot << ", val=" << orig[orig_pivot] << std::endl;
+        
+        for (auto v : in){
+            std::cout << v << ",";
+        }
+        std::cout << "\n";
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+   
+   {
+        std::vector<int> in{0, 0, 0, 3, 0};
+
+        auto orig = in;
+        auto orig_pivot = 3;
+        auto new_pivot = ductch_flag_problem_260925(in, orig_pivot);
+
+        std::cout << "new pivot=" << new_pivot << ", val=" << in[new_pivot] << std::endl;
+        std::cout << "orig pivot=" << orig_pivot << ", val=" << orig[orig_pivot] << std::endl;
+        
+        for (auto v : in){
+            std::cout << v << ",";
+        }
+        std::cout << "\n";
+
+        EXPECT_EQ(orig[orig_pivot], in[new_pivot]);
+        EXPECT_TRUE(validate_partitioning(in, orig, new_pivot));
+    }
+}
+
+
 }
