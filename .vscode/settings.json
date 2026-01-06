@@ -112,7 +112,12 @@
         "semaphore": "cpp",
         "shared_mutex": "cpp",
         "stop_token": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "strstream": "cpp",
+        "barrier": "cpp",
+        "coroutine": "cpp",
+        "format": "cpp",
+        "ranges": "cpp"
     },
     "cmake.configureOnOpen": false,
     "cmake.configureArgs": [
